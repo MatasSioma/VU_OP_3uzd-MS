@@ -3,6 +3,9 @@
 #include <string>
 #include <limits>
 
+#include <random>
+#include <ctime>
+
 using namespace std;
 
 #define n 2 //nd uzduociu kiekis
@@ -58,8 +61,20 @@ int main() {
             }
             break;
         case 2:
-            cout << "Funkcija dar nesukurta" << endl;
-            exit(1);
+            for(int i = 0; i < n; i++) {
+                cout << i+1 << "-ojo studento duomenys" << endl;
+
+                cout << "Vardas: ";
+                cin >> studentai[i].vardas;
+
+                cout << "Pavarde: ";
+                cin >> studentai[i].pavarde;
+
+                srand(time(nullptr));
+                for (int grade = 0; grade < n; grade++) studentai[i].nd[grade] = rand() % 11;
+                studentai[i].egz = rand() % 11;
+            }
+            break;
         case 3:
             cout << "Funkcija dar nesukurta" << endl;
             exit(1);
