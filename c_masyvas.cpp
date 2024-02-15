@@ -19,6 +19,7 @@ struct studentas {
 };
 
 int main() {
+    srand(time(nullptr));
     studentas studentai[stud_sk];
 
     int option;
@@ -70,14 +71,19 @@ int main() {
                 cout << "Pavarde: ";
                 cin >> studentai[i].pavarde;
 
-                srand(time(nullptr));
                 for (int grade = 0; grade < n; grade++) studentai[i].nd[grade] = rand() % 11;
                 studentai[i].egz = rand() % 11;
             }
             break;
         case 3:
-            cout << "Funkcija dar nesukurta" << endl;
-            exit(1);
+            for(int i = 0; i < n; i++) {
+                studentai[i].vardas = "Vardenis_" + to_string(i+1);
+                studentai[i].pavarde = "Pavardenis_" + to_string(i+1);
+
+                for (int grade = 0; grade < n; grade++) studentai[i].nd[grade] = rand() % 11;
+                studentai[i].egz = rand() % 11;
+            }
+            break;
         default:
             cout << "Blogai įvestas meniu pasirinkimas" << endl;
             exit(1);
