@@ -2,7 +2,7 @@
 #include <iomanip>
 #include <string>
 #include <limits>
-
+#include <algorithm>
 #include <random>
 #include <ctime>
 
@@ -89,16 +89,33 @@ int main() {
             exit(1);
     }
 
-    cout << "Vardas        Pavardė       Galutinis (Vid.)" << endl;
-    cout << "--------------------------------------------" << endl;
-
     double agreguotas = 0, galutinis;
+    string action;
+    do {
+        cout << "Naudoti vidurki ar mediana?: 1 - Vidurkis, 2 - Mediana: ";
+        getline(cin, action);
+    } while(action != "1" && action != "2");
+
+    cout << "Vardas        Pavardė       Galutinis ";
+    if(action == "1") cout << "(Vid.)" << endl;
+    else cout << "(Med.)" << endl;
+    cout << "--------------------------------------------" << endl;
+    
     for (int i = 0; i < stud_sk; i++) {
-        // printf("%-14s%-14s\n", studentai[i].vardas.c_str(), studentai[i].pavarde.c_str());
-        for (int gradeNum = 0; gradeNum < n; gradeNum++) {
-            agreguotas += studentai[i].nd[gradeNum];
+        // studentas *stud = &studentai[i];
+        cout << left << setw(14) << studentai[i].vardas << left << setw(14) << studentai[i].pavarde;
+
+        if (action == "1") { //vidurkis
+            for (int gradeNum = 0; gradeNum < n; gradeNum++) {
+                agreguotas += studentai[i].nd[gradeNum];
+            }
+            agreguotas /= n;
+        } else { //mediana
+            sort(studentai[i].nd, studentai[i].nd + n);
+            agreguotas = n % 2 == 0 ? (studentai[i].nd[n / 2 - 1] + studentai[i].nd[n / 2]) / 2.0 : studentai[i].nd[n / 2];
         }
-        galutinis = agreguotas / n * 0.4 + studentai[i].egz * 0.6;
-        cout << left << setw(14) << studentai[i].vardas << left << setw(14) << studentai[i].pavarde << fixed << setprecision(2) << galutinis << endl;
+
+        galutinis = agreguotas * 0.4 + studentai[i].egz * 0.6;
+        cout << fixed << setprecision(2) << galutinis << endl;
     }
 }
