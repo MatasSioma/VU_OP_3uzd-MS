@@ -89,11 +89,16 @@ int main() {
             exit(1);
     }
 
-    cout << "Vardas        Pavardė       Galutinis (Vid.) / Galutinis (Med.)" << endl;
-    cout << "---------------------------------------------------------------" << endl;
+    cout << "Vardas        Pavardė       Galutinis (Vid.)" << endl;
+    cout << "--------------------------------------------" << endl;
 
+    double agreguotas = 0, galutinis;
     for (int i = 0; i < stud_sk; i++) {
         // printf("%-14s%-14s\n", studentai[i].vardas.c_str(), studentai[i].pavarde.c_str());
-        cout << left << setw(14) << studentai[i].vardas << left << setw(14) <<studentai[i].pavarde << studentai[i].nd[0] << studentai[i].nd[1] << studentai[i].egz << endl;
+        for (int gradeNum = 0; gradeNum < n; gradeNum++) {
+            agreguotas += studentai[i].nd[gradeNum];
+        }
+        galutinis = agreguotas / n * 0.4 + studentai[i].egz * 0.6;
+        cout << left << setw(14) << studentai[i].vardas << left << setw(14) << studentai[i].pavarde << fixed << setprecision(2) << galutinis << endl;
     }
 }
