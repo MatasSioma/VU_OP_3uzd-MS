@@ -6,11 +6,12 @@
 
 #include <random>
 #include <ctime>
+#include <cctype>
 
 using namespace std;
 
-#define n 3 //nd uzduociu kiekis
-const int stud_sk = 1;
+// #define n 3 //nd uzduociu kiekis
+// const int stud_sk = 1;
 
 struct studentas {
     string vardas;
@@ -19,18 +20,32 @@ struct studentas {
     int egz;
 };
 
-studentas* didintiMasyva(studentas* senas, int senasDydis) {
-    studentas* naujas = new studentas[senasDydis + 1];
-    for (int i = 0; i < senasDydis; i++) naujas[i] = senas[i];
+studentas* atnaujintiMasyva(studentas* senas, int Nstud_sk, int Nnd_sk, int Sstud_sk, int Snd_sk) {
+    studentas tuscias;
+    studentas* naujas = new studentas[Nstud_sk];
+    for (int i = 0; i < Sstud_sk; i++) naujas[i] = senas[i];
+    if(Nstud_sk != Sstud_sk) naujas[Nstud_sk] = tuscias;
+
+    for (int i = 0; i < Sstud_sk; i++) {
+        naujas[i].nd = new int[Nnd_sk];
+        for (int b = 0; b < Snd_sk; b++) {
+            naujas[i].nd[b] = senas[i].nd[b];
+        }
+        delete []senas[i].nd;
+        if(Nnd_sk != Snd_sk) naujas[i].nd[Nnd_sk] = 0;
+    }
     
     return naujas;
 }
 
 int main() {
     srand(time(nullptr));
-    int stud_sk = 1;
-    studentas *studentai = new studentas[stud_sk];
+    int stud_sk = 1, nd_sk = 1;
     string option;
+
+    //inicijuojam masyva
+    studentas *studentai = new studentas[stud_sk], stud, *tmp = nullptr;
+    studentai[0].nd = new int[nd_sk];
 
     do {
         cout << "Meniu: 1 - Įvesti duomenis ranka, 2 - Generuoti pažymius, 3 - Generuoti pažymius ir vardus: ";
@@ -38,42 +53,41 @@ int main() {
 
     } while(option != "1" && option != "2" && option != "3");
     
-    while (true) {
+    string more = "";
+    while(true) {
+        stud = studentai[stud_sk-1];
         cout << stud_sk << "-ojo studento duomenys ";
-        if (option == "3") {
-            studentai[i].vardas = "Vardenis_" + to_string(i+1);
-            studentai[i].pavarde = "Pavardenis_" + to_string(i+1);
-
-            for (int grade = 0; grade < n; grade++) studentai[i].nd[grade] = rand() % 11;
-            studentai[i].egz = rand() % 11;
-
-            cout << "sugeneruoti" << endl;
-            continue;
-        } else {
+        if (option == "3" || option == "2") {
+            for (int grade = 0; grade < nd_sk; grade++) stud.nd[grade] = rand() % 11;
+            stud.egz = rand() % 11;
+        }
+        if (option == "1" || option == "2") {
             cout << endl;
             cout << "Vardas: ";
-            cin >> studentai[i].vardas;
+            cin >> stud.vardas;
 
             cout << "Pavarde: ";
-            cin >> studentai[i].pavarde;
+            cin >> stud.pavarde;
         }
-        if (option == "2") {
-            for (int grade = 0; grade < n; grade++) studentai[i].nd[grade] = rand() % 11;
-            studentai[i].egz = rand() % 11;
 
-            continue;
+        if (option == "3") {
+            stud.vardas = "Vardenis_" + to_string(stud_sk+1);
+            stud.pavarde = "Pavardenis_" + to_string(stud_sk+1);
+
+            cout << "sugeneruoti" << endl;
+            
         } else { // pazymiu rankine ivestis
-            for (int gradeNum = 0; gradeNum < n + 1; gradeNum++) { // nd skaicius + 1 (egzamino ivertinimas)
+            for (int gradeNum = 0; gradeNum < nd_sk; gradeNum++) { // nd skaicius + 1 (egzamino ivertinimas)
                 while(true) {
                     int grade;
-                    if (gradeNum < n) {
+                    if (gradeNum < nd_sk) {
                         cout << gradeNum + 1 << " ND įvertinimas (0-10): ";
                         cin >> grade;
-                        studentai[i].nd[gradeNum] = grade;
+                        stud.nd[gradeNum] = grade;
                     } else {
                         cout << "Egzamino įvertinimas: ";
                         cin >> grade;
-                        studentai[i].egz = grade;
+                        stud.egz = grade;
                     }
                     if (cin.fail()) { // Vartotojas iveda ne skaiciu
                         cout << "Įveskite sveiką skaičių nuo 0 iki 10." << endl;
@@ -85,7 +99,24 @@ int main() {
                         break;
                     }
                 }
+                cout << "Pridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ";
+                getline(cin, more);
+                transform(more.begin(), more.end(), more.begin(), ::tolower); //convert to lowerCase
+                if(more == "ne" || more == "n") break;
+                tmp = atnaujintiMasyva(studentai, stud_sk, nd_sk+1, stud_sk, nd_sk);
+                delete []studentai;
+                studentai = tmp;
+                nd_sk += 1;
             }
+
+            cout << "Ar norite įvesti dar vieną studentą? (ENTER - Taip, 'Ne'/'N' - Ne): ";
+            getline(cin, more);
+            transform(more.begin(), more.end(), more.begin(), ::tolower); //convert to lowerCase
+            if(more == "ne" || more == "n") break;
+            tmp = atnaujintiMasyva(studentai, stud_sk+1, nd_sk, stud_sk, nd_sk);
+            delete []studentai;
+            studentai = tmp;
+            stud_sk += 1;
         }
     }
 
@@ -104,20 +135,20 @@ int main() {
     cout << "--------------------------------------------" << endl;
     
     for (int i = 0; i < stud_sk; i++) {
-        // studentas *stud = &studentai[i];
-        cout << left << setw(14) << studentai[i].vardas << left << setw(14) << studentai[i].pavarde;
+        stud = studentai[i];
+        cout << left << setw(14) << stud.vardas << left << setw(14) << stud.pavarde;
 
         if (option == "1") { //vidurkis
-            for (int gradeNum = 0; gradeNum < n; gradeNum++) {
-                agreguotas += studentai[i].nd[gradeNum];
+            for (int gradeNum = 0; gradeNum < nd_sk; gradeNum++) {
+                agreguotas += stud.nd[gradeNum];
             }
-            agreguotas /= n;
+            agreguotas /= nd_sk;
         } else { //mediana
-            sort(studentai[i].nd, studentai[i].nd + n);
-            agreguotas = n % 2 == 0 ? (studentai[i].nd[n / 2 - 1] + studentai[i].nd[n / 2]) / 2.0 : studentai[i].nd[n / 2];
+            sort(stud.nd, stud.nd + nd_sk);
+            agreguotas = nd_sk % 2 == 0 ? (stud.nd[nd_sk / 2 - 1] + stud.nd[nd_sk / 2]) / 2.0 : stud.nd[nd_sk / 2];
         }
 
-        galutinis = agreguotas * 0.4 + studentai[i].egz * 0.6;
+        galutinis = agreguotas * 0.4 + stud.egz * 0.6;
         cout << fixed << setprecision(2) << galutinis << endl;
     }
 }
