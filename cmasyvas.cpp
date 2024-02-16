@@ -15,23 +15,31 @@ const int stud_sk = 1;
 struct studentas {
     string vardas;
     string pavarde;
-    int nd[n];
+    int* nd;
     int egz;
 };
 
+studentas* didintiMasyva(studentas* senas, int senasDydis) {
+    studentas* naujas = new studentas[senasDydis + 1];
+    for (int i = 0; i < senasDydis; i++) naujas[i] = senas[i];
+    
+    return naujas;
+}
+
 int main() {
     srand(time(nullptr));
-    studentas studentai[stud_sk];
-
+    int stud_sk = 1;
+    studentas *studentai = new studentas[stud_sk];
     string option;
+
     do {
         cout << "Meniu: 1 - Įvesti duomenis ranka, 2 - Generuoti pažymius, 3 - Generuoti pažymius ir vardus: ";
         getline(cin, option);
 
     } while(option != "1" && option != "2" && option != "3");
     
-    for (int i = 0; i < stud_sk; i++) {
-        cout << i+1 << "-ojo studento duomenys ";
+    while (true) {
+        cout << stud_sk << "-ojo studento duomenys ";
         if (option == "3") {
             studentai[i].vardas = "Vardenis_" + to_string(i+1);
             studentai[i].pavarde = "Pavardenis_" + to_string(i+1);
