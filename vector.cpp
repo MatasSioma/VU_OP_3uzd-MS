@@ -30,7 +30,9 @@ string atnaujintiMasyvaUzklausa(string uzklausa) {
     return ats;
 }
 
-void didintiNdkieki(vector<studentas> &studentai, int nd_sk) {
+void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk) {
+    studentas tuscias;
+    for(int i = 0; i < stud_sk - studentai.size(); i++) studentai.push_back(tuscias);
     for(auto &stud: studentai) {
         int diff = nd_sk - stud.nd.size();
         for (int i = 0; i < diff; i++) stud.nd.push_back(0);
@@ -41,7 +43,7 @@ int main() {
     srand(time(nullptr));
     int stud_sk = 1, nd_sk = 1;
     string option;
-    studentas tuscias;
+
     //inicijuojam masyva
     vector<studentas> studentai(1);
 
@@ -98,10 +100,8 @@ int main() {
                         
                         break;
                     }
-                    tmp = atnaujintiMasyva(studentai, stud_sk, nd_sk+1, stud_sk, nd_sk);
-                    delete []studentai;
-                    studentai = tmp;
                     nd_sk += 1;
+                    atnaujintiMasyva(studentai, stud_sk, nd_sk);
                 }
                 i++;
             }
@@ -114,10 +114,8 @@ int main() {
                 if (i + 1 == nd_sk) {
                     more = atnaujintiMasyvaUzklausa("\nPridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
                     if(more == "ne" || more == "n") break;
-                    tmp = atnaujintiMasyva(studentai, stud_sk, nd_sk+1, stud_sk, nd_sk);
-                    delete []studentai;
-                    studentai = tmp;
                     nd_sk += 1;
+                    atnaujintiMasyva(studentai, stud_sk, nd_sk);
                 }
                 i++;
             }
@@ -141,12 +139,9 @@ int main() {
         }
         more = atnaujintiMasyvaUzklausa("Ar norite įvesti dar vieną studentą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
         if(more == "ne" || more == "n") break;
-        tmp = atnaujintiMasyva(studentai, stud_sk+1, nd_sk, stud_sk, nd_sk);
-        delete []studentai;
-        studentai = tmp;
         stud_sk += 1;
+        atnaujintiMasyva(studentai, stud_sk, nd_sk);
         // cout << studentai << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
-
     }
 
     double agreguotas = 0, galutinis;
@@ -172,7 +167,7 @@ int main() {
             }
             agreguotas /= nd_sk;
         } else { //mediana
-            sort(studentai[i].nd, studentai[i].nd + nd_sk);
+            sort(studentai[i].nd.begin(), studentai[i].nd.end());
             agreguotas = nd_sk % 2 == 0 ? (studentai[i].nd[nd_sk / 2 - 1] + studentai[i].nd[nd_sk / 2]) / 2.0 : studentai[i].nd[nd_sk / 2];
         }
 
