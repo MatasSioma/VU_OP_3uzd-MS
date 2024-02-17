@@ -72,7 +72,7 @@ int main() {
     
     string more = "";
     while(true) {
-        cout << stud_sk << "-ojo studento duomenys ";
+        cout << stud_sk << "-ojo studento duomenys";
 
         // cout << "\n " << stud_sk-1 << "- student index "<< stud.vardas << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
         if (option == "1") {
@@ -129,8 +129,9 @@ int main() {
             int i = 0;
             while (true) {
                 studentai[stud_sk-1].nd[i] = rand() % 11;
+                cout << "\n" << i+1 << " Namų darbo rezultatas sugeneruotas";
                 if (i + 1 == nd_sk) {
-                    more = atnaujintiMasyvaUzklausa("Pridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
+                    more = atnaujintiMasyvaUzklausa("\nPridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
                     if(more == "ne" || more == "n") break;
                     tmp = atnaujintiMasyva(studentai, stud_sk, nd_sk+1, stud_sk, nd_sk);
                     delete []studentai;
@@ -151,10 +152,10 @@ int main() {
         }
 
         if (option == "3") {
-            studentai[stud_sk-1].vardas = "Vardenis_" + to_string(stud_sk+1);
-            studentai[stud_sk-1].pavarde = "Pavardenis_" + to_string(stud_sk+1);
+            studentai[stud_sk-1].vardas = "Vardenis_" + to_string(stud_sk);
+            studentai[stud_sk-1].pavarde = "Pavardenis_" + to_string(stud_sk);
 
-            cout << "sugeneruoti" << endl;
+            cout << "Vardas bei pavardė sugeneruoti" << endl;
             
         }
         more = atnaujintiMasyvaUzklausa("Ar norite įvesti dar vieną studentą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
