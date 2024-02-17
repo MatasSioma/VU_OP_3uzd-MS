@@ -39,6 +39,19 @@ void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk) {
     }
 }
 
+void atspauzdintiMasyvoInfo(vector<studentas> &studentai) {
+    cout << "\n\nMasyvo dumenys:\n";
+    cout << "Vardas        Pavardė       NdPažymiai         Egzaminas" << endl;
+    for(int y = 0; y < studentai.size(); y++) {
+        cout << left << setw(14)<< studentai[y].vardas << left << setw(14) << studentai[y].pavarde;
+        cout << "[ "; 
+        for(int x = 0; x < studentai[y].nd.size(); x++) cout << left << setw(2) << studentai[y].nd[x] << " ";
+        cout << "]";
+
+        cout << "       " << studentai[y].egz << endl;
+    }
+}
+
 int main() {
     srand(time(nullptr));
     int stud_sk = 1, nd_sk = 1;
@@ -174,4 +187,6 @@ int main() {
         galutinis = agreguotas * 0.4 + studentai[i].egz * 0.6;
         cout << fixed << setprecision(2) << galutinis << endl;
     }
+
+    // atspauzdintiMasyvoInfo(studentai);
 }

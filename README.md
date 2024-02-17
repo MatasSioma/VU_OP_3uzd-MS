@@ -9,8 +9,11 @@ Pasirenkama tarp 3 būdų įvesti duomenis:
 - Generuoti pažymius
 - Generuoti pažymius ir vardus
 
-## v.pradinė
+## v0.1
+Studentų ir nd kiekis dinamiškas\
+Masyvų duomenų spauzdinimas\
+Pasirinkimas tarp vidurkio ir medianos skaičiavimo
 ### cmasyvas.cpp
 Naudojami tik c masyvai
 ### vector.cpp
-Naudojami <vector> objektai 
+Naudojami <vector> objektai

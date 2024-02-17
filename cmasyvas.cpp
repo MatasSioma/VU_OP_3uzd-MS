@@ -43,6 +43,19 @@ studentas* atnaujintiMasyva(studentas* senas, int Nstud_sk, int Nnd_sk, int Sstu
     return naujas;
 }
 
+void atspauzdintiMasyvoInfo(studentas* studentai, int stud_sk, int nd_sk) {
+    cout << "\n\nMasyvo dumenys:\n";
+    cout << "Vardas        Pavardė       NdPažymiai         Egzaminas" << endl;
+    for(int y = 0; y < stud_sk; y++) {
+        cout << left << setw(14)<< studentai[y].vardas << left << setw(14) << studentai[y].pavarde;
+        cout << "[ "; 
+        for(int x = 0; x < nd_sk; x++) cout << left << setw(2) << studentai[y].nd[x] << " ";
+        cout << "]";
+
+        cout << "       " << studentai[y].egz << endl;
+    }
+}
+
 string atnaujintiMasyvaUzklausa(string uzklausa) {
     cout << uzklausa;
     string ats = "";
@@ -198,4 +211,6 @@ int main() {
         galutinis = agreguotas * 0.4 + studentai[i].egz * 0.6;
         cout << fixed << setprecision(2) << galutinis << endl;
     }
+
+    atspauzdintiMasyvoInfo(studentai, stud_sk, nd_sk);
 }
