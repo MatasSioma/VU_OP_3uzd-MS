@@ -1,5 +1,6 @@
 #include <iostream>
 #include <iomanip>
+#include <fstream>
 #include <string>
 #include <vector>
 #include <limits>
@@ -61,100 +62,128 @@ int main() {
     vector<studentas> studentai(1);
 
     do {
-        cout << "Meniu: 1 - Įvesti duomenis ranka, 2 - Generuoti pažymius, 3 - Generuoti pažymius ir vardus: ";
+        cout << "Meniu: 1 - Įvesti duomenis ranka, 2 - Generuoti pažymius, 3 - Generuoti pažymius ir vardus, 4 - Nuskaityti iš failo: ";
         getline(cin, option);
 
-    } while(option != "1" && option != "2" && option != "3");
+    } while(option != "1" && option != "2" && option != "3" && option != "4");
     
     string more = "";
-    while(true) {
-        cout << stud_sk << "-ojo studento duomenys";
+    if (option != "4") {
+        while(true) {
+            cout << stud_sk << "-ojo studento duomenys";
 
-        // cout << "\n " << stud_sk-1 << "- student index "<< stud.vardas << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
-        if (option == "1") {
-            int i = 0;
-            while (true) {
-                while(true) {
-                    int grade = -1;
-                    if (i < nd_sk) {
-                        cout << "\n" << i + 1 << " ND įvertinimas (0-10): ";
-                        cin >> grade;
-                        studentai[stud_sk-1].nd[i] = grade;
-                    }
-                    if (cin.fail()) { // Vartotojas iveda ne skaiciu
-                        cout << "Įveskite sveiką skaičių nuo 0 iki 10." << endl;
-                        cin.clear();
-                        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                        continue;
-                    }
-                    if (grade >= 0 && grade <= 10) {
-                        break;
-                    }
-                }
-                if (i + 1 == nd_sk) {
-                    more = atnaujintiMasyvaUzklausa("Pridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
-                    if(more == "ne" || more == "n") {
-                        while (true)
-                        {
-                            int grade = -1;
-                            cout << "Egzamino įvertinimas: ";
+            // cout << "\n " << stud_sk-1 << "- student index "<< stud.vardas << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
+            if (option == "1") {
+                int i = 0;
+                while (true) {
+                    while(true) {
+                        int grade = -1;
+                        if (i < nd_sk) {
+                            cout << "\n" << i + 1 << " ND įvertinimas (0-10): ";
                             cin >> grade;
-                            studentai[stud_sk-1].egz = grade;
-                            if (cin.fail()) { // Vartotojas iveda ne skaiciu
-                                cout << "Įveskite sveiką skaičių nuo 0 iki 10." << endl;
-                                cin.clear();
-                                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                                continue;
-                            }
-                            if (grade >= 0 && grade <= 10) {
-                                break;
-                            }
+                            studentai[stud_sk-1].nd[i] = grade;
                         }
-                        
-                        break;
+                        if (cin.fail()) { // Vartotojas iveda ne skaiciu
+                            cout << "Įveskite sveiką skaičių nuo 0 iki 10." << endl;
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            continue;
+                        }
+                        if (grade >= 0 && grade <= 10) {
+                            break;
+                        }
                     }
-                    nd_sk += 1;
-                    atnaujintiMasyva(studentai, stud_sk, nd_sk);
+                    if (i + 1 == nd_sk) {
+                        more = atnaujintiMasyvaUzklausa("Pridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
+                        if(more == "ne" || more == "n") {
+                            while (true)
+                            {
+                                int grade = -1;
+                                cout << "Egzamino įvertinimas: ";
+                                cin >> grade;
+                                studentai[stud_sk-1].egz = grade;
+                                if (cin.fail()) { // Vartotojas iveda ne skaiciu
+                                    cout << "Įveskite sveiką skaičių nuo 0 iki 10." << endl;
+                                    cin.clear();
+                                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                                    continue;
+                                }
+                                if (grade >= 0 && grade <= 10) {
+                                    break;
+                                }
+                            }
+                            
+                            break;
+                        }
+                        nd_sk += 1;
+                        atnaujintiMasyva(studentai, stud_sk, nd_sk);
+                    }
+                    i++;
                 }
-                i++;
+            }
+            if (option == "3" || option == "2") {
+                int i = 0;
+                while (true) {
+                    studentai[stud_sk-1].nd[i] = rand() % 11;
+                    cout << "\n" << i+1 << " Namų darbo rezultatas sugeneruotas";
+                    if (i + 1 == nd_sk) {
+                        more = atnaujintiMasyvaUzklausa("\nPridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
+                        if(more == "ne" || more == "n") break;
+                        nd_sk += 1;
+                        atnaujintiMasyva(studentai, stud_sk, nd_sk);
+                    }
+                    i++;
+                }
+                studentai[stud_sk-1].egz = rand() % 11;
+            }
+            if (option == "1" || option == "2") {
+                cout << endl;
+                cout << "Vardas: ";
+                cin >> studentai[stud_sk-1].vardas;
+
+                cout << "Pavarde: ";
+                cin >> studentai[stud_sk-1].pavarde;
+            }
+
+            if (option == "3") {
+                studentai[stud_sk-1].vardas = "Vardenis_" + to_string(stud_sk);
+                studentai[stud_sk-1].pavarde = "Pavardenis_" + to_string(stud_sk);
+
+                cout << "Vardas bei pavardė sugeneruoti" << endl;
+                
+            }
+            more = atnaujintiMasyvaUzklausa("Ar norite įvesti dar vieną studentą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
+            if(more == "ne" || more == "n") break;
+            stud_sk += 1;
+            atnaujintiMasyva(studentai, stud_sk, nd_sk);
+            // cout << studentai << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
+        }
+    }
+    else {
+        string fname, line = "";
+        ifstream is;
+        char a;
+        do {
+            cout << "Įveskite failo pavadinimą: ";
+            cin >> fname;
+            is.open(fname);
+        } while(is.fail());
+
+        is.ignore(numeric_limits<streamsize>::max(), '\n');
+
+        while (!is.eof()) {
+            is.get(a);
+            line += a;
+            if(a == ' ') line.pop_back();
+            if (a == '\n') {
+                line.pop_back();
+                cout << line << endl;
+                line = "";
             }
         }
-        if (option == "3" || option == "2") {
-            int i = 0;
-            while (true) {
-                studentai[stud_sk-1].nd[i] = rand() % 11;
-                cout << "\n" << i+1 << " Namų darbo rezultatas sugeneruotas";
-                if (i + 1 == nd_sk) {
-                    more = atnaujintiMasyvaUzklausa("\nPridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
-                    if(more == "ne" || more == "n") break;
-                    nd_sk += 1;
-                    atnaujintiMasyva(studentai, stud_sk, nd_sk);
-                }
-                i++;
-            }
-            studentai[stud_sk-1].egz = rand() % 11;
-        }
-        if (option == "1" || option == "2") {
-            cout << endl;
-            cout << "Vardas: ";
-            cin >> studentai[stud_sk-1].vardas;
 
-            cout << "Pavarde: ";
-            cin >> studentai[stud_sk-1].pavarde;
-        }
-
-        if (option == "3") {
-            studentai[stud_sk-1].vardas = "Vardenis_" + to_string(stud_sk);
-            studentai[stud_sk-1].pavarde = "Pavardenis_" + to_string(stud_sk);
-
-            cout << "Vardas bei pavardė sugeneruoti" << endl;
-            
-        }
-        more = atnaujintiMasyvaUzklausa("Ar norite įvesti dar vieną studentą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
-        if(more == "ne" || more == "n") break;
-        stud_sk += 1;
-        atnaujintiMasyva(studentai, stud_sk, nd_sk);
-        // cout << studentai << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
+        is.close();
+        exit(0);
     }
 
     double agreguotas = 0, galutinis;
