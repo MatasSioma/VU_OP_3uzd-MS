@@ -17,6 +17,8 @@ struct studentas {
     string pavarde = "pavarde";
     vector<int> nd = {0};
     int egz = 0;
+    double vidurkis = 0;
+    double mediana = 0;
 };
 
 string atnaujintiMasyvaUzklausa(string uzklausa) {
@@ -51,6 +53,22 @@ void atspauzdintiMasyvoInfo(vector<studentas> &studentai) {
 
         cout << "       " << studentai[y].egz << endl;
     }
+}
+
+bool palygintiPagalVarda(const studentas &a, const studentas &b) {
+    return a.vardas < b.vardas;
+}
+
+bool palygintiPagalPavarde(const studentas &a, const studentas &b) {
+    return a.pavarde < b.pavarde;
+}
+
+bool palygintiPagalVidurki(const studentas &a, const studentas &b) {
+    return a.vidurkis < b.vidurkis;
+}
+
+bool palygintiPagalMediana(const studentas &a, const studentas &b) {
+    return a.mediana < b.mediana;
 }
 
 int main() {
@@ -205,14 +223,45 @@ int main() {
         is.close();
     }
 
-    double agreguotas = 0, galutinis;
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
+    double agreguotas = 0;
+    for (int i = 0; i < stud_sk; i++) {
+        // vidurkis
+        for (int gradeNum = 0; gradeNum < nd_sk; gradeNum++) agreguotas += studentai[i].nd[gradeNum];
+        agreguotas /= (double)nd_sk;
+        agreguotas = ceil(agreguotas * 100.0) / 100.0;
+        studentai[i].vidurkis = agreguotas * 0.4 + studentai[i].egz * 0.6;
+
+        // mediana
+        sort(studentai[i].nd.begin(), studentai[i].nd.end());
+        agreguotas = nd_sk % 2 == 0 ? (studentai[i].nd[nd_sk / 2 - 1] + studentai[i].nd[nd_sk / 2]) / 2.0 : studentai[i].nd[nd_sk / 2];
+        agreguotas = ceil(agreguotas * 100.0) / 100.0;
+        studentai[i].mediana = agreguotas * 0.4 + studentai[i].egz * 0.6;
+    }
+
     do {
-        cout << "Naudoti vidurki ar mediana? (1 - Vidurkis, 2 - Mediana): ";
+        cout << "1 - Rikiuoti pagal vardą, 2 - Rikiuoti pagal pavardę, 3 - Rikiuoti pagal vidurkį, 4 - Rikiuoti pagal medianą: ";
         getline(cin, option);
-    } while(option != "1" && option != "2");
+    } while(option != "1" && option != "2" && option != "3" && option != "4");
+
+    switch (stoi(option)) {
+    case 1:
+        sort(studentai.begin(), studentai.end(), palygintiPagalVarda);
+        break;
+    case 2:
+        sort(studentai.begin(), studentai.end(), palygintiPagalPavarde);
+        break;
+    case 3:
+        sort(studentai.begin(), studentai.end(), palygintiPagalVidurki);
+        break;
+    case 4:
+        sort(studentai.begin(), studentai.end(), palygintiPagalMediana);
+        break;
+    default:
+        break;
+    }
 
     cout << "Kiek studentų atspauzdinti? (ENTER - visus): ";
 
@@ -226,9 +275,14 @@ int main() {
             print_sk = stud_sk;
         }
         if (print_sk >= 1 && print_sk <= stud_sk) break;
-        cout << "Įveskite sveiką skaičių nuo 1 iki " << stud_sk << endl;
+        cout << "Įveskite sveiką skaičių nuo 1 iki " << stud_sk << " (studentų skaičiaus)." << endl;
 
     }
+
+    do {
+        cout << "Rodyti rezultatus: 1 - vidurkį, 2 - medianą: ";
+        getline(cin, option);
+    } while(option != "1" && option != "2");
 
     cout << "Vardas        Pavardė       Galutinis ";
     if(option == "1") cout << "(Vid.)" << endl;
@@ -237,19 +291,8 @@ int main() {
 
     for (int i = 0; i < print_sk; i++) {
         cout << left << setw(14) << studentai[i].vardas << left << setw(14) << studentai[i].pavarde;
-
-        if (option == "1") { //vidurkis
-            for (int gradeNum = 0; gradeNum < nd_sk; gradeNum++) {
-                agreguotas += studentai[i].nd[gradeNum];
-            }
-            agreguotas /= nd_sk;
-        } else { //mediana
-            sort(studentai[i].nd.begin(), studentai[i].nd.end());
-            agreguotas = nd_sk % 2 == 0 ? (studentai[i].nd[nd_sk / 2 - 1] + studentai[i].nd[nd_sk / 2]) / 2.0 : studentai[i].nd[nd_sk / 2];
-        }
-
-        galutinis = agreguotas * 0.4 + studentai[i].egz * 0.6;
-        cout << fixed << setprecision(2) << galutinis << endl;
+        if (option == "1") cout << fixed << setprecision(2) << studentai[i].vidurkis << endl;
+        else cout << fixed << setprecision(2) << studentai[i].mediana << endl;
     }
 
     // atspauzdintiMasyvoInfo(studentai);
