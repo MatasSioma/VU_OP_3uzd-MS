@@ -214,18 +214,20 @@ int main() {
         getline(cin, option);
     } while(option != "1" && option != "2");
 
-    cout << "Kiek studentų atspauzdinti?: ";
+    cout << "Kiek studentų atspauzdinti? (ENTER - visus): ";
 
+    string answer = "";
     int print_sk;
     while (true) {
         cin.clear();
         cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        cin >> print_sk;
-        if (cin.fail()) { // Vartotojas iveda ne skaiciu
-            cout << "Įveskite sveiką skaičių nuo 1 iki " << stud_sk << endl;
-            continue;
+        getline(cin, answer);
+        if (answer == "") { // Vartotojas iveda ne skaiciu
+            print_sk = stud_sk;
         }
         if (print_sk >= 1 && print_sk <= stud_sk) break;
+        cout << "Įveskite sveiką skaičių nuo 1 iki " << stud_sk << endl;
+
     }
 
     cout << "Vardas        Pavardė       Galutinis ";
