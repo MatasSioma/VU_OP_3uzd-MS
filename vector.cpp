@@ -162,6 +162,7 @@ int main() {
     else {
         string fname, line = "";
         ifstream is;
+        studentas tuscias;
         char a;
         do {
             cout << "Įveskite failo pavadinimą: ";
@@ -171,19 +172,36 @@ int main() {
 
         is.ignore(numeric_limits<streamsize>::max(), '\n');
 
-        while (!is.eof()) {
+        int i = -2;
+        while(!is.eof()) {
             is.get(a);
             line += a;
-            if(a == ' ') line.pop_back();
+            if(a == ' ') {
+                line.pop_back();
+                if(line != "") {
+                    // cout << i << " " << line << endl;
+                    if(i == -2) studentai[stud_sk-1].vardas = line;
+                    else if(i == -1) studentai[stud_sk-1].pavarde = line;
+                    else {
+                        if (i+1 > nd_sk) nd_sk += 1;
+                        studentai[stud_sk-1].nd.push_back(stoi(line));
+                    }
+                    i++;
+                }
+                line = "";
+            }
+            
             if (a == '\n') {
                 line.pop_back();
-                cout << line << endl;
+                studentai[stud_sk-1].egz = stoi(line);
+                stud_sk += 1;
+                studentai.push_back(tuscias);
                 line = "";
+                i = -2;
             }
         }
 
         is.close();
-        exit(0);
     }
 
     double agreguotas = 0, galutinis;
