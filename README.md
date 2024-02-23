@@ -19,6 +19,6 @@ Naudojami tik c masyvai
 Naudojami <vector> objektai
 
 ## v0.2
-Galimybė duomenis įvesti per failą/
-Išspauzdinamų studnetų kiekio pasirinkimas/
+Galimybė duomenis įvesti per failą\
+Išspauzdinamų studnetų kiekio pasirinkima\
 Rikiavimas pagal skirtingus parametrus
