@@ -57,12 +57,13 @@ int main() {
     srand(time(nullptr));
     int stud_sk = 1, nd_sk = 1;
     string option;
+    studentas tuscias;
 
     //inicijuojam masyva
     vector<studentas> studentai(1);
 
     do {
-        cout << "Meniu: 1 - Įvesti duomenis ranka, 2 - Generuoti pažymius, 3 - Generuoti pažymius ir vardus, 4 - Nuskaityti iš failo: ";
+        cout << "Meniu: 1 - Įvesti duomenis ranka, 2 - Generuoti pažymius, 3 - Generuoti pažymius ir vardus, 4 - Nuskaityti iš failo (turi būti bent 1 ND laukas): ";
         getline(cin, option);
 
     } while(option != "1" && option != "2" && option != "3" && option != "4");
@@ -162,8 +163,8 @@ int main() {
     else {
         string fname, line = "";
         ifstream is;
-        studentas tuscias;
         char a;
+
         do {
             cout << "Įveskite failo pavadinimą: ";
             cin >> fname;
@@ -214,21 +215,17 @@ int main() {
     } while(option != "1" && option != "2");
 
     cout << "Kiek studentų atspauzdinti?: ";
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     int print_sk;
     while (true) {
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
         cin >> print_sk;
         if (cin.fail()) { // Vartotojas iveda ne skaiciu
             cout << "Įveskite sveiką skaičių nuo 1 iki " << stud_sk << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             continue;
         }
-        if (print_sk >= 1 && print_sk <= stud_sk) {
-            break;
-        }
+        if (print_sk >= 1 && print_sk <= stud_sk) break;
     }
 
     cout << "Vardas        Pavardė       Galutinis ";

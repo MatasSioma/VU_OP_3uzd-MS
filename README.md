@@ -17,3 +17,7 @@ Pasirinkimas tarp vidurkio ir medianos skaičiavimo
 Naudojami tik c masyvai
 ### vector.cpp
 Naudojami <vector> objektai
+
+## v0.2
+Galimybė duomenis įvesti per failą/
+Išspauzdinamų studnetų kiekio pasirinkimas/
