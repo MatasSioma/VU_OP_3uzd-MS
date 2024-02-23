@@ -213,12 +213,30 @@ int main() {
         getline(cin, option);
     } while(option != "1" && option != "2");
 
+    cout << "Kiek studentų atspauzdinti?: ";
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    int print_sk;
+    while (true) {
+        cin >> print_sk;
+        if (cin.fail()) { // Vartotojas iveda ne skaiciu
+            cout << "Įveskite sveiką skaičių nuo 1 iki " << stud_sk << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+        if (print_sk >= 1 && print_sk <= stud_sk) {
+            break;
+        }
+    }
+
     cout << "Vardas        Pavardė       Galutinis ";
     if(option == "1") cout << "(Vid.)" << endl;
     else cout << "(Med.)" << endl;
     cout << "--------------------------------------------" << endl;
-    
-    for (int i = 0; i < stud_sk; i++) {
+
+    for (int i = 0; i < print_sk; i++) {
         cout << left << setw(14) << studentai[i].vardas << left << setw(14) << studentai[i].pavarde;
 
         if (option == "1") { //vidurkis
