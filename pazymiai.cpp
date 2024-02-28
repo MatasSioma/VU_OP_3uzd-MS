@@ -120,12 +120,14 @@ int main() {
         string fname, line = "";
         ifstream is;
         char a;
-
-        do {
+        
+        while(true) {
             cout << "Įveskite failo pavadinimą: ";
             cin >> fname;
             is.open(fname);
-        } while(is.fail());
+            if (!is.fail()) break;
+            cout << "Failas nerastas!" << endl;
+        }
 
         is.ignore(numeric_limits<streamsize>::max(), '\n');
 
