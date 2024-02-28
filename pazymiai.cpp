@@ -1,25 +1,15 @@
 #include <iostream>
 #include <iomanip>
 #include <fstream>
-#include <string>
-#include <vector>
 #include <limits>
 #include <algorithm>
-
 #include <random>
 #include <ctime>
 #include <cctype>
 
-using namespace std;
+#include "pazymiai.h"
 
-struct studentas {
-    string vardas = "vardas";
-    string pavarde = "pavarde";
-    vector<int> nd = {0};
-    int egz = 0;
-    double vidurkis = 0;
-    double mediana = 0;
-};
+using namespace std;
 
 string atnaujintiMasyvaUzklausa(string uzklausa) {
     cout << uzklausa;
@@ -178,7 +168,7 @@ int main() {
             // cout << studentai << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
         }
     }
-    else {
+    else { // option == 4
         string fname, line = "";
         ifstream is;
         char a;

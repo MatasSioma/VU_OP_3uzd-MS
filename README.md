@@ -20,5 +20,9 @@ Naudojami <vector> objektai
 
 ## v0.2
 Galimybė duomenis įvesti per failą\
-Išspauzdinamų studnetų kiekio pasirinkima\
+Išspauzdinamų studnetų kiekio pasirinkimas\
 Rikiavimas pagal skirtingus parametrus
+
+## v0.3
+Programa paskirstyta į kelis .cpp failus\
+Sukurtas programą "apjungentis", struktūras apibrežentis header failas\
