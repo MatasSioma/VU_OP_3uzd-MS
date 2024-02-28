@@ -26,3 +26,4 @@ Rikiavimas pagal skirtingus parametrus
 ## v0.3
 Programa paskirstyta į kelis .cpp failus\
 Sukurtas programą "apjungentis", struktūras apibrežentis header failas\
+Naudojami try-catch blokai vartotojo įvesčiai (sukurta bendra funkcija tai įgyvendinti)

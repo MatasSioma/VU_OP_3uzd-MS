@@ -231,5 +231,5 @@ int main() {
         else cout << fixed << setprecision(2) << studentai[i].mediana << endl;
     }
 
-    // // atspauzdintiMasyvoInfo(studentai);
+    // atspauzdintiMasyvoInfo(studentai);
 }
