@@ -15,7 +15,7 @@ void pasirinktiEiga(string msg, int* option, int max) {
             }
             break;
         } catch(invalid_argument &e) {
-            cout << e.what() << endl;
+            cerr << e.what() << endl;
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
             continue;

@@ -24,45 +24,44 @@ int main() {
     if (option != 4) {
         while(true) {
             cout << stud_sk << "-ojo studento duomenys";
-
-            // cout << "\n " << stud_sk-1 << "- student index "<< stud.vardas << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
             if (option == 1) {
-                int i = 0;
+                int grade, i = 0;
                 while (true) {
                     while(true) {
-                        int grade = -1;
                         if (i < nd_sk) {
+                        try {
                             cout << "\n" << i + 1 << " ND įvertinimas (0-10): ";
                             cin >> grade;
+                            if(!cin.good() || grade < 1 || grade > 10) {
+                                throw invalid_argument("Netinkama įvestis. Įveskite skaičių nuo 1 iki 10");
+                            }
                             studentai[stud_sk-1].nd[i] = grade;
-                        }
-                        if (cin.fail()) { // Vartotojas iveda ne skaiciu
-                            cout << "Įveskite sveiką skaičių nuo 0 iki 10." << endl;
+                            break;
+                        } catch(invalid_argument &e) {
+                            cerr << e.what() << endl;
                             cin.clear();
                             cin.ignore(numeric_limits<streamsize>::max(), '\n');
                             continue;
                         }
-                        if (grade >= 0 && grade <= 10) {
-                            break;
                         }
                     }
                     if (i + 1 == nd_sk) {
                         more = atnaujintiMasyvaUzklausa("Pridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
                         if(more == "ne" || more == "n") {
-                            while (true)
-                            {
-                                int grade = -1;
-                                cout << "Egzamino įvertinimas: ";
-                                cin >> grade;
-                                studentai[stud_sk-1].egz = grade;
-                                if (cin.fail()) { // Vartotojas iveda ne skaiciu
-                                    cout << "Įveskite sveiką skaičių nuo 0 iki 10." << endl;
+                            while (true) {   
+                                try {
+                                    cout << "Egzamino įvertinimas: ";
+                                    cin >> grade;
+                                    if(!cin.good() || grade < 1 || grade > 10) {
+                                        throw invalid_argument("Netinkama įvestis. Įveskite skaičių nuo 1 iki 10");
+                                    }
+                                    studentai[stud_sk-1].egz = grade;
+                                    break;
+                                } catch(invalid_argument &e) {
+                                    cerr << e.what() << endl;
                                     cin.clear();
                                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                                     continue;
-                                }
-                                if (grade >= 0 && grade <= 10) {
-                                    break;
                                 }
                             }
                             
