@@ -18,6 +18,7 @@ struct studentas {
 string atnaujintiMasyvaUzklausa(string uzklausa);
 void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk);
 void atspauzdintiMasyvoInfo(vector<studentas> &studentai);
+void pasirinktiEiga(string msg, int* option, int max);
 
 bool palygintiPagalVarda(const studentas &a, const studentas &b);
 bool palygintiPagalPavarde(const studentas &a, const studentas &b);

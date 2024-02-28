@@ -12,25 +12,21 @@
 int main() {
     srand(time(nullptr));
     int stud_sk = 1, nd_sk = 1;
-    string option;
     studentas tuscias;
 
     //inicijuojam masyva
     vector<studentas> studentai(1);
 
-    do {
-        cout << "Meniu: 1 - Įvesti duomenis ranka, 2 - Generuoti pažymius, 3 - Generuoti pažymius ir vardus, 4 - Nuskaityti iš failo (turi būti bent 1 ND laukas): ";
-        getline(cin, option);
-
-    } while(option != "1" && option != "2" && option != "3" && option != "4");
+    int option;
+    pasirinktiEiga("Meniu: 1 - Įvesti duomenis ranka, 2 - Generuoti pažymius, 3 - Generuoti pažymius ir vardus, 4 - Nuskaityti iš failo (turi būti bent 1 ND laukas): ", &option, 4);
     
     string more = "";
-    if (option != "4") {
+    if (option != 4) {
         while(true) {
             cout << stud_sk << "-ojo studento duomenys";
 
             // cout << "\n " << stud_sk-1 << "- student index "<< stud.vardas << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
-            if (option == "1") {
+            if (option == 1) {
                 int i = 0;
                 while (true) {
                     while(true) {
@@ -78,7 +74,7 @@ int main() {
                     i++;
                 }
             }
-            if (option == "3" || option == "2") {
+            if (option == 3 || option == 2) {
                 int i = 0;
                 while (true) {
                     studentai[stud_sk-1].nd[i] = rand() % 11;
@@ -93,7 +89,7 @@ int main() {
                 }
                 studentai[stud_sk-1].egz = rand() % 11;
             }
-            if (option == "1" || option == "2") {
+            if (option == 1 || option == 2) {
                 cout << endl;
                 cout << "Vardas: ";
                 cin >> studentai[stud_sk-1].vardas;
@@ -102,7 +98,7 @@ int main() {
                 cin >> studentai[stud_sk-1].pavarde;
             }
 
-            if (option == "3") {
+            if (option == 3) {
                 studentai[stud_sk-1].vardas = "Vardenis_" + to_string(stud_sk);
                 studentai[stud_sk-1].pavarde = "Pavardenis_" + to_string(stud_sk);
 
@@ -180,13 +176,10 @@ int main() {
         agreguotas = ceil(agreguotas * 100.0) / 100.0;
         studentai[i].mediana = agreguotas * 0.4 + studentai[i].egz * 0.6;
     }
+    
+    pasirinktiEiga("1 - Rikiuoti pagal vardą, 2 - Rikiuoti pagal pavardę, 3 - Rikiuoti pagal vidurkį, 4 - Rikiuoti pagal medianą: ", &option, 4);
 
-    do {
-        cout << "1 - Rikiuoti pagal vardą, 2 - Rikiuoti pagal pavardę, 3 - Rikiuoti pagal vidurkį, 4 - Rikiuoti pagal medianą: ";
-        getline(cin, option);
-    } while(option != "1" && option != "2" && option != "3" && option != "4");
-
-    switch (stoi(option)) {
+    switch (option) {
     case 1:
         sort(studentai.begin(), studentai.end(), palygintiPagalVarda);
         break;
@@ -219,21 +212,18 @@ int main() {
 
     }
 
-    do {
-        cout << "Rodyti rezultatus: 1 - vidurkį, 2 - medianą: ";
-        getline(cin, option);
-    } while(option != "1" && option != "2");
+    pasirinktiEiga("Rodyti rezultatus: 1 - vidurkį, 2 - medianą: ", &option, 2);
 
     cout << "Vardas        Pavardė       Galutinis ";
-    if(option == "1") cout << "(Vid.)" << endl;
+    if(option == 1) cout << "(Vid.)" << endl;
     else cout << "(Med.)" << endl;
     cout << "--------------------------------------------" << endl;
 
     for (int i = 0; i < print_sk; i++) {
         cout << left << setw(14) << studentai[i].vardas << left << setw(14) << studentai[i].pavarde;
-        if (option == "1") cout << fixed << setprecision(2) << studentai[i].vidurkis << endl;
+        if (option == 1) cout << fixed << setprecision(2) << studentai[i].vidurkis << endl;
         else cout << fixed << setprecision(2) << studentai[i].mediana << endl;
     }
 
-    // atspauzdintiMasyvoInfo(studentai);
+    // // atspauzdintiMasyvoInfo(studentai);
 }

@@ -5,6 +5,24 @@
 
 # include "pazymiai.h"
 
+void pasirinktiEiga(string msg, int* option, int max) {
+    while (true) {
+        try {
+            cout << msg;
+            cin >> *option;
+            if(!cin.good() || *option < 1 || *option > max) {
+                throw invalid_argument("Netinkama įvestis. Įveskite skaičių nuo 1 iki " + to_string(max));
+            }
+            break;
+        } catch(invalid_argument &e) {
+            cout << e.what() << endl;
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            continue;
+        }
+    }
+}
+
 string atnaujintiMasyvaUzklausa(string uzklausa) {
     cout << uzklausa;
     string ats = "";
