@@ -60,10 +60,11 @@ string atnaujintiMasyvaUzklausa(string uzklausa) {
     cout << uzklausa;
     string ats = "";
 
-    cin.clear();
-    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    
     getline(cin, ats);
     transform(ats.begin(), ats.end(), ats.begin(), ::tolower); //convert to lowerCase
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
     return ats;
 }
@@ -212,5 +213,5 @@ int main() {
         cout << fixed << setprecision(2) << galutinis << endl;
     }
 
-    atspauzdintiMasyvoInfo(studentai, stud_sk, nd_sk);
+    // atspauzdintiMasyvoInfo(studentai, stud_sk, nd_sk);
 }
