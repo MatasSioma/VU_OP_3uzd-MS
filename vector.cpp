@@ -279,20 +279,18 @@ int main() {
 
     }
 
-    do {
-        cout << "Rodyti rezultatus: 1 - vidurkį, 2 - medianą: ";
-        getline(cin, option);
-    } while(option != "1" && option != "2");
+    // do {
+    //     cout << "Rodyti rezultatus: 1 - vidurkį, 2 - medianą: ";
+    //     getline(cin, option);
+    // } while(option != "1" && option != "2");
 
-    cout << "Vardas        Pavardė       Galutinis ";
-    if(option == "1") cout << "(Vid.)" << endl;
-    else cout << "(Med.)" << endl;
+    cout << "Vardas             Pavardė            Galutinis(Vid.)    Galutinis(Med.)  " << endl;
     cout << "--------------------------------------------" << endl;
 
     for (int i = 0; i < print_sk; i++) {
-        cout << left << setw(14) << studentai[i].vardas << left << setw(14) << studentai[i].pavarde;
-        if (option == "1") cout << fixed << setprecision(2) << studentai[i].vidurkis << endl;
-        else cout << fixed << setprecision(2) << studentai[i].mediana << endl;
+        cout << left << setw(19) << studentai[i].vardas << left << setw(19) << studentai[i].pavarde;
+        cout << left << setw(19) << fixed << setprecision(2) << studentai[i].vidurkis;
+        cout << left << setw(19) << fixed << setprecision(2) << studentai[i].mediana << endl;
     }
 
     // atspauzdintiMasyvoInfo(studentai);
