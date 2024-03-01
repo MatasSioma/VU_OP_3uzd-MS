@@ -265,18 +265,26 @@ int main() {
 
     cout << "Kiek studentų atspauzdinti? (ENTER - visus): ";
 
+    cin.clear();
+    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
     string answer = "";
     int print_sk;
-    while (true) {
-        cin.clear();
-        cin.ignore(numeric_limits<streamsize>::max(), '\n');
-        getline(cin, answer);
-        if (answer == "") { // Vartotojas iveda ne skaiciu
-            print_sk = stud_sk;
+    getline(cin, answer);
+    if (answer == "") {
+        print_sk = stud_sk;
+    } else {
+        while (true) {
+            try {
+                print_sk = stoi(answer);
+                if(print_sk >= 1 && print_sk <= stud_sk) break;
+            } catch (exception &e) {
+                cerr << "Netinkama įvestis. Įveskite skaičių nuo 1 iki " << stud_sk << ": ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                getline(cin, answer);
+            }
         }
-        if (print_sk >= 1 && print_sk <= stud_sk) break;
-        cout << "Įveskite sveiką skaičių nuo 1 iki " << stud_sk << " (studentų skaičiaus)." << endl;
-
     }
 
     // do {
