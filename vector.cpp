@@ -5,6 +5,7 @@
 #include <vector>
 #include <limits>
 #include <algorithm>
+#include <chrono>
 
 #include <random>
 #include <ctime>
@@ -87,6 +88,7 @@ int main() {
     } while(option != "1" && option != "2" && option != "3" && option != "4");
     
     string more = "";
+    int64_t duration;
     if (option != "4") {
         while(true) {
             cout << stud_sk << "-ojo studento duomenys";
@@ -177,8 +179,7 @@ int main() {
             atnaujintiMasyva(studentai, stud_sk, nd_sk);
             // cout << studentai << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
         }
-    }
-    else {
+    } else {
         string fname, line = "";
         ifstream is;
         char a;
@@ -192,6 +193,8 @@ int main() {
         is.ignore(numeric_limits<streamsize>::max(), '\n');
 
         int i = -2;
+        auto start = chrono::high_resolution_clock::now();
+
         while(!is.eof()) {
             is.get(a);
             line += a;
@@ -221,7 +224,10 @@ int main() {
         }
 
         is.close();
+        auto end = chrono::high_resolution_clock::now();
+        duration = chrono::duration_cast<chrono::milliseconds>(end - start).count();
     }
+    
 
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -278,6 +284,7 @@ int main() {
             try {
                 print_sk = stoi(answer);
                 if(print_sk >= 1 && print_sk <= stud_sk) break;
+                throw invalid_argument(to_string(print_sk));
             } catch (exception &e) {
                 cerr << "Netinkama įvestis. Įveskite skaičių nuo 1 iki " << stud_sk << ": ";
                 cin.clear();
@@ -301,5 +308,6 @@ int main() {
         cout << left << setw(19) << fixed << setprecision(2) << studentai[i].mediana << endl;
     }
 
-    // atspauzdintiMasyvoInfo(studentai);
+    cout << "Užtrukęs laikas: " << duration << "ms" << endl;
+
 }
