@@ -117,11 +117,15 @@ int main() {
         char a;
         
         while(true) {
-            cout << "Įveskite failo pavadinimą: ";
-            cin >> fname;
-            is.open(fname);
-            if (!is.fail()) break;
-            cout << "Failas nerastas!" << endl;
+            try {
+                cout << "Įveskite failo pavadinimą: ";
+                cin >> fname;
+                is.open(fname);
+                if (is.fail()) throw invalid_argument("Failas nerastas.");
+                break;
+            } catch (exception &e) {
+                cerr << e.what() << endl;
+            }
         }
 
         is.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -226,6 +230,7 @@ int main() {
             try {
                 print_sk = stoi(answer);
                 if(print_sk >= 1 && print_sk <= stud_sk) break;
+                throw invalid_argument(to_string(print_sk));
             } catch (exception &e) {
                 cerr << "Netinkama įvestis. Įveskite skaičių nuo 1 iki " << stud_sk << ": ";
                 cin.clear();
