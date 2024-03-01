@@ -1,11 +1,11 @@
-main: pazymiai.cpp helpers.cpp
-	g++ pazymiai.cpp helpers.cpp -o pazymiai
+main: main.cpp pazymiai.cpp
+	g++ main.cpp pazymiai.cpp -o pazymiai
 
 clear:
-	rm main
+	rm pazymiai
 
 
 run:
 	rm pazymiai
-	g++ pazymiai.cpp helpers.cpp -o pazymiai
+	g++ pazymiai.cpp main.cpp -o pazymiai
 	./pazymiai
