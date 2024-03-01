@@ -60,11 +60,10 @@ string atnaujintiMasyvaUzklausa(string uzklausa) {
     cout << uzklausa;
     string ats = "";
 
-    
-    getline(cin, ats);
-    transform(ats.begin(), ats.end(), ats.begin(), ::tolower); //convert to lowerCase
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(cin, ats);
+    transform(ats.begin(), ats.end(), ats.begin(), ::tolower); //convert to lowerCase
 
     return ats;
 }
