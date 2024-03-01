@@ -126,7 +126,8 @@ int main() {
 
         is.ignore(numeric_limits<streamsize>::max(), '\n');
 
-        int i = -2;
+        int i = -2, lineNum = 2;
+
         while(!is.eof()) {
             is.get(a);
             line += a;
@@ -138,7 +139,14 @@ int main() {
                     else if(i == -1) studentai[stud_sk-1].pavarde = line;
                     else {
                         if (i+1 > nd_sk) nd_sk += 1;
-                        studentai[stud_sk-1].nd.push_back(stoi(line));
+                        try {
+                            studentai[stud_sk-1].nd.push_back(stoi(line));
+                        } catch (exception &e) {
+                            cerr << "Nepavyko nuskaityti Nd įvertinimo eilutėjė " << lineNum << " namų darbo, reikšmė: " << line << endl;
+                            line = "";
+                            i = -2;
+                            continue;
+                        }
                     }
                     i++;
                 }
@@ -147,8 +155,16 @@ int main() {
             
             if (a == '\n') {
                 line.pop_back();
-                studentai[stud_sk-1].egz = stoi(line);
-                stud_sk += 1;
+                try {
+                    studentai[stud_sk-1].egz = stoi(line);
+                } catch (exception &e) {
+                    cerr << "Nepavyko nuskaityti egzamino įvertinimo eilutėjė " << lineNum << " egzamino, reikšmė: " << line << endl;
+                    line = "";
+                    i = -2;
+                    continue;
+                }
+                stud_sk++;
+                lineNum++;
                 studentai.push_back(tuscias);
                 line = "";
                 i = -2;
@@ -230,6 +246,4 @@ int main() {
         if (option == 1) cout << fixed << setprecision(2) << studentai[i].vidurkis << endl;
         else cout << fixed << setprecision(2) << studentai[i].mediana << endl;
     }
-
-    // atspauzdintiMasyvoInfo(studentai);
 }
