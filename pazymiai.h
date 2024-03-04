@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "timer.h"
 
 using namespace std;
 
@@ -24,5 +25,7 @@ bool palygintiPagalVarda(const studentas &a, const studentas &b);
 bool palygintiPagalPavarde(const studentas &a, const studentas &b);
 bool palygintiPagalVidurki(const studentas &a, const studentas &b);
 bool palygintiPagalMediana(const studentas &a, const studentas &b);
+
+double generuotiFailus();
 
 #endif

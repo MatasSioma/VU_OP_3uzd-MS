@@ -7,5 +7,7 @@
 #include "pazymiai.h"
 
 double generuotiFailus() {
+    srand(time(nullptr));
+    cout << rand() << endl;
     return 1.0;
 }

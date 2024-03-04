@@ -1,5 +1,5 @@
-main: main.cpp pazymiai.cpp
-	g++ main.cpp pazymiai.cpp -o pazymiai
+main: main.cpp pazymiai.cpp generate.cpp
+	g++ main.cpp pazymiai.cpp generate.cpp -o pazymiai
 
 clear:
 	rm pazymiai
@@ -7,5 +7,5 @@ clear:
 
 run:
 	rm pazymiai
-	g++ pazymiai.cpp main.cpp -o pazymiai
+	g++ pazymiai.cpp main.cpp generate.cpp -o pazymiai
 	./pazymiai
