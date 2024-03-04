@@ -26,7 +26,6 @@ int main() {
 
     pasirinktiEiga("Meniu: 1 - Įvesti duomenis ranka, 2 - Generuoti pažymius, 3 - Generuoti pažymius ir vardus, 4 - Nuskaityti iš failo (turi būti bent 1 ND laukas): ", &option, 4);
     
-    string more = "";
     if (option != 4) {
         while(true) {
             cout << stud_sk << "-ojo studento duomenys";
@@ -52,8 +51,7 @@ int main() {
                         }
                     }
                     if (i + 1 == nd_sk) {
-                        more = atnaujintiMasyvaUzklausa("Pridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
-                        if(more == "ne" || more == "n") {
+                        if(taipArNe("Pridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
                             while (true) {   
                                 try {
                                     cout << "Egzamino įvertinimas: ";
@@ -85,8 +83,7 @@ int main() {
                     studentai[stud_sk-1].nd[i] = rand() % 11;
                     cout << "\n" << i+1 << " Namų darbo rezultatas sugeneruotas";
                     if (i + 1 == nd_sk) {
-                        more = atnaujintiMasyvaUzklausa("\nPridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
-                        if(more == "ne" || more == "n") break;
+                        if(taipArNe("\nPridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) break;
                         nd_sk += 1;
                         atnaujintiMasyva(studentai, stud_sk, nd_sk);
                     }
@@ -110,8 +107,7 @@ int main() {
                 cout << "Vardas bei pavardė sugeneruoti" << endl;
                 
             }
-            more = atnaujintiMasyvaUzklausa("Ar norite įvesti dar vieną studentą? (ENTER - Taip, 'Ne'/'N' - Ne): ");
-            if(more == "ne" || more == "n") break;
+            if(taipArNe("Ar norite įvesti dar vieną studentą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) break;
             stud_sk += 1;
             atnaujintiMasyva(studentai, stud_sk, nd_sk);
             // cout << studentai << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;

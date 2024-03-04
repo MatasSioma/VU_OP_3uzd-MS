@@ -16,10 +16,10 @@ struct studentas {
     double mediana = 0;
 };
 
-string atnaujintiMasyvaUzklausa(string uzklausa);
 void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk);
 void atspauzdintiMasyvoInfo(vector<studentas> &studentai);
 void pasirinktiEiga(string msg, int* option, int max);
+bool taipArNe(string uzklausa);
 
 bool palygintiPagalVarda(const studentas &a, const studentas &b);
 bool palygintiPagalPavarde(const studentas &a, const studentas &b);

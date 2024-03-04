@@ -23,7 +23,7 @@ void pasirinktiEiga(string msg, int* option, int max) {
     }
 }
 
-string atnaujintiMasyvaUzklausa(string uzklausa) {
+bool taipArNe(string uzklausa) {
     cout << uzklausa;
     string ats = "";
 
@@ -32,7 +32,11 @@ string atnaujintiMasyvaUzklausa(string uzklausa) {
     getline(cin, ats);
     transform(ats.begin(), ats.end(), ats.begin(), ::tolower); //convert to lowerCase
 
-    return ats;
+    if (ats == "n" || ats == "ne") {
+        return true;
+    } else {
+        return false;
+    }
 }
 
 void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk) {
