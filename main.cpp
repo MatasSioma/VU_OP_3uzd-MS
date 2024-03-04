@@ -17,13 +17,12 @@ int main() {
     //inicijuojam masyva
     vector<studentas> studentai(1);
 
-    int option;
-    pasirinktiEiga("Ar norėsite generuoti failus? 1 - Taip, 2 - Ne: ", &option, 2);
-    if(option == 1) {
+    if(!taipArNe("Ar norėsite generuoti failus? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
         generuotiFailus();
         return 0;
     }
 
+    int option;
     pasirinktiEiga("Meniu: 1 - Įvesti duomenis ranka, 2 - Generuoti pažymius, 3 - Generuoti pažymius ir vardus, 4 - Nuskaityti iš failo (turi būti bent 1 ND laukas): ", &option, 4);
     
     if (option != 4) {

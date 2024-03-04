@@ -16,10 +16,9 @@ void pasirinktiEiga(string msg, int* option, int max) {
             break;
         } catch(invalid_argument &e) {
             cerr << e.what() << endl;
-            cin.clear();
-            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-            continue;
         }
+        cin.clear();
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
     }
 }
 
@@ -27,6 +26,7 @@ bool taipArNe(string uzklausa) {
     cout << uzklausa;
     string ats = "";
 
+    
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(cin, ats);
