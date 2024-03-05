@@ -18,7 +18,7 @@ int main() {
     vector<studentas> studentai(1);
 
     if(!taipArNe("Ar norėsite generuoti failus? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
-        generuotiFailus();
+        cout << generuotiFailus() << "s" << endl;
         return 0;
     }
 
