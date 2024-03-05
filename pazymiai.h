@@ -26,6 +26,6 @@ bool palygintiPagalPavarde(const studentas &a, const studentas &b);
 bool palygintiPagalVidurki(const studentas &a, const studentas &b);
 bool palygintiPagalMediana(const studentas &a, const studentas &b);
 
-double generuotiFailus();
+void generuotiFailus();
 
 #endif
