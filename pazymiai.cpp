@@ -62,17 +62,17 @@ void atspauzdintiMasyvoInfo(vector<studentas> &studentai) {
 }
 
 bool palygintiPagalVarda(const studentas &a, const studentas &b) {
-    return a.vardas < b.vardas;
+    return a.vardas > b.vardas;
 }
 
 bool palygintiPagalPavarde(const studentas &a, const studentas &b) {
-    return a.pavarde < b.pavarde;
+    return a.pavarde > b.pavarde;
 }
 
 bool palygintiPagalVidurki(const studentas &a, const studentas &b) {
-    return a.vidurkis < b.vidurkis;
+    return a.vidurkis > b.vidurkis;
 }
 
 bool palygintiPagalMediana(const studentas &a, const studentas &b) {
-    return a.mediana < b.mediana;
+    return a.mediana > b.mediana;
 }
