@@ -27,3 +27,8 @@ Rikiavimas pagal skirtingus parametrus
 Programa paskirstyta į kelis .cpp failus\
 Sukurtas programą "apjungentis", struktūras apibrežentis header failas\
 Naudojami try-catch blokai vartotojo įvesčiai (sukurta bendra funkcija tai įgyvendinti)
+
+## v0.4
+Duomenų (failų) generavimas\
+Sugeneruotų studentų išvedimas į du skirtingus konteinerius (geri/blogi)\
+Bendras programos veikimo laikas, kai generuojami 5 failai su nurodytasi dydžiais (15Nd): 118.9s (5 testų vidurkis)
