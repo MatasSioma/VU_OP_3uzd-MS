@@ -8,7 +8,7 @@
 #include "pazymiai.h"
 
 void generuotiFailus() {
-    int eilSk[5] {1000, 10000, 100000, 1000000, 1000000};
+    int eilSk[5] {1'000, 10'000, 100'000, 1'000'000, 10'000'000};
     int ndSk, rikiavimas;
     pasirinktiEiga("Kiek namų darbų generuoti?: ", &ndSk, 30);
     pasirinktiEiga("Konteineriuose studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą: ", &rikiavimas, 4);
@@ -26,12 +26,14 @@ void generuotiFailus() {
 
         generuotas << left << setw(24) << "Vardas" << left << setw(24) << "Pavardė";
         for (int nd = 1; nd <= ndSk; nd++) generuotas << left << setw(10) << to_string(nd) + "ND";
-        generuotas << left << setw(10) << "Egz.";
+        generuotas << "Egz.";
 
         for(int eil = 0; eil < eilSk[n]; eil++) {
             generuotas << endl << left << setw(24) << "Vardenis" + to_string(eil+1) << left << setw(24) << "Pavardenis" + to_string(eil+1);
-            for (int nd = 0; nd <= ndSk; nd++) generuotas << left << setw(10) << 1 + rand()%10;
+            for (int nd = 0; nd < ndSk; nd++) generuotas << left << setw(10) << 1 + rand()%10;
+            generuotas << 1 + rand()%10; // egz
         }
+
         generuotas.close();
 
         double t = generuoti.elapsed();
@@ -78,22 +80,7 @@ void generuotiFailus() {
         bendrasLaikas += t;
         cout << "Nuskaityti " << eilSk[n] << " eilučių bendrą failą užtruko: " << t << "s" << endl;
 
-        switch (rikiavimas) {
-        case 1:
-            sort(studentai.begin(), studentai.end(), palygintiPagalVarda);
-            break;
-        case 2:
-            sort(studentai.begin(), studentai.end(), palygintiPagalPavarde);
-            break;
-        case 3:
-            sort(studentai.begin(), studentai.end(), palygintiPagalVidurki);
-            break;
-        case 4:
-            sort(studentai.begin(), studentai.end(), palygintiPagalMediana);
-            break;
-        default:
-            break;
-        }
+        rikiuotiPagalParametra(studentai, rikiavimas);
 
         Timer surusioti;
         for(auto &stud : studentai) {
@@ -102,7 +89,7 @@ void generuotiFailus() {
             if(stud.vidurkis < 5) index = 1;
             konteineriai[index] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
             for(int i = 0; i < ndSk; i++) konteineriai[index] << left << setw(10) << stud.nd.at(i);
-            konteineriai[index] << left << setw(10) << stud.egz;
+            konteineriai[index] << stud.egz;
         }
 
         bendras.close();
@@ -114,5 +101,5 @@ void generuotiFailus() {
         cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << t << "s" << endl;
     }
     
-    cout << "\nBendras programos veikimo laikas: " << bendrasLaikas << "s" << endl;
+    cout << "\nBendras programos veikimo (skaičiavimų) laikas: " << bendrasLaikas << "s" << endl;
 }

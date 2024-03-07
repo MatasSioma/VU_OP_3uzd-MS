@@ -97,3 +97,22 @@ bool palygintiPagalVidurki(const studentas &a, const studentas &b) {
 bool palygintiPagalMediana(const studentas &a, const studentas &b) {
     return a.mediana > b.mediana;
 }
+
+void rikiuotiPagalParametra(vector<studentas> &studentai, int option) {
+    switch (option) {
+    case 1:
+        sort(studentai.begin(), studentai.end(), palygintiPagalVarda);
+        break;
+    case 2:
+        sort(studentai.begin(), studentai.end(), palygintiPagalPavarde);
+        break;
+    case 3:
+        sort(studentai.begin(), studentai.end(), palygintiPagalVidurki);
+        break;
+    case 4:
+        sort(studentai.begin(), studentai.end(), palygintiPagalMediana);
+        break;
+    default:
+        break;
+    }
+}

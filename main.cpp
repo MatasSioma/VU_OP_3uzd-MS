@@ -129,6 +129,7 @@ int main() {
             }
         }
 
+        Timer skaitymas;
         is.ignore(numeric_limits<streamsize>::max(), '\n');
 
         int i = -2, lineNum = 2;
@@ -177,44 +178,19 @@ int main() {
         }
 
         is.close();
+        cout << "Duomenu skaitymas uztruko: "<< skaitymas.elapsed() << "s" << endl;
     }
 
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    double agreguotas = 0;
     for (int i = 0; i < stud_sk; i++) {
-        // vidurkis
-        for (int gradeNum = 0; gradeNum < nd_sk; gradeNum++) agreguotas += studentai[i].nd[gradeNum];
-        agreguotas /= (double)nd_sk;
-        agreguotas = ceil(agreguotas * 100.0) / 100.0;
-        studentai[i].vidurkis = agreguotas * 0.4 + studentai[i].egz * 0.6;
-
-        // mediana
-        sort(studentai[i].nd.begin(), studentai[i].nd.end());
-        agreguotas = nd_sk % 2 == 0 ? (studentai[i].nd[nd_sk / 2 - 1] + studentai[i].nd[nd_sk / 2]) / 2.0 : studentai[i].nd[nd_sk / 2];
-        agreguotas = ceil(agreguotas * 100.0) / 100.0;
-        studentai[i].mediana = agreguotas * 0.4 + studentai[i].egz * 0.6;
+        studentai.at(i).vidurkis = skaiciuotiVidurki(studentai.at(i), nd_sk);
+        studentai.at(i).mediana = skaiciuotiMediana(studentai.at(i), nd_sk);
     }
     
     pasirinktiEiga("1 - Rikiuoti pagal vardą, 2 - Rikiuoti pagal pavardę, 3 - Rikiuoti pagal vidurkį, 4 - Rikiuoti pagal medianą: ", &option, 4);
-
-    switch (option) {
-    case 1:
-        sort(studentai.begin(), studentai.end(), palygintiPagalVarda);
-        break;
-    case 2:
-        sort(studentai.begin(), studentai.end(), palygintiPagalPavarde);
-        break;
-    case 3:
-        sort(studentai.begin(), studentai.end(), palygintiPagalVidurki);
-        break;
-    case 4:
-        sort(studentai.begin(), studentai.end(), palygintiPagalMediana);
-        break;
-    default:
-        break;
-    }
+    rikiuotiPagalParametra(studentai, option);
 
     cout << "Kiek studentų atspauzdinti? (ENTER - visus): ";
 
@@ -242,13 +218,13 @@ int main() {
     }
     pasirinktiEiga("Rodyti rezultatus: 1 - vidurkį, 2 - medianą: ", &option, 2);
 
-    cout << "Vardas        Pavardė       Galutinis ";
+    cout << "Vardas              Pavardė             Galutinis ";
     if(option == 1) cout << "(Vid.)" << endl;
     else cout << "(Med.)" << endl;
     cout << "--------------------------------------------" << endl;
 
     for (int i = 0; i < print_sk; i++) {
-        cout << left << setw(14) << studentai[i].vardas << left << setw(14) << studentai[i].pavarde;
+        cout << left << setw(20) << studentai[i].vardas << left << setw(20) << studentai[i].pavarde;
         if (option == 1) cout << fixed << setprecision(2) << studentai[i].vidurkis << endl;
         else cout << fixed << setprecision(2) << studentai[i].mediana << endl;
     }
