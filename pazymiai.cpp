@@ -2,6 +2,7 @@
 #include <iomanip>
 #include <algorithm>
 #include <limits>
+#include <cmath>
 
 # include "pazymiai.h"
 
@@ -59,6 +60,26 @@ void atspauzdintiMasyvoInfo(vector<studentas> &studentai) {
 
         cout << "       " << studentai[y].egz << endl;
     }
+}
+
+double skaiciuotiVidurki(const studentas &stud, int ndSk) {
+    double agreguotas = 0;
+
+    for (int nd = 0; nd < ndSk; nd++) agreguotas += stud.nd.at(nd);
+    agreguotas /= (double)ndSk;
+    agreguotas = ceil(agreguotas * 100.0) / 100.0; // iki simtuju
+    return agreguotas * 0.4 + stud.egz * 0.6;
+}
+
+double skaiciuotiMediana(const studentas &stud, int ndSk) {
+    double vidurys;
+    vector<int> ndCopy(ndSk);
+    ndCopy = stud.nd;
+
+    sort(ndCopy.begin(), ndCopy.end());
+    vidurys = ndSk % 2 == 0 ? (ndCopy[ndSk / 2 - 1] + ndCopy[ndSk / 2]) / 2.0 : ndCopy[ndSk / 2];
+    vidurys = ceil(vidurys * 100.0) / 100.0;
+    return vidurys * 0.4 + stud.egz * 0.6;
 }
 
 bool palygintiPagalVarda(const studentas &a, const studentas &b) {

@@ -16,6 +16,9 @@ struct studentas {
     double mediana = 0;
 };
 
+double skaiciuotiVidurki(const studentas &stud, int ndSk);
+double skaiciuotiMediana(const studentas &stud, int ndSk);
+
 void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk);
 void atspauzdintiMasyvoInfo(vector<studentas> &studentai);
 void pasirinktiEiga(string msg, int* option, int max);

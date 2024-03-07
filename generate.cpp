@@ -9,13 +9,15 @@
 
 void generuotiFailus() {
     int eilSk[5] {1000, 10000, 100000, 1000000, 1000000};
-    int ndSk, rikiavimas = 0;
+    int ndSk, rikiavimas;
     pasirinktiEiga("Kiek namų darbų generuoti?: ", &ndSk, 30);
-    double bendras;
+    pasirinktiEiga("Konteineriuose studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą: ", &rikiavimas, 4);
+    double bendrasLaikas;
 
     srand(time(nullptr));
 
-    for(int n = 0; n < 2; n++) {
+    for(int n = 0; n < 5; n++) {
+        cout << endl;
         Timer generuoti;
 
         // Failo generavimas
@@ -33,15 +35,13 @@ void generuotiFailus() {
         generuotas.close();
 
         double t = generuoti.elapsed();
-        bendras += t;
-        cout << "Sugeneruoti " << eilSk[n] << " eilučių failą užtruko: " << generuoti.elapsed() << "s" << endl;
+        bendrasLaikas += t;
+        cout << "Sugeneruoti " << eilSk[n] << " eilučių failą užtruko: " << t << "s" << endl;
 
         // Paskirstymas i du failus
         ifstream bendras;
         ofstream konteineriai[2];
         // ostringstream line;
-        vector<studentas> studentai;
-        studentas naujas;
         
         bendras.open("sugeneruoti/" + to_string(eilSk[n]) + "bendras.txt");
         konteineriai[0].open("sugeneruoti/" + to_string(eilSk[n]) + "geri.txt");
@@ -53,35 +53,31 @@ void generuotiFailus() {
             konteineriai[i] << left << setw(10) << "Egz.";
         }
 
+        vector<studentas> studentai;
+        studentas naujas;
+        Timer nuskaityi;
         bendras.ignore(numeric_limits<streamsize>::max(), '\n');
         studentai.resize(eilSk[n]);
         for (int stud = 0; stud < eilSk[n]; stud++) {
             bendras >> naujas.vardas >> naujas.pavarde;
 
-            int agreguotas = 0, pazimys = 0;
             // naujas.nd.clear();
             naujas.nd.resize(ndSk);
             for(int nd = 0; nd < ndSk; nd++) {
-                bendras >> pazimys;
-                agreguotas += pazimys;
-                naujas.nd.at(nd) = pazimys;
+                bendras >> naujas.nd.at(nd);
             }
             // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
-            agreguotas /= (double)ndSk;
-            agreguotas = ceil(agreguotas * 100.0) / 100.0;
             bendras >> naujas.egz;
-            naujas.vidurkis = agreguotas * 0.4 + naujas.egz * 0.6;
-            
-            sort(naujas.nd.begin(), naujas.nd.end());
-            agreguotas = ndSk % 2 == 0 ? (naujas.nd[ndSk / 2 - 1] + naujas.nd[ndSk / 2]) / 2.0 : naujas.nd[ndSk / 2];
-            agreguotas = ceil(agreguotas * 100.0) / 100.0;
-            naujas.mediana = agreguotas * 0.4 + naujas.egz * 0.6;
+            naujas.vidurkis = skaiciuotiVidurki(naujas, ndSk);
+            naujas.mediana = skaiciuotiMediana(naujas, ndSk);
 
             studentai.at(stud) = naujas;
         }
 
-        if (rikiavimas == 0) pasirinktiEiga("1 - Rikiuoti pagal vardą, 2 - Rikiuoti pagal pavardę, 3 - Rikiuoti pagal vidurkį, 4 - Rikiuoti pagal medianą: ", &rikiavimas, 4);
-        
+        t = nuskaityi.elapsed();
+        bendrasLaikas += t;
+        cout << "Nuskaityti " << eilSk[n] << " eilučių bendrą failą užtruko: " << t << "s" << endl;
+
         switch (rikiavimas) {
         case 1:
             sort(studentai.begin(), studentai.end(), palygintiPagalVarda);
@@ -99,6 +95,7 @@ void generuotiFailus() {
             break;
         }
 
+        Timer surusioti;
         for(auto &stud : studentai) {
             int index = 0;
             // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
@@ -111,8 +108,11 @@ void generuotiFailus() {
         bendras.close();
         konteineriai[0].close();
         konteineriai[1].close();
-        cout << "Files closed" << endl;
+
+        t = surusioti.elapsed();
+        bendrasLaikas += t;
+        cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << t << "s" << endl;
     }
     
-    cout << "Bendras programos veikimo laikas: " << bendras << "s" << endl;
+    cout << "\nBendras programos veikimo laikas: " << bendrasLaikas << "s" << endl;
 }
