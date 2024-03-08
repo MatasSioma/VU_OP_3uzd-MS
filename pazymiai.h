@@ -25,11 +25,6 @@ void rikiuotiPagalParametra(vector<studentas> &studentai, int option);
 void pasirinktiEiga(string msg, int* option, int max);
 bool taipArNe(string uzklausa);
 
-bool palygintiPagalVarda(const studentas &a, const studentas &b);
-bool palygintiPagalPavarde(const studentas &a, const studentas &b);
-bool palygintiPagalVidurki(const studentas &a, const studentas &b);
-bool palygintiPagalMediana(const studentas &a, const studentas &b);
-
 void generuotiFailus();
 
 #endif

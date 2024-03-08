@@ -82,35 +82,19 @@ double skaiciuotiMediana(const studentas &stud, int ndSk) {
     return vidurys * 0.4 + stud.egz * 0.6;
 }
 
-bool palygintiPagalVarda(const studentas &a, const studentas &b) {
-    return a.vardas > b.vardas;
-}
-
-bool palygintiPagalPavarde(const studentas &a, const studentas &b) {
-    return a.pavarde > b.pavarde;
-}
-
-bool palygintiPagalVidurki(const studentas &a, const studentas &b) {
-    return a.vidurkis > b.vidurkis;
-}
-
-bool palygintiPagalMediana(const studentas &a, const studentas &b) {
-    return a.mediana > b.mediana;
-}
-
 void rikiuotiPagalParametra(vector<studentas> &studentai, int option) {
     switch (option) {
     case 1:
-        sort(studentai.begin(), studentai.end(), palygintiPagalVarda);
+        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas &b)->bool{return a.vardas > b.vardas;});
         break;
     case 2:
-        sort(studentai.begin(), studentai.end(), palygintiPagalPavarde);
+        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas &b)->bool{return a.pavarde > b.pavarde;});
         break;
     case 3:
-        sort(studentai.begin(), studentai.end(), palygintiPagalVidurki);
+        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas &b)->bool{return a.vidurkis > b.vidurkis;});
         break;
     case 4:
-        sort(studentai.begin(), studentai.end(), palygintiPagalMediana);
+        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas &b)->bool{return a.mediana > b.mediana;});
         break;
     default:
         break;
