@@ -16,7 +16,7 @@ void generuotiFailus() {
 
     srand(time(nullptr));
 
-    for(int n = 0; n < 5; n++) {
+    for(int n = 0; n < 2; n++) {
         cout << endl;
         Timer generuoti;
 
