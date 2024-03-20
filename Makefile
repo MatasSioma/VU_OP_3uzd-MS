@@ -1,15 +1,27 @@
-main: main.cpp pazymiai.cpp generate.cpp
-	g++ main.cpp pazymiai.cpp generate.cpp -o pazymiai
+# Define variables
+SOURCES = main.cpp pazymiai.cpp
+VECTOR_SOURCES = $(SOURCES) generateVector.cpp
+LIST_SOURCES = $(SOURCES) generateList.cpp
+DEQUE_SOURCES = $(SOURCES) generateDeque.cpp
 
-vector:
+# Targets
+vector: $(VECTOR_SOURCES)
+	g++ $(VECTOR_SOURCES) -o pazymiai_vector
 
-list:
+list: $(LIST_SOURCES)
+	g++ $(LIST_SOURCES) -o pazymiai_list
 
-deque:
+deque: $(DEQUE_SOURCES)
+	g++ $(DEQUE_SOURCES) -o pazymiai_deque
 
-clear:
-	rm pazymiai
+all:
+	make vector
+	make list
+	make deque
 
+
+clean:
+	rm -f pazymiai pazymiai_vector pazymiai_list pazymiai_deque
 
 run:
 	rm pazymiai
