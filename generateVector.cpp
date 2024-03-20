@@ -11,7 +11,7 @@ void generuotiFailus() {
     int eilSk[5] {1'000, 10'000, 100'000, 1'000'000, 10'000'000};
     int ndSk, rikiavimas, strategija;
     pasirinktiEiga("Kiek namų darbų generuoti?: ", &ndSk, 30);
-    pasirinktiEiga("Koria studentu paskirstymo i konteinerius strategija naudoti?: 1, 2, 3", &strategija, 3);
+    pasirinktiEiga("Kurią studentų paskirstymo į konteinerius strategiją naudoti? 1-ąją, 2-ąją, 3-ąją:", &strategija, 3);
     pasirinktiEiga("Konteineriuose studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą, 5 - Nieka: ", &rikiavimas, 5);
     double bendrasLaikas;
 
