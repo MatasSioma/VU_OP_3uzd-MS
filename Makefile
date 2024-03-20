@@ -4,7 +4,10 @@ VECTOR_SOURCES = $(SOURCES) generateVector.cpp
 LIST_SOURCES = $(SOURCES) generateList.cpp
 DEQUE_SOURCES = $(SOURCES) generateDeque.cpp
 
-# Targets
+#default
+main: $(VECTOR_SOURCES)
+	g++ $(VECTOR_SOURCES) -o pazymiai
+
 vector: $(VECTOR_SOURCES)
 	g++ $(VECTOR_SOURCES) -o pazymiai_vector
 
@@ -24,6 +27,6 @@ clean:
 	rm -f pazymiai pazymiai_vector pazymiai_list pazymiai_deque
 
 run:
-	rm pazymiai
-	g++ pazymiai.cpp main.cpp generate.cpp -o pazymiai
+	make clean
+	make
 	./pazymiai
