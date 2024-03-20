@@ -55,7 +55,7 @@ void generuotiFailus() {
             konteineriai[i] << left << setw(10) << "Egz.";
         }
 
-        vector<studentas> studentai;
+        Container<studentas> studentai;
         studentas naujas;
         Timer nuskaityi;
         bendras.ignore(numeric_limits<streamsize>::max(), '\n');

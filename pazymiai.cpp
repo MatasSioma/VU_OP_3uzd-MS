@@ -40,7 +40,7 @@ bool taipArNe(string uzklausa) {
     }
 }
 
-void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk) {
+void atnaujintiMasyva(Container<studentas> &studentai, int stud_sk, int nd_sk) {
     studentas tuscias;
     for(int i = 0; i < stud_sk - studentai.size(); i++) studentai.push_back(tuscias);
     for(auto &stud: studentai) {
@@ -49,7 +49,7 @@ void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk) {
     }
 }
 
-void atspauzdintiMasyvoInfo(vector<studentas> &studentai) {
+void atspauzdintiMasyvoInfo(Container<studentas> &studentai) {
     cout << "\n\nMasyvo dumenys:\n";
     cout << "Vardas        Pavardė       NdPažymiai         Egzaminas" << endl;
     for(int y = 0; y < studentai.size(); y++) {
@@ -73,7 +73,7 @@ double skaiciuotiVidurki(const studentas &stud, int ndSk) {
 
 double skaiciuotiMediana(const studentas &stud, int ndSk) {
     double vidurys;
-    vector<int> ndCopy(ndSk);
+    Container<int> ndCopy(ndSk);
     ndCopy = stud.nd;
 
     sort(ndCopy.begin(), ndCopy.end());
@@ -82,7 +82,7 @@ double skaiciuotiMediana(const studentas &stud, int ndSk) {
     return vidurys * 0.4 + stud.egz * 0.6;
 }
 
-void rikiuotiPagalParametra(vector<studentas> &studentai, int option) {
+void rikiuotiPagalParametra(Container<studentas> &studentai, int option) {
     switch (option) {
     case 1:
         sort(studentai.begin(), studentai.end(), [](studentas &a, studentas &b)->bool{return a.vardas > b.vardas;});
