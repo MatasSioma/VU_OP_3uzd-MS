@@ -96,6 +96,8 @@ void rikiuotiPagalParametra(Container<studentas> &studentai, int option) {
     case 4:
         sort(studentai.begin(), studentai.end(), [](studentas &a, studentas &b)->bool{return a.mediana > b.mediana;});
         break;
+    case 5:
+        break;
     default:
         break;
     }

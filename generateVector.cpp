@@ -12,7 +12,7 @@ void generuotiFailus() {
     int ndSk, rikiavimas, strategija;
     pasirinktiEiga("Kiek namų darbų generuoti?: ", &ndSk, 30);
     pasirinktiEiga("Koria studentu paskirstymo i konteinerius strategija naudoti?: 1, 2, 3", &strategija, 3);
-    pasirinktiEiga("Konteineriuose studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą: ", &rikiavimas, 4);
+    pasirinktiEiga("Konteineriuose studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą, 5 - Nieka: ", &rikiavimas, 5);
     double bendrasLaikas;
 
     srand(time(nullptr));
@@ -43,18 +43,9 @@ void generuotiFailus() {
 
         // Paskirstymas i du failus
         ifstream bendras;
-        ofstream konteineriai[2];
         // ostringstream line;
         
         bendras.open("sugeneruoti/" + to_string(eilSk[n]) + "bendras.txt");
-        konteineriai[0].open("sugeneruoti/" + to_string(eilSk[n]) + "geri.txt");
-        konteineriai[1].open("sugeneruoti/"+ to_string(eilSk[n]) + "blogi.txt");
-
-        for(int i = 0; i < 2; i++) {
-            konteineriai[i] << left << setw(24) << "Vardas" << left << setw(24) << "Pavardė";
-            for (int nd = 1; nd <= ndSk; nd++) konteineriai[i] << left << setw(10) << to_string(nd) + "ND";
-            konteineriai[i] << left << setw(10) << "Egz.";
-        }
 
         Container<studentas> studentai;
         studentas naujas;
@@ -84,22 +75,34 @@ void generuotiFailus() {
         rikiuotiPagalParametra(studentai, rikiavimas);
 
         Timer surusioti;
-        for(auto &stud : studentai) {
-            int index = 0;
-            // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
-            if(stud.vidurkis < 5) index = 1;
-            konteineriai[index] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
-            for(int i = 0; i < ndSk; i++) konteineriai[index] << left << setw(10) << stud.nd.at(i);
-            konteineriai[index] << stud.egz;
+
+        if(strategija == 1) { // atidaryti, palikti
+            ofstream konteineriai[2];
+            konteineriai[0].open("sugeneruoti/" + to_string(eilSk[n]) + "geri.txt");
+            konteineriai[1].open("sugeneruoti/"+ to_string(eilSk[n]) + "blogi.txt");
+            for(int i = 0; i < 2; i++) {
+                konteineriai[i] << left << setw(24) << "Vardas" << left << setw(24) << "Pavardė";
+                for (int nd = 1; nd <= ndSk; nd++) konteineriai[i] << left << setw(10) << to_string(nd) + "ND";
+                konteineriai[i] << left << setw(10) << "Egz.";
+            }
+
+            for(auto &stud : studentai) {
+                int index = 0;
+                // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
+                if(stud.vidurkis < 5) index = 1;
+                konteineriai[index] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
+                for(int i = 0; i < ndSk; i++) konteineriai[index] << left << setw(10) << stud.nd.at(i);
+                konteineriai[index] << stud.egz;
+            }
+            konteineriai[0].close();
+            konteineriai[1].close();
         }
 
         bendras.close();
-        konteineriai[0].close();
-        konteineriai[1].close();
 
         t = surusioti.elapsed();
         bendrasLaikas += t;
-        cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << t << "s" << endl;
+        cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << t << "s, " << strategija << "-oji starategija."<< endl;
     }
     
     cout << "\nBendras programos veikimo (skaičiavimų) laikas: " << bendrasLaikas << "s" << endl;
