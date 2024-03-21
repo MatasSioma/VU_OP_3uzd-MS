@@ -102,9 +102,29 @@ void generuotiFailus() {
             }
         }
         else if (strategija == 2) {
-            cout << "";
+            Container<studentas> vargsiukai;
+            int kietekaiSk = 0;
+            for(int i = 0; i < eilSk[n]; i++) {
+                studentas stud = studentai.at(i);
+                if(stud.vidurkis < 5) {
+                    vargsiukai.push_back(stud);
+                    studentai.erase(studentai.begin()+kietekaiSk);
+                    continue;
+                }
+                kietekaiSk++;
+            }
+            for (auto &stud : studentai) {
+                konteineriai[0] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
+                for(int i = 0; i < ndSk; i++) konteineriai[0] << left << setw(10) << stud.nd.at(i);
+                konteineriai[0] << stud.egz;
+            }
+            for (auto &stud : vargsiukai) {
+                konteineriai[1] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
+                for(int i = 0; i < ndSk; i++) konteineriai[1] << left << setw(10) << stud.nd.at(i);
+                konteineriai[1] << stud.egz;
+            }
         }
-        else { // atidaryti, palikti
+        else { // mano strategija 3 - atidaryti, palikti
             for(auto &stud : studentai) {
                 int index = 0;
                 // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
