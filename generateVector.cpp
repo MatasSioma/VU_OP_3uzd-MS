@@ -90,16 +90,8 @@ void generuotiFailus() {
                 if(stud.vidurkis < 5) vargsiukai.push_back(stud);
                 else kietekai.push_back(stud);
             }
-            for (auto &stud : kietekai) {
-                konteineriai[0] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
-                for(int i = 0; i < ndSk; i++) konteineriai[0] << left << setw(10) << stud.nd.at(i);
-                konteineriai[0] << stud.egz;
-            }
-            for (auto &stud : vargsiukai) {
-                konteineriai[1] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
-                for(int i = 0; i < ndSk; i++) konteineriai[1] << left << setw(10) << stud.nd.at(i);
-                konteineriai[1] << stud.egz;
-            }
+            for (auto &stud : kietekai) addLineToFile(konteineriai[0], stud);
+            for (auto &stud : vargsiukai) addLineToFile(konteineriai[1], stud);
         }
         else if (strategija == 2) {
             Container<studentas> vargsiukai;
@@ -113,14 +105,12 @@ void generuotiFailus() {
             for (auto &stud : studentai) addLineToFile(konteineriai[0], stud);
             for (auto &stud : vargsiukai) addLineToFile(konteineriai[1], stud);
         }
-        else { // mano strategija 3 - atidaryti, palikti
+        else { // mano strategija (3)
             for(auto &stud : studentai) {
                 int index = 0;
                 // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
                 if(stud.vidurkis < 5) index = 1;
-                konteineriai[index] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
-                for(int i = 0; i < ndSk; i++) konteineriai[index] << left << setw(10) << stud.nd.at(i);
-                konteineriai[index] << stud.egz;
+                addLineToFile(konteineriai[index], stud);
             }
         }
 
