@@ -83,8 +83,21 @@ void generuotiFailus() {
             for (int nd = 1; nd <= ndSk; nd++) konteineriai[i] << left << setw(10) << to_string(nd) + "ND";
             konteineriai[i] << left << setw(10) << "Egz.";
         }
-
-        if(strategija == 1) { // atidaryti, palikti
+        if (strategija == 1) {
+            Container<studentas> kietekai, vargsiukai;
+            for(auto &stud : kietekai) {
+                int index = 0;
+                // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
+                if(stud.vidurkis < 5) index = 1;
+                konteineriai[index] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
+                for(int i = 0; i < ndSk; i++) konteineriai[index] << left << setw(10) << stud.nd.at(i);
+                konteineriai[index] << stud.egz;
+            }
+        }
+        else if (strategija == 2) {
+            cout << "";
+        }
+        else { // atidaryti, palikti
             for(auto &stud : studentai) {
                 int index = 0;
                 // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
