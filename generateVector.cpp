@@ -11,13 +11,13 @@ void generuotiFailus() {
     int eilSk[5] {1'000, 10'000, 100'000, 1'000'000, 10'000'000};
     int ndSk, rikiavimas, strategija;
     pasirinktiEiga("Kiek namų darbų generuoti?: ", &ndSk, 30);
-    pasirinktiEiga("Kurią studentų paskirstymo į konteinerius strategiją naudoti? 1-ąją, 2-ąją, 3-ąją:", &strategija, 3);
+    pasirinktiEiga("Kurią studentų paskirstymo į konteinerius strategiją naudoti? 1-ąją, 2-ąją, 3-ąją: ", &strategija, 3);
     pasirinktiEiga("Konteineriuose studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą, 5 - Nieka: ", &rikiavimas, 5);
     double bendrasLaikas;
 
     srand(time(nullptr));
 
-    for(int n = 0; n < 2; n++) {
+    for(int n = 0; n < 3; n++) {
         cout << endl;
         Timer generuoti;
 
@@ -103,15 +103,12 @@ void generuotiFailus() {
         }
         else if (strategija == 2) {
             Container<studentas> vargsiukai;
-            int kietekaiSk = 0;
-            for(int i = 0; i < eilSk[n]; i++) {
+            for(int i = studentai.size() - 1; i >= 0; --i) {
                 studentas stud = studentai.at(i);
                 if(stud.vidurkis < 5) {
                     vargsiukai.push_back(stud);
-                    studentai.erase(studentai.begin()+kietekaiSk);
-                    continue;
+                    studentai.erase(studentai.begin() + i);
                 }
-                kietekaiSk++;
             }
             for (auto &stud : studentai) {
                 konteineriai[0] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
