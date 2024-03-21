@@ -74,7 +74,6 @@ void generuotiFailus() {
 
         rikiuotiPagalParametra(studentai, rikiavimas);
 
-        Timer surusioti;
         ofstream konteineriai[2];
         konteineriai[0].open("sugeneruoti/" + to_string(eilSk[n]) + "geri.txt");
         konteineriai[1].open("sugeneruoti/"+ to_string(eilSk[n]) + "blogi.txt");
@@ -83,15 +82,23 @@ void generuotiFailus() {
             for (int nd = 1; nd <= ndSk; nd++) konteineriai[i] << left << setw(10) << to_string(nd) + "ND";
             konteineriai[i] << left << setw(10) << "Egz.";
         }
+
+        Timer surusioti;
         if (strategija == 1) {
             Container<studentas> kietekai, vargsiukai;
-            for(auto &stud : kietekai) {
-                int index = 0;
-                // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
-                if(stud.vidurkis < 5) index = 1;
-                konteineriai[index] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
-                for(int i = 0; i < ndSk; i++) konteineriai[index] << left << setw(10) << stud.nd.at(i);
-                konteineriai[index] << stud.egz;
+            for(auto &stud : studentai) {
+                if(stud.vidurkis < 5) vargsiukai.push_back(stud);
+                else kietekai.push_back(stud);
+            }
+            for (auto &stud : kietekai) {
+                konteineriai[0] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
+                for(int i = 0; i < ndSk; i++) konteineriai[0] << left << setw(10) << stud.nd.at(i);
+                konteineriai[0] << stud.egz;
+            }
+            for (auto &stud : vargsiukai) {
+                konteineriai[1] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
+                for(int i = 0; i < ndSk; i++) konteineriai[1] << left << setw(10) << stud.nd.at(i);
+                konteineriai[1] << stud.egz;
             }
         }
         else if (strategija == 2) {
