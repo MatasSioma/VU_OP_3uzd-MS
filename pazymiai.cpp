@@ -3,6 +3,7 @@
 #include <algorithm>
 #include <limits>
 #include <cmath>
+#include <fstream>
 
 # include "pazymiai.h"
 
@@ -101,4 +102,10 @@ void rikiuotiPagalParametra(Container<studentas> &studentai, int option) {
     default:
         break;
     }
+}
+
+void addLineToFile(ofstream &konteineris, studentas stud) {
+    konteineris << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
+    for(int i = 0; i < stud.nd.size(); i++) konteineris << left << setw(10) << stud.nd.at(i);
+    konteineris << stud.egz;
 }

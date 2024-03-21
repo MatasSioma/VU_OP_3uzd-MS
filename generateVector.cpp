@@ -110,16 +110,8 @@ void generuotiFailus() {
                     studentai.erase(studentai.begin() + i);
                 }
             }
-            for (auto &stud : studentai) {
-                konteineriai[0] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
-                for(int i = 0; i < ndSk; i++) konteineriai[0] << left << setw(10) << stud.nd.at(i);
-                konteineriai[0] << stud.egz;
-            }
-            for (auto &stud : vargsiukai) {
-                konteineriai[1] << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
-                for(int i = 0; i < ndSk; i++) konteineriai[1] << left << setw(10) << stud.nd.at(i);
-                konteineriai[1] << stud.egz;
-            }
+            for (auto &stud : studentai) addLineToFile(konteineriai[0], stud);
+            for (auto &stud : vargsiukai) addLineToFile(konteineriai[1], stud);
         }
         else { // mano strategija 3 - atidaryti, palikti
             for(auto &stud : studentai) {

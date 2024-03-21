@@ -28,6 +28,7 @@ void atspauzdintiMasyvoInfo(Container<studentas> &studentai);
 void rikiuotiPagalParametra(Container<studentas> &studentai, int option);
 void pasirinktiEiga(string msg, int* option, int max);
 bool taipArNe(string uzklausa);
+void addLineToFile(ofstream &konteineris, studentas stud);
 
 void generuotiFailus();
 
