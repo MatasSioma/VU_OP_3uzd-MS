@@ -1,5 +1,5 @@
 #ifndef Container
-#define Container std::deque
+#define Container std::vector
 #endif
 
 #ifndef PAZYMIAI_H

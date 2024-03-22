@@ -34,3 +34,8 @@ Sugeneruotų studentų išvedimas į du skirtingus konteinerius (geri/blogi)\
 Bendras programos veikimo laikas, kai generuojami 5 failai su nurodytasi dydžiais (15Nd): 118.9s (5 testų vidurkis)
 
 ## v1.0
+trijų tipų konteineriai\
+
+
+
+![statistika](statistika.png)

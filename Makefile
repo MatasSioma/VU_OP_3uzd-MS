@@ -1,8 +1,7 @@
 # Define variables
 SOURCES = main.cpp pazymiai.cpp
 VECTOR_SOURCES = $(SOURCES) generateVector.cpp
-LIST_SOURCES = $(SOURCES) generateList.cpp
-DEQUE_SOURCES = $(SOURCES) generateDeque.cpp
+OTHER_SOURCES = $(SOURCES) generateOther.cpp
 
 #default
 main: $(VECTOR_SOURCES)
@@ -12,13 +11,13 @@ vector: $(VECTOR_SOURCES)
 	@echo "\033[0;33mĮsitikinkite kad pakeitėte Container aprašą į "std::vector", pazymiai.h faile!\033[0m"
 	g++ $(VECTOR_SOURCES) -o pazymiai_vector
 
-list: $(LIST_SOURCES)
+list: $(OTHER_SOURCES)
 	@echo "\033[0;33mĮsitikinkite kad pakeitėte Container aprašą į "std::list", pazymiai.h faile!\033[0m"  
-	g++ $(LIST_SOURCES) -o pazymiai_list
+	g++ $(OTHER_SOURCES) -o pazymiai_list
 
-deque: $(DEQUE_SOURCES)
+deque: $(OTHER_SOURCES)
 	@echo "\033[0;33mĮsitikinkite kad pakeitėte Container aprašą į "std::deque", pazymiai.h faile!\033[0m"
-	g++ $(DEQUE_SOURCES) -o pazymiai_deque
+	g++ $(OTHER_SOURCES) -o pazymiai_deque
 
 all:
 	make vector

@@ -72,7 +72,12 @@ void generuotiFailus() {
         bendrasLaikas += t;
         cout << "Nuskaityti " << eilSk[n] << " eilučių bendrą failą užtruko: " << t << "s" << endl;
 
+        Timer sorting;
         rikiuotiPagalParametra(studentai, rikiavimas);
+
+        t = sorting.elapsed();
+        bendrasLaikas += t;
+        cout << "Surušiuoti " << eilSk[n] << " eilučių konteinerį užtruko: " << t << "s" << endl;
 
         ofstream konteineriai[2];
         konteineriai[0].open("sugeneruoti/" + to_string(eilSk[n]) + "geri.txt");
