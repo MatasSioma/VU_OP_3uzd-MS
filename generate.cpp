@@ -23,18 +23,22 @@ void generuotiFailus() {
         // Failo generavimas
         ofstream generuotas;
         generuotas.open("sugeneruoti/" + to_string(eilSk[n]) + "bendras.txt");
-
-        generuotas << left << setw(24) << "Vardas" << left << setw(24) << "Pavardė";
-        for (int nd = 1; nd <= ndSk; nd++) generuotas << left << setw(10) << to_string(nd) + "ND";
-        generuotas << "Egz.";
+        stringstream buffer;
+        buffer << left << setw(24) << "Vardas" << left << setw(24) << "Pavardė";
+        for (int nd = 1; nd <= ndSk; nd++) buffer << left << setw(10) << to_string(nd) + "ND";
+        buffer << "Egz.";
 
         for(int eil = 0; eil < eilSk[n]; eil++) {
-            generuotas << endl << left << setw(24) << "Vardenis" + to_string(eil+1) << left << setw(24) << "Pavardenis" + to_string(eil+1);
-            for (int nd = 0; nd < ndSk; nd++) generuotas << left << setw(10) << 1 + rand()%10;
-            generuotas << 1 + rand()%10; // egz
+            buffer << endl << left << setw(24) << "Vardenis" + to_string(eil+1) << left << setw(24) << "Pavardenis" + to_string(eil+1);
+            for (int nd = 0; nd < ndSk; nd++) buffer << left << setw(10) << 1 + rand()%10;
+            buffer << 1 + rand()%10; // egz
         }
 
+        generuotas << buffer.str();
+
         generuotas.close();
+
+        buffer.clear();
 
         double t = generuoti.elapsed();
         bendrasLaikas += t;
@@ -46,6 +50,8 @@ void generuotiFailus() {
         // ostringstream line;
         
         bendras.open("sugeneruoti/" + to_string(eilSk[n]) + "bendras.txt");
+        buffer << bendras.rdbuf();
+        bendras.close();
         konteineriai[0].open("sugeneruoti/" + to_string(eilSk[n]) + "geri.txt");
         konteineriai[1].open("sugeneruoti/"+ to_string(eilSk[n]) + "blogi.txt");
 
@@ -58,18 +64,18 @@ void generuotiFailus() {
         vector<studentas> studentai;
         studentas naujas;
         Timer nuskaityi;
-        bendras.ignore(numeric_limits<streamsize>::max(), '\n');
+        buffer.ignore(numeric_limits<streamsize>::max(), '\n');
         studentai.resize(eilSk[n]);
         for (int stud = 0; stud < eilSk[n]; stud++) {
-            bendras >> naujas.vardas >> naujas.pavarde;
+            buffer >> naujas.vardas >> naujas.pavarde;
 
             // naujas.nd.clear();
             naujas.nd.resize(ndSk);
             for(int nd = 0; nd < ndSk; nd++) {
-                bendras >> naujas.nd.at(nd);
+                buffer >> naujas.nd.at(nd);
             }
             // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
-            bendras >> naujas.egz;
+            buffer >> naujas.egz;
             naujas.vidurkis = skaiciuotiVidurki(naujas, ndSk);
             naujas.mediana = skaiciuotiMediana(naujas, ndSk);
 
@@ -92,9 +98,9 @@ void generuotiFailus() {
             konteineriai[index] << stud.egz;
         }
 
-        bendras.close();
         konteineriai[0].close();
         konteineriai[1].close();
+        buffer.clear();
 
         t = surusioti.elapsed();
         bendrasLaikas += t;
