@@ -46,7 +46,7 @@ System type	64-bit    Ubuntu 22.04.3 LTS on Windows 10 x86_64\
 Storage               512GB SSD\
 
 Instrukcija kaip paleisti koda UNIX sistemoje:
-1. Atidarę sistemos komandinę eilutę šiame aplanke įveskite `nano pazymiai.h`, modifikuokite failą taip, kad pirmos trys programos eilutės atrodytų kaip vienas iš pateiktų pavyzdžių:
+- Atidarę sistemos komandinę eilutę šiame aplanke įveskite `nano pazymiai.h`, modifikuokite failą taip, kad pirmos trys programos eilutės atrodytų kaip vienas iš pateiktų pavyzdžių:
 Vector versijai:
 ```
 #ifndef Container
@@ -65,6 +65,6 @@ Deque versijai:
 #define Container std::deque
 #endif
 ```
-Uždarykite teksto retdaktorių su "Ctrl" ir "C" mygtukais vienu metu, išsaugokite failą (spauskite "Y")\
-2. Sistemos komandinėje eilutėje įrašykite `make vector` arba `make list` arba `make deque` atitinkamai versijai kurią pasirinkote prieš tai.\
-3. Kad paleistumėte programą į komadinę eilutę įveskite: `./pazymiai_vector` arba  `./pazymiai_list` arba `./pazymiai_deque`
+Uždarykite teksto retdaktorių su "Ctrl" ir "C" mygtukais vienu metu, išsaugokite failą (spauskite "Y")
+- Sistemos komandinėje eilutėje įrašykite `make vector` arba `make list` arba `make deque` atitinkamai versijai kurią pasirinkote prieš tai.
+- Kad paleistumėte programą į komadinę eilutę įveskite: `./pazymiai_vector` arba  `./pazymiai_list` arba `./pazymiai_deque`
