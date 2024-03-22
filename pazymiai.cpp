@@ -41,7 +41,7 @@ bool taipArNe(string uzklausa) {
     }
 }
 
-void atnaujintiMasyva(Container<studentas> &studentai, int stud_sk, int nd_sk) {
+void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk) {
     studentas tuscias;
     for(int i = 0; i < stud_sk - studentai.size(); i++) studentai.push_back(tuscias);
     for(auto &stud: studentai) {
@@ -50,7 +50,7 @@ void atnaujintiMasyva(Container<studentas> &studentai, int stud_sk, int nd_sk) {
     }
 }
 
-void atspauzdintiMasyvoInfo(Container<studentas> &studentai) {
+void atspauzdintiMasyvoInfo(vector<studentas> &studentai) {
     cout << "\n\nMasyvo dumenys:\n";
     cout << "Vardas        Pavardė       NdPažymiai         Egzaminas" << endl;
     for(int y = 0; y < studentai.size(); y++) {
@@ -74,7 +74,7 @@ double skaiciuotiVidurki(const studentas &stud, int ndSk) {
 
 double skaiciuotiMediana(const studentas &stud, int ndSk) {
     double vidurys;
-    Container<int> ndCopy(ndSk);
+    vector<int> ndCopy(ndSk);
     ndCopy = stud.nd;
 
     sort(ndCopy.begin(), ndCopy.end());
@@ -83,19 +83,19 @@ double skaiciuotiMediana(const studentas &stud, int ndSk) {
     return vidurys * 0.4 + stud.egz * 0.6;
 }
 
-void rikiuotiPagalParametra(Container<studentas> &studentai, int option) {
+void rikiuotiPagalParametra(list<studentas> &studentai, int option) {
     switch (option) {
     case 1:
-        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas &b)->bool{return a.vardas > b.vardas;});
+        studentai.sort([](studentas &a, studentas&b)->bool{return a.vardas > b.vardas;});
         break;
     case 2:
-        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas &b)->bool{return a.pavarde > b.pavarde;});
+        studentai.sort([](studentas &a, studentas&b)->bool{return a.pavarde > b.pavarde;});
         break;
     case 3:
-        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas &b)->bool{return a.vidurkis > b.vidurkis;});
+        studentai.sort([](studentas &a, studentas&b)->bool{return a.vidurkis > b.vidurkis;});
         break;
     case 4:
-        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas &b)->bool{return a.mediana > b.mediana;});
+        studentai.sort([](studentas &a, studentas&b)->bool{return a.mediana > b.mediana;});
         break;
     case 5:
         break;
@@ -103,6 +103,29 @@ void rikiuotiPagalParametra(Container<studentas> &studentai, int option) {
         break;
     }
 }
+
+void rikiuotiPagalParametra(vector<studentas>&studentai, int option) {
+    switch (option) {
+    case 1:
+        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.vardas > b.vardas;});
+        break;
+    case 2:
+        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.pavarde > b.pavarde;});
+        break;
+    case 3:
+        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.vidurkis > b.vidurkis;});
+        break;
+    case 4:
+        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.mediana > b.mediana;});
+        break;
+    case 5:
+        break;
+    default:
+        break;
+    }
+}
+
+
 
 void addLineToFile(ofstream &konteineris, studentas stud) {
     konteineris << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;

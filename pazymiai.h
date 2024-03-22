@@ -7,6 +7,7 @@
 
 #include <string>
 #include <vector>
+#include <list>
 #include "timer.h"
 
 using namespace std;
@@ -23,12 +24,14 @@ struct studentas {
 double skaiciuotiVidurki(const studentas &stud, int ndSk);
 double skaiciuotiMediana(const studentas &stud, int ndSk);
 
-void atnaujintiMasyva(Container<studentas> &studentai, int stud_sk, int nd_sk);
-void atspauzdintiMasyvoInfo(Container<studentas> &studentai);
-void rikiuotiPagalParametra(Container<studentas> &studentai, int option);
+void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk);
+void atspauzdintiMasyvoInfo(vector<studentas> &studentai);
 void pasirinktiEiga(string msg, int* option, int max);
 bool taipArNe(string uzklausa);
 void addLineToFile(ofstream &konteineris, studentas stud);
+
+void rikiuotiPagalParametra(list<studentas> &studentai, int option);
+void rikiuotiPagalParametra(vector<studentas> &studentai, int option);
 
 void generuotiFailus();
 

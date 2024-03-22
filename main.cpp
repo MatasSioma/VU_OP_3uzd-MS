@@ -15,7 +15,7 @@ int main() {
     studentas tuscias;
 
     //inicijuojam masyva
-    Container<studentas> studentai(1);
+    vector<studentas> studentai(1);
 
     if(!taipArNe("Ar norėsite generuoti failus? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
         generuotiFailus();
