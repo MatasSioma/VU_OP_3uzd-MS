@@ -36,35 +36,35 @@ Bendras programos veikimo laikas, kai generuojami 5 failai su nurodytasi dydžia
 ## v1.0
 trijų tipų konteineriai\
 pritaikytos trys strategijos\
-Atlikta spartumo diagnostika\
+Atlikta spartumo diagnostika
 
 ![statistika](statistika.png)
 
-Processor             AMD Ryzen 7 7735U with Radeon Graphics 2.70 GHz
-Installed RAM         16,0 GB (13,7 GB usable)
-System type	64-bit    Ubuntu 22.04.3 LTS on Windows 10 x86_64
-Storage               512GB SSD
+Processor             AMD Ryzen 7 7735U with Radeon Graphics 2.70 GHz\
+Installed RAM         16,0 GB (13,7 GB usable)\
+System type	64-bit    Ubuntu 22.04.3 LTS on Windows 10 x86_64\
+Storage               512GB SSD\
 
 Instrukcija kaip paleisti koda UNIX sistemoje:
 1. Atidarę sistemos komandinę eilutę šiame aplanke įveskite `nano pazymiai.h`, modifikuokite failą taip, kad pirmos trys programos eilutės atrodytų kaip vienas iš pateiktų pavyzdžių:\
 Vector versijai:
-`
+```
 #ifndef Container
 #define Container std::vector
 #endif
-`
+```
 List versijai:
-`
+```
 #ifndef Container
 #define Container std::list
 #endif
-`
+```
 Deque versijai:
-`
+```
 #ifndef Container
 #define Container std::deque
 #endif
-`
+```
 Uždarykite teksto retdaktorių su "Ctrl" ir "C" mygtukais vienu metu, išsaugokite failą (spauskite "Y")
 2. Sistemos komandinėje eilutėje įrašykite `make vector` arba `make list` arba `make deque` atitinkamai versijai kurią pasirinkote prieš tai.
 3. Kad paleistumėte programą `./pazymiai_vector` arba  `./pazymiai_list` arba `./pazymiai_deque`
