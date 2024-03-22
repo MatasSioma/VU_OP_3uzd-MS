@@ -125,6 +125,26 @@ void rikiuotiPagalParametra(vector<studentas>&studentai, int option) {
     }
 }
 
+void rikiuotiPagalParametra(deque<studentas>&studentai, int option) {
+    switch (option) {
+    case 1:
+        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.vardas > b.vardas;});
+        break;
+    case 2:
+        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.pavarde > b.pavarde;});
+        break;
+    case 3:
+        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.vidurkis > b.vidurkis;});
+        break;
+    case 4:
+        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.mediana > b.mediana;});
+        break;
+    case 5:
+        break;
+    default:
+        break;
+    }
+}
 
 
 void addLineToFile(ofstream &konteineris, studentas stud) {

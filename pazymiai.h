@@ -1,5 +1,5 @@
 #ifndef Container
-#define Container std::vector
+#define Container std::deque
 #endif
 
 #ifndef PAZYMIAI_H
@@ -8,6 +8,7 @@
 #include <string>
 #include <vector>
 #include <list>
+#include <deque>
 #include "timer.h"
 
 using namespace std;
@@ -32,6 +33,7 @@ void addLineToFile(ofstream &konteineris, studentas stud);
 
 void rikiuotiPagalParametra(list<studentas> &studentai, int option);
 void rikiuotiPagalParametra(vector<studentas> &studentai, int option);
+void rikiuotiPagalParametra(deque<studentas> &studentai, int option);
 
 void generuotiFailus();
 
