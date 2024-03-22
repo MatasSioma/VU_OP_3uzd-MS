@@ -46,7 +46,7 @@ System type	64-bit    Ubuntu 22.04.3 LTS on Windows 10 x86_64\
 Storage               512GB SSD\
 
 Instrukcija kaip paleisti koda UNIX sistemoje:
-1. Atidarę sistemos komandinę eilutę šiame aplanke įveskite `nano pazymiai.h`, modifikuokite failą taip, kad pirmos trys programos eilutės atrodytų kaip vienas iš pateiktų pavyzdžių:\
+1. Atidarę sistemos komandinę eilutę šiame aplanke įveskite `nano pazymiai.h`, modifikuokite failą taip, kad pirmos trys programos eilutės atrodytų kaip vienas iš pateiktų pavyzdžių:
 Vector versijai:
 ```
 #ifndef Container
