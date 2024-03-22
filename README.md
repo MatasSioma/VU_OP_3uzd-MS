@@ -36,7 +36,8 @@ Bendras programos veikimo laikas, kai generuojami 5 failai su nurodytasi dydžia
 ## v1.0
 trijų tipų konteineriai\
 pritaikytos trys strategijos\
-Atlikta spartumo diagnostika
+Atlikta spartumo diagnostika\
+"..." Laiko tarpas didesnis negu 10min
 
 ![statistika](statistika.png)
 
