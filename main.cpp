@@ -98,8 +98,8 @@ int main() {
                 auto it = partition(studentai.begin(), studentai.end(), isVargsas);
                 int index = distance(studentai.begin(), it);
                 while (it != studentai.end()) {
-                    ++it;
                     vargsiukai.push_back(move(*it));
+                    ++it;
                 }
                 studentai.resize(index);
                 sortAndAddToFile(studentai, vargsiukai, rikiavimas);
