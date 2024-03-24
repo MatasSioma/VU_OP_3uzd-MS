@@ -16,10 +16,10 @@ using namespace std;
 struct studentas {
     string vardas = "vardas";
     string pavarde = "pavarde";
-    vector<int> nd = {0};
     int egz = 0;
     double vidurkis = 0;
     double mediana = 0;
+    vector<int> nd = {0};
 };
 
 double skaiciuotiVidurki(const studentas &stud, int ndSk);
@@ -38,7 +38,7 @@ template <typename T>
 void sortAndAddToFile(T &kietekai, T &vargsiukai, int option) {
     rikiuotiPagalParametra(kietekai, option);
     rikiuotiPagalParametra(vargsiukai, option);
-    
+
     ofstream konteineriai[2];
     int eilSk = kietekai.size() + vargsiukai.size();
     konteineriai[0].open("sugeneruoti/" + to_string(eilSk) + "geri.txt");

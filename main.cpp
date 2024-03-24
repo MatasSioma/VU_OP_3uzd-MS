@@ -24,7 +24,6 @@ int main() {
 
     if(!taipArNe("Ar vygdyti studentų skirtymą į konteinerius? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
         int eilSk[5] {1'000, 10'000, 100'000, 1'000'000, 10'000'000};
-        double t;
         int ndSk, rikiavimas, strategija;
         pasirinktiEiga("Kiek ND yra failuose?: ", &ndSk, 30);
         pasirinktiEiga("Kurią studentų paskirstymo į konteinerius strategiją naudoti? 1-ąją, 2-ąją, 3-ąją: ", &strategija, 3);
@@ -58,11 +57,12 @@ int main() {
                 naujas.vidurkis = skaiciuotiVidurki(naujas, ndSk);
                 naujas.mediana = skaiciuotiMediana(naujas, ndSk);
 
+                naujas.nd.clear();
+                naujas.nd.shrink_to_fit();
+
                 studentai.push_back(naujas);
             }
-
-            t = nuskaityi.elapsed();
-            cout << "Nuskaityti " << eilSk[n] << " eilučių bendrą failą užtruko: " << t << "s" << endl;
+            cout << "Nuskaityti " << eilSk[n] << " eilučių bendrą failą užtruko: " << nuskaityi.elapsed() << "s" << endl;
 
             Timer sortinti;
             rikiuotiPagalParametra(studentai, 3);
@@ -90,6 +90,7 @@ int main() {
                     }
                 }
                 studentai.resize(studentai.size() - i);
+                studentai.shrink_to_fit();
                 sortAndAddToFile(studentai, vargsiukai, rikiavimas);
             } else {
                 Container<studentas> vargsiukai;
@@ -106,8 +107,7 @@ int main() {
 
             buffer.clear();
 
-            t = surusioti.elapsed();
-            cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << t << "s, " << strategija << "-oji strategija."<< endl;
+            cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << surusioti.elapsed() << "s, " << strategija << "-oji strategija."<< endl;
         }
         return 0;
     }
