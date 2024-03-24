@@ -90,7 +90,7 @@ int main() {
                     }
                 }
                 studentai.resize(studentai.size() - i);
-                studentai.shrink_to_fit();
+                // studentai.shrink_to_fit();
                 sortAndAddToFile(studentai, vargsiukai, rikiavimas);
             } else {
                 Container<studentas> vargsiukai;
