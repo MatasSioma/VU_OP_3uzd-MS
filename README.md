@@ -67,5 +67,5 @@ Deque versijai:
 #endif
 ```
 Uždarykite teksto retdaktorių su "Ctrl" ir "C" mygtukais vienu metu, išsaugokite failą (spauskite "Y")\
-2. Sistemos komandinėje eilutėje įrašykite `make vector` arba `make list` arba `make deque` atitinkamai versijai kurią pasirinkote prieš tai.\
-3. Kad paleistumėte programą į komadinę eilutę įveskite: `./pazymiai_vector` arba  `./pazymiai_list` arba `./pazymiai_deque`
+2. Sistemos komandinėje eilutėje įrašykite `make`
+3. Kad paleistumėte programą į komadinę eilutę įveskite: `./pazymiai`

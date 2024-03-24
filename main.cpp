@@ -91,6 +91,17 @@ int main() {
                 }
                 studentai.resize(studentai.size() - i);
                 sortAndAddToFile(studentai, vargsiukai, rikiavimas);
+            } else {
+                Container<studentas> vargsiukai;
+                auto isVargsas = [](studentas &a){return a.vidurkis >= 5;};
+                auto it = partition(studentai.begin(), studentai.end(), isVargsas);
+                int index = distance(studentai.begin(), it);
+                while (it != studentai.end()) {
+                    ++it;
+                    vargsiukai.push_back(move(*it));
+                }
+                studentai.resize(index);
+                sortAndAddToFile(studentai, vargsiukai, rikiavimas);
             }
 
             buffer.clear();
