@@ -100,12 +100,13 @@ void generuotiFailus() {
         }
         else if (strategija == 2) {
             Container<studentas> vargsiukai;
-            for(int i = studentai.size() - 1; i >= 0; --i) {
-                studentas stud = studentai.at(i);
+            int i = 0;
+            for(studentas const &stud : studentai) {
                 if(stud.vidurkis < 5) {
                     vargsiukai.push_back(stud);
                     studentai.erase(studentai.begin() + i);
                 }
+                i++;
             }
             for (auto &stud : studentai) addLineToFile(konteineriai[0], stud);
             for (auto &stud : vargsiukai) addLineToFile(konteineriai[1], stud);
