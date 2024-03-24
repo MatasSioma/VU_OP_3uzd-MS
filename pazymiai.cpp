@@ -68,8 +68,9 @@ double skaiciuotiVidurki(const studentas &stud, int ndSk) {
 
     for (int nd = 0; nd < ndSk; nd++) agreguotas += stud.nd.at(nd);
     agreguotas /= (double)ndSk;
-    agreguotas = ceil(agreguotas * 100.0) / 100.0; // iki simtuju
-    return agreguotas * 0.4 + stud.egz * 0.6;
+    agreguotas = round(agreguotas * 100.0) / 100.0; // iki simtuju
+    agreguotas = agreguotas * 0.4 + stud.egz * 0.6;
+    return round(agreguotas * 100.0) / 100.0;
 }
 
 double skaiciuotiMediana(const studentas &stud, int ndSk) {
@@ -79,8 +80,9 @@ double skaiciuotiMediana(const studentas &stud, int ndSk) {
 
     sort(ndCopy.begin(), ndCopy.end());
     vidurys = ndSk % 2 == 0 ? (ndCopy[ndSk / 2 - 1] + ndCopy[ndSk / 2]) / 2.0 : ndCopy[ndSk / 2];
-    vidurys = ceil(vidurys * 100.0) / 100.0;
-    return vidurys * 0.4 + stud.egz * 0.6;
+    vidurys = round(vidurys * 100.0) / 100.0;
+    vidurys = vidurys * 0.4 + stud.egz * 0.6;
+    return vidurys;
 }
 
 void rikiuotiPagalParametra(list<studentas> &studentai, int option) {
@@ -104,51 +106,7 @@ void rikiuotiPagalParametra(list<studentas> &studentai, int option) {
     }
 }
 
-void rikiuotiPagalParametra(vector<studentas>&studentai, int option) {
-    switch (option) {
-    case 1:
-        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.vardas > b.vardas;});
-        break;
-    case 2:
-        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.pavarde > b.pavarde;});
-        break;
-    case 3:
-        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.vidurkis > b.vidurkis;});
-        break;
-    case 4:
-        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.mediana > b.mediana;});
-        break;
-    case 5:
-        break;
-    default:
-        break;
-    }
-}
-
-void rikiuotiPagalParametra(deque<studentas>&studentai, int option) {
-    switch (option) {
-    case 1:
-        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.vardas > b.vardas;});
-        break;
-    case 2:
-        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.pavarde > b.pavarde;});
-        break;
-    case 3:
-        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.vidurkis > b.vidurkis;});
-        break;
-    case 4:
-        sort(studentai.begin(), studentai.end(), [](studentas &a, studentas&b)->bool{return a.mediana > b.mediana;});
-        break;
-    case 5:
-        break;
-    default:
-        break;
-    }
-}
-
-
 void addLineToFile(ofstream &konteineris, studentas stud) {
     konteineris << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
-    for(int i = 0; i < stud.nd.size(); i++) konteineris << left << setw(10) << stud.nd.at(i);
-    konteineris << stud.egz;
+    konteineris << left << setw(10) << stud.vidurkis << left << setw(10) << stud.mediana;
 }

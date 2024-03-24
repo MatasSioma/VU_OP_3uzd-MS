@@ -22,6 +22,85 @@ int main() {
         return 0;
     }
 
+    if(!taipArNe("Ar vygdyti studentų skirtymą į konteinerius? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
+        int eilSk[5] {1'000, 10'000, 100'000, 1'000'000, 10'000'000};
+        double t;
+        int ndSk, rikiavimas, strategija;
+        pasirinktiEiga("Kiek ND yra failuose?: ", &ndSk, 30);
+        pasirinktiEiga("Kurią studentų paskirstymo į konteinerius strategiją naudoti? 1-ąją, 2-ąją, 3-ąją: ", &strategija, 3);
+        pasirinktiEiga("Konteineriuose studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą: ", &rikiavimas, 4);
+
+        for(int n = 0; n < 5; n++) {
+            // Paskirstymas i du failus
+            cout << endl;
+            ifstream bendras;
+            stringstream buffer;
+            
+            bendras.open("sugeneruoti/" + to_string(eilSk[n]) + "bendras.txt");
+            buffer << bendras.rdbuf();
+            bendras.close();
+
+            Container<studentas> studentai;
+            studentas naujas;
+            Timer nuskaityi;
+            buffer.ignore(numeric_limits<streamsize>::max(), '\n');
+            // studentai.resize(eilSk[n]);
+            for (int i = 0; i < eilSk[n]; i++) {
+                buffer >> naujas.vardas >> naujas.pavarde;
+
+                // naujas.nd.clear();
+                naujas.nd.resize(ndSk);
+                for(int nd = 0; nd < ndSk; nd++) {
+                    buffer >> naujas.nd.at(nd);
+                }
+                // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
+                buffer >> naujas.egz;
+                naujas.vidurkis = skaiciuotiVidurki(naujas, ndSk);
+                naujas.mediana = skaiciuotiMediana(naujas, ndSk);
+
+                studentai.push_back(naujas);
+            }
+
+            t = nuskaityi.elapsed();
+            cout << "Nuskaityti " << eilSk[n] << " eilučių bendrą failą užtruko: " << t << "s" << endl;
+
+            Timer sortinti;
+            rikiuotiPagalParametra(studentai, 3);
+            cout << "Išdėstyti " << eilSk[n] << " eilučių didėjimo tvarka užtruko: " << sortinti.elapsed() << "s" << endl;
+
+            Timer surusioti;
+            if (strategija == 1) {
+                Container<studentas> kietekai, vargsiukai;
+                for(auto &stud : studentai) {
+                    if(stud.vidurkis < 5) vargsiukai.push_back(stud);
+                    else kietekai.push_back(stud);
+                }
+                sortAndAddToFile(kietekai, vargsiukai, rikiavimas);
+
+            } else if(strategija == 2) {
+                Container<studentas> vargsiukai;
+                int i = 0;
+                for(auto it = studentai.rbegin(); it != studentai.rend(); it++) {
+                    studentas &stud = *it;
+                    if(stud.vidurkis < 5) {
+                        vargsiukai.push_back(stud);
+                        i++;
+                    } else {
+                        break;
+                    }
+                }
+                studentai.resize(studentai.size() - i);
+                sortAndAddToFile(studentai, vargsiukai, rikiavimas);
+            }
+
+            buffer.clear();
+
+            t = surusioti.elapsed();
+            cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << t << "s, " << strategija << "-oji strategija."<< endl;
+        }
+        return 0;
+    }
+
     int option;
     pasirinktiEiga("Meniu: 1 - Įvesti duomenis ranka, 2 - Generuoti pažymius, 3 - Generuoti pažymius ir vardus, 4 - Nuskaityti iš failo (turi būti bent 1 ND laukas): ", &option, 4);
     

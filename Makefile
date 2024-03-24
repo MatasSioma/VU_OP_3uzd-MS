@@ -1,34 +1,18 @@
 # Define variables
-SOURCES = main.cpp pazymiai.cpp
-VECTOR_SOURCES = $(SOURCES) generateVector.cpp
-OTHER_SOURCES = $(SOURCES) generateOther.cpp
+SOURCES = main.cpp pazymiai.cpp generate.cpp
 
 #default
-main: $(VECTOR_SOURCES)
-	g++ $(VECTOR_SOURCES) -o pazymiai
-
-vector: $(VECTOR_SOURCES)
-	@echo "\033[0;33mĮsitikinkite kad pakeitėte Container aprašą į "std::vector", pazymiai.h faile!\033[0m"
-	g++ $(VECTOR_SOURCES) -o pazymiai_vector
-
-list: $(OTHER_SOURCES)
-	@echo "\033[0;33mĮsitikinkite kad pakeitėte Container aprašą į "std::list", pazymiai.h faile!\033[0m"  
-	g++ $(OTHER_SOURCES) -o pazymiai_list
-
-deque: $(OTHER_SOURCES)
-	@echo "\033[0;33mĮsitikinkite kad pakeitėte Container aprašą į "std::deque", pazymiai.h faile!\033[0m"
-	g++ $(OTHER_SOURCES) -o pazymiai_deque
-
-all:
-	make vector
-	make list
-	make deque
-
+main: $(SOURCES)
+	@echo "\033[0;33mĮsitikinkite kad pakeitėte Container aprašą į norimą: "std::vector"/"std::list"/"std::deque", pazymiai.h faile, kaip nurodyta instrukcijoje.\033[0m"  
+	g++ $(SOURCES) -o pazymiai
 
 clean:
-	rm -f pazymiai pazymiai_vector pazymiai_list pazymiai_deque
+	rm -f pazymiai
+	rm -f -r sugeneruoti/*geri.txt
+	rm -f -r sugeneruoti/*blogi.txt
 
 run:
 	make clean
 	make
+	@echo "\n"
 	./pazymiai
