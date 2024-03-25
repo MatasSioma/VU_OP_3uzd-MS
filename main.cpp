@@ -95,15 +95,15 @@ int main() {
             } else {
                 Container<studentas> vargsiukai;
                 auto isVargsas = [](studentas &a){return a.vidurkis >= 5;};
-                // auto it = partition(studentai.begin(), studentai.end(), isVargsas);
-                // int index = distance(studentai.begin(), it);
-                // while (it != studentai.end()) {
-                //     vargsiukai.push_back(move(*it));
-                //     ++it;
-                // }
-                // studentai.resize(index);
-                copy_if(studentai.begin(), studentai.end(), back_inserter(vargsiukai), isVargsas);
-                studentai.erase(remove_if(studentai.begin(), studentai.end(), isVargsas), studentai.end());
+                auto it = partition(studentai.begin(), studentai.end(), isVargsas);
+                int index = distance(studentai.begin(), it);
+                while (it != studentai.end()) {
+                    vargsiukai.push_back(move(*it));
+                    ++it;
+                }
+                studentai.resize(index);
+                // copy_if(studentai.begin(), studentai.end(), back_inserter(vargsiukai), isVargsas);
+                // studentai.erase(remove_if(studentai.begin(), studentai.end(), isVargsas), studentai.end());
                 sortAndAddToFile(studentai, vargsiukai, rikiavimas);
             }
 
