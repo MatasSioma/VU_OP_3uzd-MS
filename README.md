@@ -66,6 +66,6 @@ Deque versijai:
 #define Container std::deque
 #endif
 ```
-Uždarykite teksto retdaktorių su "Ctrl" ir "C" mygtukais vienu metu, išsaugokite failą (spauskite "Y")\
+Uždarykite teksto retdaktorių su "Ctrl" ir "C" mygtukais vienu metu, išsaugokite failą (spauskite "Y" ir ENTER)\
 2. Sistemos komandinėje eilutėje įrašykite `make`
-3. Kad paleistumėte programą į komadinę eilutę įveskite: `./pazymiai`
+3. Kad paleistumėte programą į komadinę eilutę įveskite: `./pazymiai` ir sekite instrukcijas programoje.
