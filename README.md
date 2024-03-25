@@ -41,8 +41,8 @@ Atlikta spartumo diagnostika\
 
 ![statistika](statistika.png)
 
-Processor             AMD Ryzen 7 7735U with Radeon Graphics 2.70 GHz\
-Installed RAM         16,0 GB (13,7 GB usable)\
+Processor             Intel Core i7-11800H 2.30 GHz\
+Installed RAM         16,0 GB (15,8 GB usable)\
 System type	64-bit    Ubuntu 22.04.3 LTS on Windows 10 x86_64\
 Storage               512GB SSD
 
