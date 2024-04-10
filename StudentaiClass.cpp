@@ -1,5 +1,19 @@
 #include "pazymiai.h"
 
+Studentas::Studentas(istringstream& is, int ndSk) {
+    is >> naujas.vardas >> naujas.pavarde;
+
+    // naujas.nd.clear();
+    nd.resize(ndSk);
+    for(int nd = 0; nd < ndSk; nd++) {
+        is >> naujas.nd.at(nd);
+    }
+    // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
+    is >> naujas.egz;
+    getVidurkis();
+    getMediana();
+}
+
 double Studentas::getVidurkis() {
     if (vidurkis != -1) {
         return vidurkis;

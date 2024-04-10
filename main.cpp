@@ -6,12 +6,12 @@
 #include <random>
 #include <ctime>
 #include <cctype>
+#include <sstream>
 
 #include "pazymiai.h"
 
 int main() {
     srand(time(nullptr));
-    int stud_sk = 1, nd_sk = 1;
     //inicijuojam masyva
     vector<Studentas> studentai;
 
@@ -19,8 +19,6 @@ int main() {
         int eilSk[5] {1'000, 10'000, 100'000, 1'000'000, 10'000'000};
         int ndSk, rikiavimas;
         pasirinktiEiga("Kiek namų darbų generuoti?: ", &ndSk, 30);
-
-        srand(time(nullptr));
 
         for(int n = 0; n < 5; n++) {
             Timer generuoti;
@@ -66,28 +64,15 @@ int main() {
             bendras.close();
 
             vector<Studentas> studentai;
-            Studentas naujas;
             Timer nuskaityi;
             buffer.ignore(numeric_limits<streamsize>::max(), '\n');
-            // studentai.resize(eilSk[n]);
+            string line;
             for (int i = 0; i < eilSk[n]; i++) {
-                buffer >> naujas.vardas >> naujas.pavarde;
-
-                // naujas.nd.clear();
-                naujas.nd.resize(ndSk);
-                for(int nd = 0; nd < ndSk; nd++) {
-                    buffer >> naujas.nd.at(nd);
-                }
-                // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
-                buffer >> naujas.egz;
-                naujas.vidurkis = skaiciuotiVidurki(naujas, ndSk);
-                naujas.mediana = skaiciuotiMediana(naujas, ndSk);
-
-                naujas.nd.clear();
-                naujas.nd.shrink_to_fit();
-
-                studentai.push_back(naujas);
+                getline(buffer, line);
+                istringstream lineStream(line);
+                studentai.push_back(Studentas(lineStream, ndSk));
             }
+            buffer.clear();
             cout << "Nuskaityti " << eilSk[n] << " eilučių bendrą failą užtruko: " << nuskaityi.elapsed() << "s" << endl;
 
             Timer sortinti;
@@ -96,19 +81,19 @@ int main() {
 
             Timer surusioti;
             if (strategija == 1) {
-                Container<studentas> kietekai, vargsiukai;
+                vector<Studentas> kietekai, vargsiukai;
                 for(auto &stud : studentai) {
-                    if(stud.vidurkis < 5) vargsiukai.push_back(stud);
+                    if(stud.getVidurkis() < 5) vargsiukai.push_back(stud);
                     else kietekai.push_back(stud);
                 }
                 sortAndAddToFile(kietekai, vargsiukai, rikiavimas);
 
             } else if(strategija == 2) {
-                Container<studentas> vargsiukai;
+                vector<Studentas> vargsiukai;
                 int i = 0;
                 for(auto it = studentai.rbegin(); it != studentai.rend(); it++) {
-                    studentas &stud = *it;
-                    if(stud.vidurkis < 5) {
+                    Studentas &stud = *it;
+                    if(stud.getVidurkis() < 5) {
                         vargsiukai.push_back(stud);
                         i++;
                     } else {
@@ -119,8 +104,8 @@ int main() {
                 // studentai.shrink_to_fit();
                 sortAndAddToFile(studentai, vargsiukai, rikiavimas);
             } else {
-                Container<studentas> vargsiukai;
-                auto isVargsas = [](studentas &a){return a.vidurkis >= 5;};
+                vector<Studentas> vargsiukai;
+                auto isVargsas = [](Studentas &a){return a.getVidurkis() >= 5;};
                 auto it = partition(studentai.begin(), studentai.end(), isVargsas);
                 int index = distance(studentai.begin(), it);
                 while (it != studentai.end()) {
@@ -132,8 +117,6 @@ int main() {
                 // studentai.erase(remove_if(studentai.begin(), studentai.end(), isVargsas), studentai.end());
                 sortAndAddToFile(studentai, vargsiukai, rikiavimas);
             }
-
-            buffer.clear();
 
             cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << surusioti.elapsed() << "s, " << strategija << "-oji strategija."<< endl;
         }

@@ -24,11 +24,14 @@ class Studentas {
     public:
         Studentas(string vardas = "", string pavarde = "", int egz = 0, double vidurkis = -1, double mediana = -1, vector<int> nd = {}) : 
             vardas(vardas), pavarde(pavarde), egz(egz), vidurkis(vidurkis), mediana(mediana), nd(nd) {}
-        string getVardas() {return vardas;}
-        string getPavarde() {return pavarde;}
+        Studentas(istringstream& is, int ndSk);
+        inline string getVardas() const {return vardas;}
+        inline string getPavarde() const {return pavarde;}
         double getVidurkis();
         double getMediana();
-        void appendNd(int balas) {nd.push_back(balas);} //prideda viena namu darba.
+
+        void ndAppend(int balas) {nd.push_back(balas);} //prideda viena namu darba.
+        void ndResize(int size) {nd.resize(size);}
         int ndSk() {return nd.size();}
 };
 
