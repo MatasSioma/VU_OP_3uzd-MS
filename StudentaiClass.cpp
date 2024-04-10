@@ -23,19 +23,19 @@ double Studentas::getMediana() {
     return vidurys;
 }
 
-void rikiuotiPagalParametra(vector<studentas> &studentai, int option) {
+void rikiuotiPagalParametra(vector<Studentas> &studentai, int option) {
     switch (option) {
     case 1:
-        studentai.sort([](studentas &a, studentas&b)->bool{return a.vardas > b.vardas;});
+        studentai.sort([](Studentas &a, Studentas&b)->bool{return a.getVardas() > b.getVardas();});
         break;
     case 2:
-        studentai.sort([](studentas &a, studentas&b)->bool{return a.pavarde > b.pavarde;});
+        studentai.sort([](Studentas &a, Studentas&b)->bool{return a.getPavarde() > b.getPavarde();});
         break;
     case 3:
-        studentai.sort([](studentas &a, studentas&b)->bool{return a.vidurkis > b.vidurkis;});
+        studentai.sort([](Studentas &a, Studentas&b)->bool{return a.getVidurkis() > b.getVidurkis();});
         break;
     case 4:
-        studentai.sort([](studentas &a, studentas&b)->bool{return a.mediana > b.mediana;});
+        studentai.sort([](Studentas &a, Studentas&b)->bool{return a.getMediana() > b.getMediana();});
         break;
     case 5:
         break;
@@ -44,7 +44,7 @@ void rikiuotiPagalParametra(vector<studentas> &studentai, int option) {
     }
 }
 
-void addLineToFile(ofstream &konteineris, Studentas stud) {
-    konteineris << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
-    konteineris << left << setw(10) << stud.vidurkis << left << setw(10) << stud.mediana;
+void addLineToFile(ofstream &konteineris, Studentas &stud) {
+    konteineris << endl << left << setw(24) << stud.getVardas() << left << setw(24) << stud.getPavarde();
+    konteineris << left << setw(10) << stud.getVidurkis() << left << setw(10) << stud.getMediana();
 }
