@@ -13,23 +13,29 @@
 
 using namespace std;
 
-struct studentas {
-    string vardas = "vardas";
-    string pavarde = "pavarde";
-    int egz = 0;
-    double vidurkis = 0;
-    double mediana = 0;
-    vector<int> nd = {0};
+class Studentas {
+    private:
+        string vardas;
+        string pavarde;
+        int egz;
+        // double vidurkis;
+        // double mediana;
+        vector<int> nd;
+    public:
+        Studentas(string vardas = "", string pavarde = "", int egz = 0, vector<int> nd = {}) : 
+            vardas(vardas), pavarde(pavarde), egz(egz), nd(nd) {}
+        getVidurkis();
+        getMediana();
 };
 
 double skaiciuotiVidurki(const studentas &stud, int ndSk);
 double skaiciuotiMediana(const studentas &stud, int ndSk);
 
-void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk);
-void atspauzdintiMasyvoInfo(vector<studentas> &studentai);
+// void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk);
+// void atspauzdintiMasyvoInfo(vector<studentas> &studentai);
 void pasirinktiEiga(string msg, int* option, int max);
 bool taipArNe(string uzklausa);
-void addLineToFile(ofstream &konteineris, studentas stud);
+void addLineToFile(ofstream &konteineris, Studentas &stud);
 
 void generuotiFailus();
 

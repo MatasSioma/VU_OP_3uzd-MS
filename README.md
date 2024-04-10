@@ -39,7 +39,7 @@ pritaikytos trys strategijos\
 Atlikta spartumo diagnostika\
 "..." Laiko tarpas didesnis negu 10min
 
-![statistika](statistikav0.1.png)
+![statistika](statistikav1.0.png)
 
 Processor             Intel Core i7-11800H 2.30 GHz\
 Installed RAM         16,0 GB (15,8 GB usable)\
