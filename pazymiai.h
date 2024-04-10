@@ -22,8 +22,8 @@ class Studentas {
         double mediana;
         vector<int> nd;
     public:
-        Studentas(string vardas = "", string pavarde = "", int egz = 0, vector<int> nd = {}) : 
-            vardas(vardas), pavarde(pavarde), egz(egz), nd(nd) {}
+        Studentas(string vardas = "", string pavarde = "", int egz = 0, double vidurkis = -1, double mediana = -1, vector<int> nd = {}) : 
+            vardas(vardas), pavarde(pavarde), egz(egz), vidurkis(vidurkis), mediana(mediana), nd(nd) {}
         string getVardas() {return vardas;}
         string getPavarde() {return pavarde;}
         double getVidurkis();
@@ -34,30 +34,9 @@ class Studentas {
 
 void pasirinktiEiga(string msg, int* option, int max);
 bool taipArNe(string uzklausa);
-void addLineToFile(ofstream &konteineris, Studentas &stud);
-
-void generuotiFailus();
-
-
-void sortAndAddToFile(vector &kietekai, vector &vargsiukai, int option) {
-    rikiuotiPagalParametra(kietekai, option);
-    rikiuotiPagalParametra(vargsiukai, option);
-
-    ofstream konteineriai[2];
-    int eilSk = kietekai.size() + vargsiukai.size();
-    konteineriai[0].open("sugeneruoti/" + to_string(eilSk) + "geri.txt");
-    konteineriai[1].open("sugeneruoti/"+ to_string(eilSk) + "blogi.txt");
-
-    for(int i = 0; i < 2; i++) {
-        konteineriai[i] << left << setw(24) << "Vardas" << left << setw(24) << "Pavardė";
-        konteineriai[i] << left << setw(10) << "Vid." << left << setw(10) << "Med.";
-    }
-
-    for (auto &stud : kietekai) addLineToFile(konteineriai[0], stud);
-    konteineriai[0].close();
-    for (auto &stud : vargsiukai) addLineToFile(konteineriai[1], stud);
-    konteineriai[1].close();
-}
 
 void rikiuotiPagalParametra(vector<Studentas> &studentai, int option);
+void addLineToFile(ofstream &konteineris, Studentas &stud);
+void sortAndAddToFile(vector &kietekai, vector &vargsiukai, int option);
+
 #endif
