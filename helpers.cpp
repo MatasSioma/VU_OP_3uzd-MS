@@ -7,6 +7,8 @@
 
 # include "pazymiai.h"
 
+using namespace std;
+
 void pasirinktiEiga(string msg, int* option, int max) {
     while (true) {
         try {

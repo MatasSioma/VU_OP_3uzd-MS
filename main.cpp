@@ -10,6 +10,8 @@
 
 #include "pazymiai.h"
 
+using namespace std;
+
 int main() {
     srand(time(nullptr));
     //inicijuojam masyva

@@ -1,15 +1,22 @@
+#include <iostream>
+#include <iomanip>
+#include <cmath>
+#include <sstream>
+#include <fstream>
+
 #include "pazymiai.h"
 
+using namespace std;
+
 Studentas::Studentas(istringstream& is, int ndSk) {
-    is >> naujas.vardas >> naujas.pavarde;
+    is >> vardas >> pavarde;
 
     // naujas.nd.clear();
     nd.resize(ndSk);
-    for(int nd = 0; nd < ndSk; nd++) {
-        is >> naujas.nd.at(nd);
+    for(int i = 0; i < ndSk; i++) {
+        is >> nd.at(i);
     }
-    // cout << "nd size(): " << naujas.nd.size() << " ndSk: " << ndSk << endl;
-    is >> naujas.egz;
+    is >> egz;
     getVidurkis();
     getMediana();
 }
@@ -40,7 +47,7 @@ double Studentas::getMediana() {
     sort(ndCopy.begin(), ndCopy.end());
     vidurys = ndSk % 2 == 0 ? (ndCopy[ndSk / 2 - 1] + ndCopy[ndSk / 2]) / 2.0 : ndCopy[ndSk / 2];
     vidurys = round(vidurys * 100.0) / 100.0;
-    vidurys = vidurys * 0.4 + stud.egz * 0.6;
+    vidurys = vidurys * 0.4 + egz * 0.6;
     mediana = vidurys;
     return mediana;
 }
