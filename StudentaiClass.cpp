@@ -1,6 +1,7 @@
 #include "pazymiai.h"
 
-double Studentas::skaiciuotiVidurki() {
+double Studentas::getVidurkis() {
+    int ndSk = this->ndSk();
     double agreguotas = 0;
     for (int nd = 0; nd < ndSk; nd++) agreguotas += nd.at(nd);
     agreguotas /= (double)nd.size();
@@ -9,10 +10,11 @@ double Studentas::skaiciuotiVidurki() {
     return round(agreguotas * 100.0) / 100.0;
 }
 
-double skaiciuotiMediana(const studentas &stud, int ndSk) {
+double Studentas::getMediana() {
+    int ndSk = this->ndSk();
     double vidurys;
     vector<int> ndCopy(ndSk);
-    ndCopy = stud.nd;
+    ndCopy = nd;
 
     sort(ndCopy.begin(), ndCopy.end());
     vidurys = ndSk % 2 == 0 ? (ndCopy[ndSk / 2 - 1] + ndCopy[ndSk / 2]) / 2.0 : ndCopy[ndSk / 2];
@@ -21,7 +23,7 @@ double skaiciuotiMediana(const studentas &stud, int ndSk) {
     return vidurys;
 }
 
-void rikiuotiPagalParametra(list<studentas> &studentai, int option) {
+void rikiuotiPagalParametra(vector<studentas> &studentai, int option) {
     switch (option) {
     case 1:
         studentai.sort([](studentas &a, studentas&b)->bool{return a.vardas > b.vardas;});
@@ -42,7 +44,7 @@ void rikiuotiPagalParametra(list<studentas> &studentai, int option) {
     }
 }
 
-void addLineToFile(ofstream &konteineris, studentas stud) {
+void addLineToFile(ofstream &konteineris, Studentas stud) {
     konteineris << endl << left << setw(24) << stud.vardas << left << setw(24) << stud.pavarde;
     konteineris << left << setw(10) << stud.vidurkis << left << setw(10) << stud.mediana;
 }

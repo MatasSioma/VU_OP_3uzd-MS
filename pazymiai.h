@@ -24,12 +24,11 @@ class Studentas {
     public:
         Studentas(string vardas = "", string pavarde = "", int egz = 0, vector<int> nd = {}) : 
             vardas(vardas), pavarde(pavarde), egz(egz), nd(nd) {}
-        getVidurkis();
-        getMediana();
+        double getVidurkis();
+        double getMediana();
+        void appendNd(int balas) {nd.push_back(balas);} //prideda viena namu darba.
+        int ndSk() {return nd.size();}
 };
-
-double skaiciuotiVidurki(const studentas &stud, int ndSk);
-double skaiciuotiMediana(const studentas &stud, int ndSk);
 
 // void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk);
 // void atspauzdintiMasyvoInfo(vector<studentas> &studentai);
