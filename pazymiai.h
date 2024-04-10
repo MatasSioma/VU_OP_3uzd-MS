@@ -37,6 +37,6 @@ bool taipArNe(string uzklausa);
 
 void rikiuotiPagalParametra(vector<Studentas> &studentai, int option);
 void addLineToFile(ofstream &konteineris, Studentas &stud);
-void sortAndAddToFile(vector &kietekai, vector &vargsiukai, int option);
+void sortAndAddToFile(vector<Studentas> &kietekai, vector<Studentas> &vargsiukai, int option);
 
 #endif

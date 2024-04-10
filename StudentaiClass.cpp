@@ -58,7 +58,7 @@ void addLineToFile(ofstream &konteineris, Studentas &stud) {
     konteineris << left << setw(10) << stud.getVidurkis() << left << setw(10) << stud.getMediana();
 }
 
-void sortAndAddToFile(vector &kietekai, vector &vargsiukai, int option) {
+void sortAndAddToFile(vector<Studentas> &kietekai, vector<Studentas> &vargsiukai, int option) {
     rikiuotiPagalParametra(kietekai, option);
     rikiuotiPagalParametra(vargsiukai, option);
 

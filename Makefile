@@ -1,5 +1,5 @@
 # Define variables
-SOURCES = main.cpp heleprs.cpp StudentaiClass.cpp
+SOURCES = main.cpp helpers.cpp StudentaiClass.cpp
 
 #default
 main: $(SOURCES)
