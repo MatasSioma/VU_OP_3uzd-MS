@@ -22,17 +22,17 @@ class Studentas {
         double mediana;
         vector<int> nd;
     public:
-        Studentas(string vardas = "", string pavarde = "", int egz = 0, double vidurkis = -1, double mediana = -1, vector<int> nd = {}) : 
+        Studentas(string vardas = "", string pavarde = "", int egz = 0, double vidurkis = 0, double mediana = 0, vector<int> nd = {}) : 
             vardas(vardas), pavarde(pavarde), egz(egz), vidurkis(vidurkis), mediana(mediana), nd(nd) {}
         Studentas(istringstream& is, int ndSk);
         inline string getVardas() const {return vardas;}
         inline string getPavarde() const {return pavarde;}
-        double getVidurkis();
-        double getMediana();
+        inline double getVidurkis() const {return vidurkis;}
+        inline double getMediana() const {return mediana;}
 
         void ndAppend(int balas) {nd.push_back(balas);} //prideda viena namu darba.
         void ndResize(int size) {nd.resize(size);}
-        int ndSk() {return nd.size();}
+        inline int ndSk() {return nd.size();}
 };
 
 void pasirinktiEiga(string msg, int* option, int max);

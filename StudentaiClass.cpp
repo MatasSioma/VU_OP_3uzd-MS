@@ -3,6 +3,7 @@
 #include <cmath>
 #include <sstream>
 #include <fstream>
+#include <algorithm>
 
 #include "pazymiai.h"
 
@@ -17,55 +18,39 @@ Studentas::Studentas(istringstream& is, int ndSk) {
         is >> nd.at(i);
     }
     is >> egz;
-    getVidurkis();
-    getMediana();
-}
 
-double Studentas::getVidurkis() {
-    if (vidurkis != -1) {
-        return vidurkis;
-    }
-    int ndSk = this->ndSk();
+    // vidurkis
     double agreguotas = 0;
-    for (int nd = 0; nd < ndSk; nd++) agreguotas += nd.at(nd);
+    for(auto &balas : nd) agreguotas += balas;
     agreguotas /= (double)nd.size();
     agreguotas = agreguotas * 0.4 + egz * 0.6;
     agreguotas = round(agreguotas * 100.0) / 100.0; // iki simtuju
     vidurkis = agreguotas;
-    return vidurkis;
-}
 
-double Studentas::getMediana() {
-    if (mediana != -1) {
-        return mediana;
-    }
-    int ndSk = this->ndSk();
+    // mediana
     double vidurys;
     vector<int> ndCopy(ndSk);
     ndCopy = nd;
-
     sort(ndCopy.begin(), ndCopy.end());
     vidurys = ndSk % 2 == 0 ? (ndCopy[ndSk / 2 - 1] + ndCopy[ndSk / 2]) / 2.0 : ndCopy[ndSk / 2];
     vidurys = round(vidurys * 100.0) / 100.0;
     vidurys = vidurys * 0.4 + egz * 0.6;
     mediana = vidurys;
-    return mediana;
 }
-
 
 void rikiuotiPagalParametra(vector<Studentas> &studentai, int option) {
     switch (option) {
     case 1:
-        studentai.sort([](Studentas &a, Studentas&b)->bool{return a.getVardas() > b.getVardas();});
+        sort(studentai.begin(), studentai.end(), [](Studentas &a, Studentas&b)->bool{return a.getVardas() > b.getVardas();});
         break;
     case 2:
-        studentai.sort([](Studentas &a, Studentas&b)->bool{return a.getPavarde() > b.getPavarde();});
+        sort(studentai.begin(), studentai.end(), [](Studentas &a, Studentas&b)->bool{return a.getPavarde() > b.getPavarde();});
         break;
     case 3:
-        studentai.sort([](Studentas &a, Studentas&b)->bool{return a.getVidurkis() > b.getVidurkis();});
+        sort(studentai.begin(), studentai.end(), [](Studentas &a, Studentas&b)->bool{return a.getVidurkis() > b.getVidurkis();});
         break;
     case 4:
-        studentai.sort([](Studentas &a, Studentas&b)->bool{return a.getMediana() > b.getMediana();});
+        sort(studentai.begin(), studentai.end(), [](Studentas &a, Studentas&b)->bool{return a.getMediana() > b.getMediana();});
         break;
     case 5:
         break;
