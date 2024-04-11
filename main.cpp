@@ -23,14 +23,18 @@ int main() {
     }
 
     if(!taipArNe("Ar vygdyti studentų skirtymą į konteinerius? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
-        int eilSk[5] {1'000, 10'000, 100'000, 1'000'000, 10'000'000};
+        int eilSk[5] {100'000, 1'000'000};
         int ndSk, rikiavimas, strategija;
         pasirinktiEiga("Kiek ND yra failuose?: ", &ndSk, 30);
         pasirinktiEiga("Kurią studentų paskirstymo į konteinerius strategiją naudoti? 1-ąją, 2-ąją, 3-ąją: ", &strategija, 3);
         pasirinktiEiga("Konteineriuose studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą: ", &rikiavimas, 4);
 
-        for(int n = 0; n < 5; n++) {
+        for(int n = 0; n < 2; n++) {
+            double bendrasLaikas = 0;
+            for(int bandymas = 0; bandymas < 5; bandymas++) {
             // Paskirstymas i du failus
+            Timer bendrasVienas;
+
             cout << endl;
             ifstream bendras;
             stringstream buffer;
@@ -41,7 +45,7 @@ int main() {
 
             Container<studentas> studentai;
             studentas naujas;
-            Timer nuskaityi;
+            // Timer nuskaityi;
             buffer.ignore(numeric_limits<streamsize>::max(), '\n');
             // studentai.resize(eilSk[n]);
             for (int i = 0; i < eilSk[n]; i++) {
@@ -62,11 +66,11 @@ int main() {
 
                 studentai.push_back(naujas);
             }
-            cout << "Nuskaityti " << eilSk[n] << " eilučių bendrą failą užtruko: " << nuskaityi.elapsed() << "s" << endl;
+            // cout << "Nuskaityti " << eilSk[n] << " eilučių bendrą failą užtruko: " << nuskaityi.elapsed() << "s" << endl;
 
-            Timer sortinti;
+            // Timer sortinti;
             rikiuotiPagalParametra(studentai, 3);
-            cout << "Išdėstyti " << eilSk[n] << " eilučių didėjimo tvarka užtruko: " << sortinti.elapsed() << "s" << endl;
+            // cout << "Išdėstyti " << eilSk[n] << " eilučių didėjimo tvarka užtruko: " << sortinti.elapsed() << "s" << endl;
 
             Timer surusioti;
             if (strategija == 1) {
@@ -109,7 +113,11 @@ int main() {
 
             buffer.clear();
 
-            cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << surusioti.elapsed() << "s, " << strategija << "-oji strategija."<< endl;
+            // cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << surusioti.elapsed() << "s, " << strategija << "-oji strategija."<< endl;
+            bendrasLaikas += bendrasVienas.elapsed();
+        }
+            cout << "Bendras " << eilSk[n] << " eilučių failo vygdymo laikas: " << bendrasLaikas/5.0 << "s, " << strategija << "-oji strategija."<< endl;
+
         }
         return 0;
     }
