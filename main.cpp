@@ -59,7 +59,7 @@ int main() {
             double bendrasLaikas = 0;
             for(int bandymas = 0; bandymas < 5; bandymas++) {
             // Paskirstymas i du failus
-            Timer bendras;
+            Timer bendrasVienas;
 
             cout << endl;
             ifstream bendras;
@@ -123,7 +123,7 @@ int main() {
                 // studentai.erase(remove_if(studentai.begin(), studentai.end(), isVargsas), studentai.end());
                 sortAndAddToFile(studentai, vargsiukai, rikiavimas);
             }
-            bendrasLaikas += bendras.elapsed();
+            bendrasLaikas += bendrasVienas.elapsed();
             }
             // cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << surusioti.elapsed() << "s, " << strategija << "-oji strategija."<< endl;
             cout << "Bendras laikas suskirstyti "<< eilSk[n] << " studentus 5 į konteinerius, naudojant " << strategija << " - strategija ir vector tipo konteinerius: " << bendrasLaikas/5.0 << "(5 bandymų vidurkis)" << endl;
