@@ -49,14 +49,16 @@ int main() {
     }
 
     if(!taipArNe("Ar vygdyti studentų skirtymą į konteinerius? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
-        int eilSk[5] {1'000, 10'000, 100'000, 1'000'000, 10'000'000};
+        int eilSk[2] {100'000, 1'000'000};
         int ndSk, rikiavimas, strategija;
         pasirinktiEiga("Kiek ND yra failuose?: ", &ndSk, 30);
         pasirinktiEiga("Kurią studentų paskirstymo į konteinerius strategiją naudoti? 1-ąją, 2-ąją, 3-ąją: ", &strategija, 3);
         pasirinktiEiga("Konteineriuose studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą: ", &rikiavimas, 4);
 
-        for(int n = 0; n < 5; n++) {
+        for(int n = 0; n < 2; n++) {
             // Paskirstymas i du failus
+            Timer bendras;
+
             cout << endl;
             ifstream bendras;
             stringstream buffer;
@@ -66,7 +68,7 @@ int main() {
             bendras.close();
 
             vector<Studentas> studentai;
-            Timer nuskaityi;
+            // Timer nuskaityi;
             buffer.ignore(numeric_limits<streamsize>::max(), '\n');
             string line;
             for (int i = 0; i < eilSk[n]; i++) {
@@ -75,13 +77,13 @@ int main() {
                 studentai.push_back(Studentas(lineStream, ndSk));
             }
             buffer.clear();
-            cout << "Nuskaityti " << eilSk[n] << " eilučių bendrą failą užtruko: " << nuskaityi.elapsed() << "s" << endl;
+            // cout << "Nuskaityti " << eilSk[n] << " eilučių bendrą failą užtruko: " << nuskaityi.elapsed() << "s" << endl;
 
-            Timer sortinti;
+            // Timer sortinti;
             rikiuotiPagalParametra(studentai, 3);
-            cout << "Išdėstyti " << eilSk[n] << " eilučių didėjimo tvarka užtruko: " << sortinti.elapsed() << "s" << endl;
+            // cout << "Išdėstyti " << eilSk[n] << " eilučių didėjimo tvarka užtruko: " << sortinti.elapsed() << "s" << endl;
 
-            Timer surusioti;
+            // Timer surusioti;
             if (strategija == 1) {
                 vector<Studentas> kietekai, vargsiukai;
                 for(auto &stud : studentai) {
@@ -120,7 +122,8 @@ int main() {
                 sortAndAddToFile(studentai, vargsiukai, rikiavimas);
             }
 
-            cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << surusioti.elapsed() << "s, " << strategija << "-oji strategija."<< endl;
+            // cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << surusioti.elapsed() << "s, " << strategija << "-oji strategija."<< endl;
+            cout << "Bendras laikas suskirstyti "<< eilSk[n] << " studentus į konteinerius, naudojant " << strategija << " - strategija ir vector tipo konteinerius: " << bendras.elapsed() << endl;
         }
     }
 }

@@ -1,7 +1,3 @@
-#ifndef Container
-#define Container std::vector
-#endif
-
 #ifndef PAZYMIAI_H
 #define PAZYMIAI_H
 

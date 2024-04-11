@@ -11,6 +11,14 @@ clean:
 	rm -f -r sugeneruoti/*geri.txt
 	rm -f -r sugeneruoti/*blogi.txt
 
+O1:
+	g++ -O1 $(SOURCES) pazymiai
+O2:
+	g++ -O2 $(SOURCES) pazymiai
+O3:
+	g++ -O3 $(SOURCES) pazymiai
+
+
 run:
 	make clean
 	make
