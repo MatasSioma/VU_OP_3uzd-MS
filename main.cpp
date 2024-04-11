@@ -56,6 +56,8 @@ int main() {
         pasirinktiEiga("Konteineriuose studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą: ", &rikiavimas, 4);
 
         for(int n = 0; n < 2; n++) {
+            double bendrasLaikas = 0;
+            for(int bandymas = 0; bandymas < 5; bandymas++) {
             // Paskirstymas i du failus
             Timer bendras;
 
@@ -121,9 +123,10 @@ int main() {
                 // studentai.erase(remove_if(studentai.begin(), studentai.end(), isVargsas), studentai.end());
                 sortAndAddToFile(studentai, vargsiukai, rikiavimas);
             }
-
+            bendrasLaikas += bendras.elapsed();
+            }
             // cout << "Surušiuoti ir išvesti " << eilSk[n] << " eilučių failą į konteinerius užtruko: " << surusioti.elapsed() << "s, " << strategija << "-oji strategija."<< endl;
-            cout << "Bendras laikas suskirstyti "<< eilSk[n] << " studentus į konteinerius, naudojant " << strategija << " - strategija ir vector tipo konteinerius: " << bendras.elapsed() << endl;
+            cout << "Bendras laikas suskirstyti "<< eilSk[n] << " studentus 5 į konteinerius, naudojant " << strategija << " - strategija ir vector tipo konteinerius: " << bendrasLaikas/5.0 << "(5 bandymų vidurkis)" << endl;
         }
     }
 }
