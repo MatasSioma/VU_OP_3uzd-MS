@@ -69,3 +69,10 @@ Deque versijai:
 Uždarykite teksto retdaktorių su "Ctrl" ir "C" mygtukais vienu metu, išsaugokite failą (spauskite "Y" ir ENTER)\
 2. Sistemos komandinėje eilutėje įrašykite `make`
 3. Kad paleistumėte programą į komadinę eilutę įveskite: `./pazymiai` ir sekite instrukcijas programoje.
+
+## v1.1
+Vietoje struktūros naudojama klasė.\
+![statistika](statistikav1.1.png)
+
+norint sukompiliuoti paleidžiamus failus su skirtingoms optimizavimo vėliavoms:\
+`make O1`, `make O2`, `make O3`
