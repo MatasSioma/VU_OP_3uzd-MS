@@ -29,10 +29,15 @@ class Studentas {
         void ndAppend(int balas) {nd.push_back(balas);} //prideda viena namu darba.
         void ndResize(int size) {nd.resize(size);}
         inline int ndSk() {return nd.size();}
+
+        ~Studentas() {
+            nd.clear();
+        }
 };
 
 void pasirinktiEiga(string msg, int* option, int max);
 bool taipArNe(string uzklausa);
+int countNd(string &line);
 
 void rikiuotiPagalParametra(vector<Studentas> &studentai, int option);
 void addLineToFile(ofstream &konteineris, Studentas &stud);

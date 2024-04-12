@@ -51,7 +51,7 @@ int main() {
     if(!taipArNe("Ar vygdyti studentų skirtymą į konteinerius? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
         int eilSk[2] {100'000, 1'000'000};
         int ndSk, rikiavimas, strategija;
-        pasirinktiEiga("Kiek ND yra failuose?: ", &ndSk, 30);
+        // pasirinktiEiga("Kiek ND yra failuose?: ", &ndSk, 30);
         pasirinktiEiga("Kurią studentų paskirstymo į konteinerius strategiją naudoti? 1-ąją, 2-ąją, 3-ąją: ", &strategija, 3);
         pasirinktiEiga("Konteineriuose studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą: ", &rikiavimas, 4);
 
@@ -70,9 +70,11 @@ int main() {
             bendras.close();
 
             vector<Studentas> studentai;
-            // Timer nuskaityi;
-            buffer.ignore(numeric_limits<streamsize>::max(), '\n');
             string line;
+            // Timer nuskaityi;
+            getline(buffer, line);
+            ndSk = countNd(line);
+
             for (int i = 0; i < eilSk[n]; i++) {
                 getline(buffer, line);
                 istringstream lineStream(line);
