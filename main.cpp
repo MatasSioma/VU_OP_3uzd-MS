@@ -27,7 +27,7 @@ int main() {
 
             // Failo generavimas
             ofstream generuotas;
-            generuotas.open("sugeneruoti/" + to_string(eilSk[n]) + "bendras.txt");
+            generuotas.open("duomenys/" + to_string(eilSk[n]) + "bendras.txt");
             stringstream buffer;
             buffer << left << setw(24) << "Vardas" << left << setw(24) << "Pavardė";
             for (int nd = 1; nd <= ndSk; nd++) buffer << left << setw(10) << to_string(nd) + "ND";
@@ -45,11 +45,16 @@ int main() {
             double t = generuoti.elapsed();
             cout << "Sugeneruoti " << eilSk[n] << " eilučių failą užtruko: " << t << "s" << endl;
         }
-        return 0;
     }
 
+    /*
+
+    ĮVESTIS
+
+    */
+    
     vector<Studentas> studentai;
-    int stud_sk = 1, ndSk = 1;
+    int studSk = 1, ndSk = 1;
     int option, rikiavimas;
     pasirinktiEiga("Meniu: 1 - Įvesti duomenis ranka, 2 - Generuoti pažymius, 3 - Generuoti pažymius ir vardus, 4 - Nuskaityti iš failo (turi būti bent 1 ND laukas): ", &option, 4);
     
@@ -139,9 +144,7 @@ int main() {
             atnaujintiMasyva(studentai, stud_sk, nd_sk);
             // cout << studentai << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
         }
-    }
-
-    else { // option == 4
+    } else { // option == 4
         string line = "";
         ifstream is;
         char a;
@@ -185,8 +188,13 @@ int main() {
         studentai.at(i).mediana = skaiciuotiMediana(studentai.at(i), nd_sk);
     }
     
+    /*
+
+    IŠESTIS
+
+    */
+
     pasirinktiEiga("Išvestyje studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą: ", &rikiavimas, 4);
-    // rikiuotiPagalParametra(studentai, option);
 
     pasirinktiEiga("1 - Spauzdinti į konsolę 2 - Įrašyti į failą?:", &option, 2);
 
