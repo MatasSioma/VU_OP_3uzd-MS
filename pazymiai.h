@@ -31,6 +31,7 @@ class Studentas {
         void ndAppend(int balas) {nd.push_back(balas);} //prideda viena namu darba.
         void ndResize(int size) {nd.resize(size);}
         inline int ndSk() {return nd.size();}
+        inline int getNd(int index) {return nd.at(index);}
         void setNd(int index, int value);
 
         void setEgz(int value);
@@ -50,7 +51,9 @@ bool taipArNe(string uzklausa);
 int countNd(string &line);
 
 void rikiuotiPagalParametra(vector<Studentas> &studentai, int option);
+void equalOutNdSk(vector<Studentas> &studentai, int ndSk);
 void addLineToFile(ofstream &konteineris, Studentas &stud);
 void sortAndAddToFile(vector<Studentas> &kietekai, vector<Studentas> &vargsiukai, int option);
+void atspauzdintiMasyvoInfo(vector<studentas> &studentai);
 
 #endif

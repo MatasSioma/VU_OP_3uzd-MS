@@ -53,6 +53,13 @@ int countNd(string &line) {
     return count;
 }
 
+void equalOutNdSk(vector<Studentas> &studentai, int ndSk) {
+    for(auto &stud : studentai) {
+        stud.ndResize(ndSk);
+        stud.setNd(ndSk - 1, 0);
+    }
+}
+
 // void atnaujintiMasyva(vector<studentas> &studentai, int stud_sk, int nd_sk) {
 //     studentas tuscias;
 //     for(int i = 0; i < stud_sk - studentai.size(); i++) studentai.push_back(tuscias);
@@ -62,15 +69,15 @@ int countNd(string &line) {
 //     }
 // }
 
-// void atspauzdintiMasyvoInfo(vector<studentas> &studentai) {
-//     cout << "\n\nMasyvo dumenys:\n";
-//     cout << "Vardas        Pavardė       NdPažymiai         Egzaminas" << endl;
-//     for(int y = 0; y < studentai.size(); y++) {
-//         cout << left << setw(14)<< studentai[y].vardas << left << setw(14) << studentai[y].pavarde;
-//         cout << "[ "; 
-//         for(int x = 0; x < studentai[y].nd.size(); x++) cout << left << setw(2) << studentai[y].nd[x] << " ";
-//         cout << "]";
+void atspauzdintiMasyvoInfo(vector<studentas> &studentai) {
+    cout << "\n\nMasyvo dumenys:\n";
+    cout << "Vardas        Pavardė       NdPažymiai         Egzaminas" << endl;
+    for(int y = 0; y < studentai.size(); y++) {
+        cout << left << setw(14)<< studentai.at(y).getVardas() << left << setw(14) << studentai.at(y).getPavarde();
+        cout << "[ "; 
+        for(int x = 0; x < studentai.at(y).ndSk(); x++) cout << left << setw(2) << studentai.at(y).getNd(x) << " ";
+        cout << "]";
 
-//         cout << "       " << studentai[y].egz << endl;
-//     }
-// }
+        cout << "       " << studentai.at(y).getEgz() << endl;
+    }
+}

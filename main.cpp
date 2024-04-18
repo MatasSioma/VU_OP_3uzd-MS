@@ -66,6 +66,7 @@ int main() {
                 int i = 0;
                 while(true) {
                     stud.setNd(i, rand() % 11);
+                    cout << "Sugeneruotas " << i << "-as namų darbas" << endl;
                     if (i + 1 == ndSk) {
                         if(taipArNe("\nPridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) break;
                         ndSk += 1;
@@ -90,27 +91,27 @@ int main() {
                 int i = 0;
                 while (true) {
                     int grade;
-                    if (i < ndSk) {
-                        while(true) {
-                            try {
-                                cout << "\n" << i + 1 << " ND įvertinimas (0-10): ";
-                                cin >> grade;
-                                if(!cin.good() || grade < 1 || grade > 10) {
-                                    throw invalid_argument("Netinkama įvestis. Įveskite skaičių nuo 1 iki 10");
-                                }
-                                stud.ndAppend(grade);
-                                break;
-                            } catch(invalid_argument &e) {
-                                cerr << e.what() << endl;
-                                cin.clear();
-                                cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                                continue;
+                    while(true) {
+                        try {
+                            cout << "\n" << i + 1 << " ND įvertinimas (0-10): ";
+                            cin >> grade;
+                            if(!cin.good() || grade < 1 || grade > 10) {
+                                throw invalid_argument("Netinkama įvestis. Įveskite skaičių nuo 1 iki 10");
                             }
+                            stud.ndAppend(grade);
+                            break;
+                        } catch(invalid_argument &e) {
+                            cerr << e.what() << endl;
+                            cin.clear();
+                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                            continue;
                         }
-                        i++;
                     }
-                    if(!taipArNe("Pridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
+                    i++;
+                    if (i < ndSk) continue;
+                    else if(!taipArNe("Pridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
                         ndSk++;
+                        equalOutNdSk(studentai, ndSk);
                         continue;
                     } else {
                         while (true) {   
@@ -129,6 +130,7 @@ int main() {
                                 continue;
                             }
                         }
+                        break;
                     }
                 }
             }
@@ -196,7 +198,7 @@ int main() {
 
     pasirinktiEiga("Išvestyje studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą: ", &rikiavimas, 4);
 
-    pasirinktiEiga("1 - Spauzdinti į konsolę 2 - Įrašyti į failą?:", &option, 2);
+    pasirinktiEiga("1 - Spauzdinti į konsolę 2 - Įrašyti į failą?: ", &option, 2);
 
     if (option == 1) {
         cout << "Kiek studentų atspauzdinti? (ENTER - visus): ";
@@ -226,12 +228,16 @@ int main() {
 
         rikiuotiPagalParametra(studentai, option);
 
-        cout << "Vardas                  Pavardė                 Vid.      Med.";
-        cout << "--------------------------------------------" << endl;
+        cout << endl;
+        cout << "Vardas                  Pavardė                 Vid.      Med." << endl;
+        cout << "--------------------------------------------------------------" << endl;
 
         for (auto &stud : studentai) {
-            cout << left << setw(24) << stud.getVardas() << left << setw(24) << stud.getPavarde() << fixed << setw(10) << stud.getVidurkis() << fixed << stud.getMediana();
+            cout << left << setw(24) << stud.getVardas() << left << setw(24) << stud.getPavarde();
+            cout << fixed << setw(10) << setprecision(2)<< stud.getVidurkis() << fixed << setprecision(2)<< stud.getMediana() << endl;
         }
+
+        atspauzdintiMasyvoInfo(studentai);
     } else {
         pasirinktiEiga("1 - Sukurti atskirus konteineriu kietekam ir vargšiems, 2 - Viską išvesti viename faile: ", &option, 2);
         if (option == 1) {
