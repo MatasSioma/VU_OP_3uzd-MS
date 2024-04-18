@@ -23,12 +23,12 @@ Studentas::Studentas(istringstream& is, int ndSk) {
     this->skaiciuotiMed();
 }
 
-void setNd(int index, int value) {
-    if(index < abs(this->nd.size())) this->nd.at(index) = value;
+void Studentas::setNd(int index, int value) {
+    if(index < abs((int)this->nd.size())) this->nd.at(index) = value;
     else throw out_of_range("Bondote nustatyti nd elementą už jo ribų");
 }
 
-void setEgz(int value) {
+void Studentas::setEgz(int value) {
     this->egz = value;
 }
 

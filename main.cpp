@@ -14,8 +14,7 @@ using namespace std;
 
 int main() {
     srand(time(nullptr));
-    vector<Studentas> studentai;
-    string inFileName = "";
+    
 
     if(!taipArNe("Ar norėsite generuoti failus? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
         int eilSk[5] {1'000, 10'000, 100'000, 1'000'000, 10'000'000};
@@ -52,8 +51,8 @@ int main() {
     ĮVESTIS
 
     */
-    
     vector<Studentas> studentai;
+    string inFileName = "";
     int studSk = 1, ndSk = 1;
     int option, rikiavimas;
     pasirinktiEiga("Meniu: 1 - Įvesti duomenis ranka, 2 - Generuoti pažymius, 3 - Generuoti pažymius ir vardus, 4 - Nuskaityti iš failo (turi būti bent 1 ND laukas): ", &option, 4);
@@ -73,7 +72,7 @@ int main() {
                     }
                 }
                 stud.setEgz(rand() % 11);
-            } 
+            }
             if(option == 1 || option == 2) {
                 string line;
 
@@ -121,7 +120,7 @@ int main() {
                                 if(!cin.good() || grade < 1 || grade > 10) {
                                     throw invalid_argument("Netinkama įvestis. Įveskite skaičių nuo 1 iki 10");
                                 }
-                                studentai[stud_sk-1].egz = grade;
+                                stud.setEgz(grade);
                                 break;
                             } catch(invalid_argument &e) {
                                 cerr << e.what() << endl;
@@ -141,16 +140,15 @@ int main() {
                 cout << "Vardas bei pavardė sugeneruoti" << endl;
             }
 
+            stud.skaiciuotiVid();
+            stud.skaiciuotiMed();
+
             studentai.push_back(stud);
 
             if(taipArNe("Ar norite įvesti dar vieną studentą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) break;
             studSk += 1;
             // atnaujintiMasyva(studentai, stud_sk, nd_sk);
             // // cout << studentai << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
-        }
-        for (auto &stud : studentai) {
-            stud.skaiciuotiVid();
-            stud.skaiciuotiMed();
         }
     } else { // option == 4
         string line = "";
@@ -174,7 +172,6 @@ int main() {
         buffer << is.rdbuf();
         is.close();
 
-        string line;
         // Timer nuskaityi;
         getline(buffer, line);
         ndSk = countNd(line);
@@ -211,15 +208,15 @@ int main() {
         int print_sk;
         getline(cin, answer);
         if (answer == "") {
-            print_sk = stud_sk;
+            print_sk = studSk;
         } else {
             while (true) {
                 try {
                     print_sk = stoi(answer);
-                    if(print_sk >= 1 && print_sk <= stud_sk) break;
+                    if(print_sk >= 1 && print_sk <= studSk) break;
                     throw invalid_argument(to_string(print_sk));
                 } catch (exception &e) {
-                    cerr << "Netinkama įvestis. Įveskite skaičių nuo 1 iki " << stud_sk << ": ";
+                    cerr << "Netinkama įvestis. Įveskite skaičių nuo 1 iki " << studSk << ": ";
                     cin.clear();
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     getline(cin, answer);
@@ -232,8 +229,8 @@ int main() {
         cout << "Vardas                  Pavardė                 Vid.      Med.";
         cout << "--------------------------------------------" << endl;
 
-        for (int i = 0; i < print_sk; i++) {
-            cout << left << setw(24) << studentai[i].vardas << left << setw(24) << studentai[i].pavarde << fixed << setw(10) << studentai[i].vidurkis << fixed << studentai[i].mediana;
+        for (auto &stud : studentai) {
+            cout << left << setw(24) << stud.getVardas() << left << setw(24) << stud.getPavarde() << fixed << setw(10) << stud.getVidurkis() << fixed << stud.getMediana();
         }
     } else {
         pasirinktiEiga("1 - Sukurti atskirus konteineriu kietekam ir vargšiems, 2 - Viską išvesti viename faile: ", &option, 2);
@@ -254,7 +251,7 @@ int main() {
             rikiuotiPagalParametra(studentai, option);
             ofstream konteineris;
             if(inFileName != "") konteineris.open("output/" + inFileName + "-Apdorota.txt");
-            else konteineris.open("output/" + "rankiniaiDuomenys-Apdorota.txt");
+            else konteineris.open("output/rankiniaiDuomenys-Apdorota.txt");
             
             for (auto &stud : studentai) addLineToFile(konteineris, stud);
             konteineris.close();
