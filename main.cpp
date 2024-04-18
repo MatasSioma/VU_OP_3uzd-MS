@@ -60,89 +60,97 @@ int main() {
     
     if (option != 4) {
         while(true) {
-            cout << stud_sk << "-ojo studento duomenys";
-            if (option == 1) {
-                int grade, i = 0;
-                while (true) {
-                    while(true) {
-                        if (i < ndSk) {
-                        try {
-                            cout << "\n" << i + 1 << " ND įvertinimas (0-10): ";
-                            cin >> grade;
-                            if(!cin.good() || grade < 1 || grade > 10) {
-                                throw invalid_argument("Netinkama įvestis. Įveskite skaičių nuo 1 iki 10");
-                            }
-                            studentai[stud_sk-1].nd.push_back(grade);
-                            break;
-                        } catch(invalid_argument &e) {
-                            cerr << e.what() << endl;
-                            cin.clear();
-                            cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                            continue;
-                        }
-                        }
-                    }
-                    if (i + 1 == ndSk) {
-                        if(taipArNe("Pridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
-                            while (true) {   
-                                try {
-                                    cout << "Egzamino įvertinimas: ";
-                                    cin >> grade;
-                                    if(!cin.good() || grade < 1 || grade > 10) {
-                                        throw invalid_argument("Netinkama įvestis. Įveskite skaičių nuo 1 iki 10");
-                                    }
-                                    studentai[stud_sk-1].egz = grade;
-                                    break;
-                                } catch(invalid_argument &e) {
-                                    cerr << e.what() << endl;
-                                    cin.clear();
-                                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                                    continue;
-                                }
-                            }
-                            
-                            break;
-                        }
-                        ndSk += 1;
-                        atnaujintiMasyva(studentai, stud_sk, nd_sk);
-                    }
-                    i++;
-                }
-            }
-            if (option == 3 || option == 2) {
+            cout << studSk << "-ojo studento duomenys";
+            Studentas stud;
+            stud.ndResize(ndSk);
+            if (option == 2 || option == 3) {
                 int i = 0;
-                while (true) {
-                    studentai[stud_sk-1].nd[i] = rand() % 11;
-                    cout << "\n" << i+1 << " Namų darbo rezultatas sugeneruotas";
-                    if (i + 1 == nd_sk) {
+                while(true) {
+                    stud.setNd(i, rand() % 11);
+                    if (i + 1 == ndSk) {
                         if(taipArNe("\nPridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) break;
-                        nd_sk += 1;
-                        atnaujintiMasyva(studentai, stud_sk, nd_sk);
+                        ndSk += 1;
                     }
-                    i++;
                 }
-                studentai[stud_sk-1].egz = rand() % 11;
-            }
-            if (option == 1 || option == 2) {
+                stud.setEgz(rand() % 11);
+            } 
+            if(option == 1 || option == 2) {
+                string line;
+
                 cout << endl;
                 cout << "Vardas: ";
-                cin >> studentai[stud_sk-1].vardas;
+                cin >> line;
+                stud.setVardas(line);
 
                 cout << "Pavarde: ";
-                cin >> studentai[stud_sk-1].pavarde;
+                cin >> line;
+                stud.setPavarde(line);
+            }
+
+            if (option == 1) {
+                int i = 0;
+                while (true) {
+                    int grade;
+                    if (i < ndSk) {
+                        while(true) {
+                            try {
+                                cout << "\n" << i + 1 << " ND įvertinimas (0-10): ";
+                                cin >> grade;
+                                if(!cin.good() || grade < 1 || grade > 10) {
+                                    throw invalid_argument("Netinkama įvestis. Įveskite skaičių nuo 1 iki 10");
+                                }
+                                stud.ndAppend(grade);
+                                break;
+                            } catch(invalid_argument &e) {
+                                cerr << e.what() << endl;
+                                cin.clear();
+                                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                                continue;
+                            }
+                        }
+                        i++;
+                    }
+                    if(!taipArNe("Pridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
+                        ndSk++;
+                        continue;
+                    } else {
+                        while (true) {   
+                            try {
+                                cout << "Egzamino įvertinimas: ";
+                                cin >> grade;
+                                if(!cin.good() || grade < 1 || grade > 10) {
+                                    throw invalid_argument("Netinkama įvestis. Įveskite skaičių nuo 1 iki 10");
+                                }
+                                studentai[stud_sk-1].egz = grade;
+                                break;
+                            } catch(invalid_argument &e) {
+                                cerr << e.what() << endl;
+                                cin.clear();
+                                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                                continue;
+                            }
+                        }
+                    }
+                }
             }
 
             if (option == 3) {
-                studentai[stud_sk-1].vardas = "Vardenis_" + to_string(stud_sk);
-                studentai[stud_sk-1].pavarde = "Pavardenis_" + to_string(stud_sk);
+                stud.setVardas("Vardenis_" + to_string(studSk));
+                stud.setPavarde("Pavardenis_" + to_string(studSk));
 
                 cout << "Vardas bei pavardė sugeneruoti" << endl;
-                
             }
+
+            studentai.push_back(stud);
+
             if(taipArNe("Ar norite įvesti dar vieną studentą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) break;
-            stud_sk += 1;
-            atnaujintiMasyva(studentai, stud_sk, nd_sk);
-            // cout << studentai << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
+            studSk += 1;
+            // atnaujintiMasyva(studentai, stud_sk, nd_sk);
+            // // cout << studentai << " stud_sk: " << stud_sk << " nd_sk: " << nd_sk << endl;
+        }
+        for (auto &stud : studentai) {
+            stud.skaiciuotiVid();
+            stud.skaiciuotiMed();
         }
     } else { // option == 4
         string line = "";
@@ -183,11 +191,6 @@ int main() {
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
-    for (int i = 0; i < stud_sk; i++) {
-        studentai.at(i).vidurkis = skaiciuotiVidurki(studentai.at(i), nd_sk);
-        studentai.at(i).mediana = skaiciuotiMediana(studentai.at(i), nd_sk);
-    }
-    
     /*
 
     IŠESTIS

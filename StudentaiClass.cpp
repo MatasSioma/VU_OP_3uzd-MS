@@ -19,15 +19,30 @@ Studentas::Studentas(istringstream& is, int ndSk) {
     }
     is >> egz;
 
-    // vidurkis
+    this->skaiciuotiVid();
+    this->skaiciuotiMed();
+}
+
+void setNd(int index, int value) {
+    if(index < abs(this->nd.size())) this->nd.at(index) = value;
+    else throw out_of_range("Bondote nustatyti nd elementą už jo ribų");
+}
+
+void setEgz(int value) {
+    this->egz = value;
+}
+
+void Studentas::skaiciuotiVid() {
     double agreguotas = 0;
     for(auto &balas : nd) agreguotas += balas;
     agreguotas /= (double)nd.size();
     agreguotas = agreguotas * 0.4 + egz * 0.6;
     agreguotas = round(agreguotas * 100.0) / 100.0; // iki simtuju
     vidurkis = agreguotas;
+}
 
-    // mediana
+void Studentas::skaiciuotiMed() {
+    int ndSk = nd.size();
     double vidurys;
     vector<int> ndCopy(ndSk);
     ndCopy = nd;

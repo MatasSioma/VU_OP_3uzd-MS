@@ -21,14 +21,24 @@ class Studentas {
         Studentas(string vardas = "", string pavarde = "", int egz = 0, double vidurkis = 0, double mediana = 0, vector<int> nd = {}) : 
             vardas(vardas), pavarde(pavarde), egz(egz), vidurkis(vidurkis), mediana(mediana), nd(nd) {}
         Studentas(istringstream& is, int ndSk);
+
+        inline void setVardas(string vardas) {this->vardas = vardas;}
+        inline void setPavarde(string pavarde) {this->pavarde = pavarde;}
+
         inline string getVardas() const {return vardas;}
         inline string getPavarde() const {return pavarde;}
-        inline double getVidurkis() const {return vidurkis;}
-        inline double getMediana() const {return mediana;}
 
         void ndAppend(int balas) {nd.push_back(balas);} //prideda viena namu darba.
         void ndResize(int size) {nd.resize(size);}
         inline int ndSk() {return nd.size();}
+        void setNd(int index, int value);
+
+        void setEgz(int value);
+
+        inline double getVidurkis() const {return vidurkis;}
+        inline double getMediana() const {return mediana;}
+        void skaiciuotiVid();
+        void skaiciuotiMed();
 
         ~Studentas() {
             nd.clear();
