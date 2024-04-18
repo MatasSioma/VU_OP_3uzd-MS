@@ -23,13 +23,192 @@ Studentas::Studentas(istringstream& is, int ndSk) {
     this->skaiciuotiMed();
 }
 
-void Studentas::setNd(int index, int value) {
-    if(index < abs((int)this->nd.size())) this->nd.at(index) = value;
-    else throw out_of_range("Bondote nustatyti nd elementą už jo ribų");
+Studentas::Studentas(const Studentas &tmpStud) {
+    vardas = tmpStud.vardas;
+    pavarde = tmpStud.pavarde;
+    nd = tmpStud.nd;
+    egz = tmpStud.egz;
+    mediana = tmpStud.mediana;
+    vidurkis = tmpStud.vidurkis;
+    cout << "Kopijavimo konstruktorius suveike" << endl;
 }
 
-void Studentas::setEgz(int value) {
-    this->egz = value;
+Studentas::Studentas(Studentas &&tmpStud) noexcept {
+    vardas = move(tmpStud.vardas);
+    pavarde = move(tmpStud.pavarde);
+    nd = move(tmpStud.nd);
+    egz = move(tmpStud.egz);
+    mediana = move(tmpStud.mediana);
+    vidurkis = move(tmpStud.vidurkis);
+
+    tmpStud.clearEverything();
+    cout << "Perkelimo konstruktorius suveike" << endl;
+}
+
+Studentas& Studentas::operator=(const Studentas &tmpStud){
+    if(this != &tmpStud){
+        vardas = tmpStud.vardas;
+        pavarde = tmpStud.pavarde;
+        nd = tmpStud.nd;
+        egz = tmpStud.egz;
+        mediana = tmpStud.mediana;
+        vidurkis = tmpStud.vidurkis;
+    }
+    cout << "Priskyrimo operatorius suveike" << endl;
+    return *this;
+}
+
+Studentas& Studentas::operator=(Studentas &&tmpStud){
+    vardas = tmpStud.vardas;
+    pavarde = tmpStud.pavarde;
+    nd = tmpStud.nd;
+    egz = tmpStud.egz;
+    mediana = tmpStud.mediana;
+    vidurkis = tmpStud.vidurkis;
+    tmpStud.clearEverything();
+    cout << "Perkelimo operatorius suveike" << endl;
+    return *this;
+}
+
+istream& operator>>(istream& manual, Studentas &tmpStud) {
+    string line = "";
+    tmpStud.ndResize(ndSk);
+    if (inputOption == 2 || inputOption == 3) {
+        cout << endl;
+        int i = 0;
+        while(true) {
+            tmpStud.setNd(i, 1 + rand() % 11);
+            cout << "Sugeneruotas " << i+1 << "-as namų darbas" << endl;
+            i++;
+            if (i + 1 == ndSk) {
+                if(taipArNe("\nPridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) break;
+                ndSk += 1;
+            }
+        }
+        tmpStud.setEgz(rand() % 11);
+
+    }
+    if(inputOption == 1 || inputOption == 2) {
+        string line;
+
+        cout << endl;
+        cout << "Vardas: ";
+        manual >> line;
+        tmpStud.setVardas(line);
+
+        cout << "Pavarde: ";
+        manual >> line;
+        tmpStud.setPavarde(line);
+    }
+
+    if (inputOption == 1) {
+        int i = 0;
+        while (true) {
+            int grade;
+            while(true) {
+                try {
+                    cout << "\n" << i + 1 << " ND įvertinimas (0-10): ";
+                    manual >> grade;
+                    if(!cin.good() || grade < 1 || grade > 10) {
+                        throw invalid_argument("Netinkama įvestis. Įveskite skaičių nuo 1 iki 10");
+                    }
+                    tmpStud.ndAppend(grade);
+                    break;
+                } catch(invalid_argument &e) {
+                    cerr << e.what() << endl;
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    continue;
+                }
+            }
+            i++;
+            if (i < ndSk) continue;
+            else if(!taipArNe("Pridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
+                ndSk++;
+                continue;
+            } else {
+                while (true) {   
+                    try {
+                        cout << "Egzamino įvertinimas: ";
+                        manual >> grade;
+                        if(!manual.good() || grade < 1 || grade > 10) {
+                            throw invalid_argument("Netinkama įvestis. Įveskite skaičių nuo 1 iki 10");
+                        }
+                        tmpStud.setEgz(grade);
+                        break;
+                    } catch(invalid_argument &e) {
+                        cerr << e.what() << endl;
+                        manual.clear();
+                        manual.ignore(numeric_limits<streamsize>::max(), '\n');
+                        continue;
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    if (inputOption == 3) {
+        tmpStud.setVardas("Vardenis_" + to_string(studSk));
+        tmpStud.setPavarde("Pavardenis_" + to_string(studSk));
+
+        cout << "Vardas bei pavardė sugeneruoti" << endl;
+    }
+
+    tmpStud.skaiciuotiVid();
+    tmpStud.skaiciuotiMed();
+
+    return manual;
+}
+
+istringstream& operator>>(istringstream& filename, Studentas &tmpStud){ 
+    string vardas, pavarde;
+    int ndSk;
+
+    if (!(filename >> vardas >> pavarde)) {
+        cerr << "Nepavyko nuskaityti vardo ir pavardes" << endl;
+    }
+
+    tmpStud.setVardas(vardas);
+    tmpStud.setPavarde(pavarde);
+
+    int pazymys;
+    while (filename >> pazymys) {
+        tmpStud.ndAppend(pazymys);
+    }
+
+    tmpStud.lastNdtoEgz();
+
+
+    tmpStud.skaiciuotiVid();
+    tmpStud.skaiciuotiMed();
+    //cout << "As esu ivedimo is failo operatoriuje >>" << endl;
+    return filename;
+}
+
+ostream& operator<<(ostream& console, const Studentas &tmpStud){
+    console << left << setw(24) << tmpStud.getVardas() << setw(24) << tmpStud.getPavarde() <<
+    setw(10) << fixed << setprecision(2) << tmpStud.getVidurkis() << fixed << setw(10) << tmpStud.getMediana() << endl;
+    //cout << "As esu isvedimo i konsole operatoriuje <<" << endl;
+    return console;
+
+}
+
+ofstream& operator<<(ofstream& filename, const Studentas &tmpStud){
+    // stringstream RF;
+    filename << endl << left << setw(24) << tmpStud.getVardas() << setw(24) << tmpStud.getPavarde() <<
+    setw(10) << fixed << setprecision(2) << tmpStud.getVidurkis() << fixed << setw(10) << tmpStud.getMediana();
+
+    //cout << "As esu isvedimo i faila operatoriuje <<" << endl;
+    // filename << RF.str();
+    // RF.clear();
+    return filename;
+}
+
+void Studentas::setNd(int index, int value) {
+    if(index > abs((int)this->nd.size())) throw out_of_range("Bondote nustatyti nd elementą už jo ribų");
+    else if(index >= 0) this->nd.at(index) = value;
+    else this->nd.at((int)this->nd.size() + index) = value;
 }
 
 void Studentas::skaiciuotiVid() {
@@ -74,9 +253,9 @@ void rikiuotiPagalParametra(vector<Studentas> &studentai, int option) {
     }
 }
 
-void addLineToFile(ofstream &konteineris, Studentas &stud) {
-    konteineris << endl << left << setw(24) << stud.getVardas() << left << setw(24) << stud.getPavarde();
-    konteineris << left << setw(10) << stud.getVidurkis() << left << setw(10) << stud.getMediana();
+void Studentas::lastNdtoEgz() {
+    egz = *nd.end();
+    nd.resize((int)this->nd.size() - 1);
 }
 
 void sortAndAddToFile(vector<Studentas> &kietekai, vector<Studentas> &vargsiukai, int option) {
@@ -93,8 +272,8 @@ void sortAndAddToFile(vector<Studentas> &kietekai, vector<Studentas> &vargsiukai
         konteineriai[i] << left << setw(10) << "Vid." << left << setw(10) << "Med.";
     }
 
-    for (auto &stud : kietekai) addLineToFile(konteineriai[0], stud);
+    for (auto &stud : kietekai) konteineriai[0] << stud;
     konteineriai[0].close();
-    for (auto &stud : vargsiukai) addLineToFile(konteineriai[1], stud);
+    for (auto &stud : vargsiukai) konteineriai[1] << stud;
     konteineriai[1].close();
 }

@@ -7,6 +7,8 @@
 // #include <deque>
 #include "timer.h"
 
+extern int ndSk, studSk, inputOption;
+
 using namespace std;
 
 class Studentas {
@@ -21,10 +23,11 @@ class Studentas {
         Studentas(string vardas = "", string pavarde = "", int egz = 0, double vidurkis = 0, double mediana = 0, vector<int> nd = {}) : 
             vardas(vardas), pavarde(pavarde), egz(egz), vidurkis(vidurkis), mediana(mediana), nd(nd) {}
         Studentas(istringstream& is, int ndSk);
+        Studentas(const Studentas &tmpStud);
+        Studentas(Studentas &&tmpStud) noexcept;
 
         inline void setVardas(string vardas) {this->vardas = vardas;}
         inline void setPavarde(string pavarde) {this->pavarde = pavarde;}
-
         inline string getVardas() const {return vardas;}
         inline string getPavarde() const {return pavarde;}
 
@@ -34,7 +37,11 @@ class Studentas {
         inline int getNd(int index) {return nd.at(index);}
         void setNd(int index, int value);
 
-        void setEgz(int value);
+        void lastNdtoEgz();
+
+        inline void setEgz(int value) {egz = value;}
+        inline double getEgz() const {return egz;}
+
 
         inline double getVidurkis() const {return vidurkis;}
         inline double getMediana() const {return mediana;}
@@ -44,6 +51,15 @@ class Studentas {
         ~Studentas() {
             nd.clear();
         }
+
+        inline void clearEverything() { this->vardas.clear(); this->pavarde.clear(); this->nd.clear(); this->egz = 0; this->mediana = 0.0; this->vidurkis = 0.0; }
+
+        Studentas& operator=(const Studentas &tmpStud);
+        Studentas& operator=(Studentas &&tmpStud);
+        friend istringstream& operator>>(istringstream& filename, Studentas &tmpStud);
+        friend istream& operator>>(istream& manual, Studentas &tmpStud);
+        friend ostream& operator<<(ostream& console, const Studentas &tmpStud);
+        friend ofstream& operator<<(ofstream& filename, const Studentas &tmpStud);
 };
 
 void pasirinktiEiga(string msg, int* option, int max);
@@ -52,8 +68,7 @@ int countNd(string &line);
 
 void rikiuotiPagalParametra(vector<Studentas> &studentai, int option);
 void equalOutNdSk(vector<Studentas> &studentai, int ndSk);
-void addLineToFile(ofstream &konteineris, Studentas &stud);
 void sortAndAddToFile(vector<Studentas> &kietekai, vector<Studentas> &vargsiukai, int option);
-void atspauzdintiMasyvoInfo(vector<studentas> &studentai);
+void atspauzdintiMasyvoInfo(vector<Studentas> &studentai);
 
 #endif

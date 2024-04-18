@@ -56,7 +56,7 @@ int countNd(string &line) {
 void equalOutNdSk(vector<Studentas> &studentai, int ndSk) {
     for(auto &stud : studentai) {
         stud.ndResize(ndSk);
-        stud.setNd(ndSk - 1, 0);
+        for(int i = -1; i >= stud.ndSk() - ndSk; i--) stud.setNd(i, 0);
     }
 }
 
@@ -69,7 +69,7 @@ void equalOutNdSk(vector<Studentas> &studentai, int ndSk) {
 //     }
 // }
 
-void atspauzdintiMasyvoInfo(vector<studentas> &studentai) {
+void atspauzdintiMasyvoInfo(vector<Studentas> &studentai) {
     cout << "\n\nMasyvo dumenys:\n";
     cout << "Vardas        Pavardė       NdPažymiai         Egzaminas" << endl;
     for(int y = 0; y < studentai.size(); y++) {
