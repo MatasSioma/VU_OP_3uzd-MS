@@ -9,34 +9,32 @@
 
 using namespace std;
 //default
-Studentas::Studentas() : 
-    vardas("BeVardis"),
-    pavarde ("BePavardis"),
+Studentas::Studentas() : Zmogus("BeVardis", "BePavardis"),
     egz(0),
     nd({0}),
     vidurkis(0.0),
     mediana(0.0) {}
 
-Studentas::Studentas(string vardas, string pavarde) : vardas(vardas), pavarde(pavarde) {
+Studentas::Studentas(string vardas, string pavarde) : Zmogus(vardas, pavarde) {
     egz = 0;
     nd = {0};
     vidurkis = 0.0;
     mediana = 0.0;
 }
 
-Studentas::Studentas(istringstream& is, int ndSk) {
-    is >> vardas >> pavarde;
+// Studentas::Studentas(istringstream& is, int ndSk) {
+//     is >> vardas >> pavarde;
 
-    // naujas.nd.clear();
-    nd.resize(ndSk);
-    for(int i = 0; i < ndSk; i++) {
-        is >> nd.at(i);
-    }
-    is >> egz;
+//     // naujas.nd.clear();
+//     nd.resize(ndSk);
+//     for(int i = 0; i < ndSk; i++) {
+//         is >> nd.at(i);
+//     }
+//     is >> egz;
 
-    this->skaiciuotiVid();
-    this->skaiciuotiMed();
-}
+//     this->skaiciuotiVid();
+//     this->skaiciuotiMed();
+// }
 
 Studentas::Studentas(const Studentas &tmpStud) {
     vardas = tmpStud.vardas;
