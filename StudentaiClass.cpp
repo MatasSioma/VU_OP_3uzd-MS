@@ -30,7 +30,7 @@ Studentas::Studentas(const Studentas &tmpStud) {
     egz = tmpStud.egz;
     mediana = tmpStud.mediana;
     vidurkis = tmpStud.vidurkis;
-    cout << "Kopijavimo konstruktorius suveike" << endl;
+    // cout << "Kopijavimo konstruktorius suveike" << endl;
 }
 
 Studentas::Studentas(Studentas &&tmpStud) noexcept {
@@ -42,7 +42,7 @@ Studentas::Studentas(Studentas &&tmpStud) noexcept {
     vidurkis = move(tmpStud.vidurkis);
 
     tmpStud.clearEverything();
-    cout << "Perkelimo konstruktorius suveike" << endl;
+    // cout << "Perkelimo konstruktorius suveike" << endl;
 }
 
 Studentas& Studentas::operator=(const Studentas &tmpStud){
@@ -54,7 +54,7 @@ Studentas& Studentas::operator=(const Studentas &tmpStud){
         mediana = tmpStud.mediana;
         vidurkis = tmpStud.vidurkis;
     }
-    cout << "Priskyrimo operatorius suveike" << endl;
+    // cout << "Priskyrimo operatorius suveike" << endl;
     return *this;
 }
 
@@ -66,7 +66,7 @@ Studentas& Studentas::operator=(Studentas &&tmpStud){
     mediana = tmpStud.mediana;
     vidurkis = tmpStud.vidurkis;
     tmpStud.clearEverything();
-    cout << "Perkelimo operatorius suveike" << endl;
+    // cout << "Perkelimo operatorius suveike" << endl;
     return *this;
 }
 
@@ -80,9 +80,10 @@ istream& operator>>(istream& manual, Studentas &tmpStud) {
             tmpStud.setNd(i, 1 + rand() % 11);
             cout << "Sugeneruotas " << i+1 << "-as namų darbas" << endl;
             i++;
-            if (i + 1 == ndSk) {
+            if (i == ndSk) {
                 if(taipArNe("\nPridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) break;
                 ndSk += 1;
+                tmpStud.ndAppend(0);
             }
         }
         tmpStud.setEgz(rand() % 11);
@@ -112,7 +113,7 @@ istream& operator>>(istream& manual, Studentas &tmpStud) {
                     if(!cin.good() || grade < 1 || grade > 10) {
                         throw invalid_argument("Netinkama įvestis. Įveskite skaičių nuo 1 iki 10");
                     }
-                    tmpStud.ndAppend(grade);
+                    tmpStud.setNd(i, grade);
                     break;
                 } catch(invalid_argument &e) {
                     cerr << e.what() << endl;
@@ -125,6 +126,7 @@ istream& operator>>(istream& manual, Studentas &tmpStud) {
             if (i < ndSk) continue;
             else if(!taipArNe("Pridėti dar vieną namų darbą? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
                 ndSk++;
+                tmpStud.ndResize(ndSk);
                 continue;
             } else {
                 while (true) {   
@@ -196,7 +198,7 @@ ostream& operator<<(ostream& console, const Studentas &tmpStud){
 
 ofstream& operator<<(ofstream& filename, const Studentas &tmpStud){
     // stringstream RF;
-    filename << endl << left << setw(24) << tmpStud.getVardas() << setw(24) << tmpStud.getPavarde() <<
+    filename << left << setw(24) << tmpStud.getVardas() << setw(24) << tmpStud.getPavarde() <<
     setw(10) << fixed << setprecision(2) << tmpStud.getVidurkis() << fixed << setw(10) << tmpStud.getMediana();
 
     //cout << "As esu isvedimo i faila operatoriuje <<" << endl;

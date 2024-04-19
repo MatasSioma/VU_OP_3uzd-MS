@@ -176,8 +176,11 @@ int main() {
             ofstream konteineris;
             if(inFileName != "") konteineris.open("output/" + inFileName + "-Apdorota.txt");
             else konteineris.open("output/rankiniaiDuomenys-Apdorota.txt");
+
+            konteineris << "Vardas                  Pavardė                 Vid.      Med." << endl;
+            konteineris << "--------------------------------------------------------------" << endl;
             
-            for (auto &stud : studentai) konteineris << stud;
+            for (auto &stud : studentai) konteineris << stud << endl;
             konteineris.close();
         }
     }
