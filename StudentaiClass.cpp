@@ -46,8 +46,8 @@ Studentas::Studentas(const Studentas &tmpStud) {
     // cout << "Kopijavimo konstruktorius suveike" << endl;
 }
 
-Studentas::Studentas(Studentas &&tmpStud) noexcept {
-    vardas = move(tmpStud.vardas);
+Studentas::Studentas(Studentas &&tmpStud) noexcept : Zmogus(move(tmpStud.vardas)), move(tmpStud.pavarde) {
+
     pavarde = move(tmpStud.pavarde);
     nd = move(tmpStud.nd);
     egz = move(tmpStud.egz);
@@ -58,10 +58,8 @@ Studentas::Studentas(Studentas &&tmpStud) noexcept {
     // cout << "Perkelimo konstruktorius suveike" << endl;
 }
 
-Studentas& Studentas::operator=(const Studentas &tmpStud){
+Studentas& Studentas::operator=(const Studentas &tmpStud): Zmogus(tmpStud.vardas, tmpStud.pavarde) {
     if(this != &tmpStud){
-        vardas = tmpStud.vardas;
-        pavarde = tmpStud.pavarde;
         nd = tmpStud.nd;
         egz = tmpStud.egz;
         mediana = tmpStud.mediana;
