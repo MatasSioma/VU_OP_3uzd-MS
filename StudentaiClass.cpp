@@ -273,8 +273,9 @@ void rikiuotiPagalParametra(vector<Studentas> &studentai, int option) {
 }
 
 void Studentas::lastNdtoEgz() {
-    egz = *nd.end();
-    nd.resize((int)this->nd.size() - 1);
+    int lastIndex = (int)this->nd.size() - 1;
+    egz = nd.at(lastIndex);
+    nd.resize(lastIndex);
 }
 
 void sortAndAddToFile(vector<Studentas> &kietekai, vector<Studentas> &vargsiukai, int option) {

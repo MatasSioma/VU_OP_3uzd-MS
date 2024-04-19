@@ -163,13 +163,13 @@ int main() {
             }
         }
 
-        rikiuotiPagalParametra(studentai, option);
+        rikiuotiPagalParametra(studentai, rikiavimas);
 
         cout << endl;
         cout << "Vardas                  Pavardė                 Vid.      Med." << endl;
         cout << "--------------------------------------------------------------" << endl;
 
-        for (auto &stud : studentai) cout << stud;
+        for (auto &stud : studentai) cout << stud << endl;
 
         atspauzdintiMasyvoInfo(studentai);
     } else {
