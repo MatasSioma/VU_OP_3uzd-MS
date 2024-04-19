@@ -20,7 +20,9 @@ class Studentas {
         double mediana;
         vector<int> nd;
     public:
-        Studentas(string vardas = "", string pavarde = "", int egz = 0, double vidurkis = 0, double mediana = 0, vector<int> nd = {}) : 
+        Studentas();
+        Studentas(string vardas, string pavarde);
+        Studentas(string vardas, string pavarde, int egz, double vidurkis, double mediana, vector<int> nd) : 
             vardas(vardas), pavarde(pavarde), egz(egz), vidurkis(vidurkis), mediana(mediana), nd(nd) {}
         Studentas(istringstream& is, int ndSk);
         Studentas(const Studentas &tmpStud);

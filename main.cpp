@@ -16,7 +16,23 @@ int ndSk, studSk, inputOption;
 
 int main() {
     srand(time(nullptr));
-    
+
+    // Studentas Studentas1("Matas", "Semenas");
+    // Studentas Studentas2("Jonas", "Jonaitis");
+    // cout << Studentas1 << endl;
+    // cout << Studentas2 << endl;
+    // Studentas Studentas3(Studentas1);
+    // Studentas Studentas4(move(Studentas2));
+    // Studentas Studentas5;
+    // Studentas5 = Studentas1;
+    // Studentas Studentas6;
+    // Studentas6 = move(Studentas4);
+    // cout << Studentas1 << endl;
+    // cout << Studentas2 << endl;
+    // cout << Studentas3 << endl;
+    // cout << Studentas4 << endl;
+    // cout << Studentas5 << endl;
+    // cout << Studentas6 << endl;
 
     if(!taipArNe("Ar norėsite generuoti failus? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
         int eilSk[5] {1'000, 10'000, 100'000, 1'000'000, 10'000'000};

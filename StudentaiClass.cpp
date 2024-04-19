@@ -8,6 +8,21 @@
 #include "pazymiai.h"
 
 using namespace std;
+//default
+Studentas::Studentas() : 
+    vardas("BeVardis"),
+    pavarde ("BePavardis"),
+    egz(0),
+    nd({0}),
+    vidurkis(0.0),
+    mediana(0.0) {}
+
+Studentas::Studentas(string vardas, string pavarde) : vardas(vardas), pavarde(pavarde) {
+    egz = 0;
+    nd = {0};
+    vidurkis = 0.0;
+    mediana = 0.0;
+}
 
 Studentas::Studentas(istringstream& is, int ndSk) {
     is >> vardas >> pavarde;
@@ -59,13 +74,15 @@ Studentas& Studentas::operator=(const Studentas &tmpStud){
 }
 
 Studentas& Studentas::operator=(Studentas &&tmpStud){
-    vardas = tmpStud.vardas;
-    pavarde = tmpStud.pavarde;
-    nd = tmpStud.nd;
-    egz = tmpStud.egz;
-    mediana = tmpStud.mediana;
-    vidurkis = tmpStud.vidurkis;
-    tmpStud.clearEverything();
+    if(this != &tmpStud) {
+        vardas = move(tmpStud.vardas);
+        pavarde = move(tmpStud.pavarde);
+        nd = move(tmpStud.nd);
+        egz = move(tmpStud.egz);
+        mediana = move(tmpStud.mediana);
+        vidurkis = move(tmpStud.vidurkis);
+        tmpStud.clearEverything();
+    }
     // cout << "Perkelimo operatorius suveike" << endl;
     return *this;
 }
@@ -190,7 +207,7 @@ istringstream& operator>>(istringstream& filename, Studentas &tmpStud){
 
 ostream& operator<<(ostream& console, const Studentas &tmpStud){
     console << left << setw(24) << tmpStud.getVardas() << setw(24) << tmpStud.getPavarde() <<
-    setw(10) << fixed << setprecision(2) << tmpStud.getVidurkis() << fixed << setw(10) << tmpStud.getMediana() << endl;
+    setw(10) << fixed << setprecision(2) << tmpStud.getVidurkis() << fixed << setw(10) << tmpStud.getMediana();
     //cout << "As esu isvedimo i konsole operatoriuje <<" << endl;
     return console;
 

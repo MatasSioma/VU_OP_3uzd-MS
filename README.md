@@ -76,3 +76,6 @@ Vietoje struktūros naudojama klasė.\
 
 norint sukompiliuoti paleidžiamus failus su skirtingoms optimizavimo vėliavoms:\
 `make O1`, `make O2`, `make O3`
+
+## v1.2
+Implementuotos "rule of five" funkcijos\
