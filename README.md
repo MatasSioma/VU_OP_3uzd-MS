@@ -89,4 +89,5 @@ Duomenų išvedimas per konsolę įvyksta, kai duomenų išvedimui yra naudojama
 Duomenų išvedimas į failą įvyksta, kai duomenų išvedimui yra naudojamas `ofstream` objektas.
 
 ## v1.5
-Sukurta abstrakti Zmogus klasė\
+Sukurta abstrakti Žmogus klasė\
+Perdaryti konstruktoriai\
