@@ -11,7 +11,20 @@ extern int ndSk, studSk, inputOption;
 
 using namespace std;
 
-class Studentas {
+class Zmogus {
+    protected:
+        string vardas, pavarde;
+        Zmogus() : vardas(""), pavarde("") {};
+        Zmogus(const string &vard, const string &pavard) : vardas(vard), pavarde(pavard) {};  
+        virtual ~Zmogus() {};
+    public:  
+        inline string getVardas() const { return vardas; }
+        inline string getPavarde() const { return pavarde; } 
+        void setVardas(string vard) { this->vardas = vard; }
+        void setPavarde(string pav) { this->pavarde = pav; }
+};
+
+class Studentas : public Zmogus {
     private:
         string vardas;
         string pavarde;

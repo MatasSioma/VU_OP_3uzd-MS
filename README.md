@@ -87,3 +87,6 @@ Duomenų įvestis iš failo įvyksta, kai duomenų skaitymui naudojamas `istring
 Išvesties:\
 Duomenų išvedimas per konsolę įvyksta, kai duomenų išvedimui yra naudojamas `ostream` objektas.
 Duomenų išvedimas į failą įvyksta, kai duomenų išvedimui yra naudojamas `ofstream` objektas.
+
+## v1.5
+Sukurta abstrakti Zmogus klasė\
