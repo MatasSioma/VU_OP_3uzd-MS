@@ -79,3 +79,11 @@ norint sukompiliuoti paleidžiamus failus su skirtingoms optimizavimo vėliavoms
 
 ## v1.2
 Implementuotos "rule of five" funkcijos\
+Realizuotas kodas, kuris patikrina naujų operatorių, konstruktorių veikimą\
+Įvestis:\
+Duomenų įvestis rankiniu ir automatiniu būdu įvyksta, kai duomenų skaitymui yra naudojamas `istream` objektas, o tada žiūrima pagal vartotojo pasirinkta programos veikimą (globalų kintamąjį `inputOption`).\
+Duomenų įvestis iš failo įvyksta, kai duomenų skaitymui naudojamas `istringstream` objektas.
+
+Išvesties:\
+Duomenų išvedimas per konsolę įvyksta, kai duomenų išvedimui yra naudojamas `ostream` objektas.
+Duomenų išvedimas į failą įvyksta, kai duomenų išvedimui yra naudojamas `ofstream` objektas.
