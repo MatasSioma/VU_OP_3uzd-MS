@@ -26,8 +26,6 @@ class Zmogus {
 
 class Studentas : public Zmogus {
     private:
-        string vardas;
-        string pavarde;
         int egz;
         double vidurkis;
         double mediana;
