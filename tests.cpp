@@ -3,7 +3,6 @@
 namespace
 {
 
-// Tests factorial of negative numbers.
 TEST(One, Yes)
 {
     EXPECT_EQ(1, 1);
