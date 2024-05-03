@@ -1,0 +1,66 @@
+\chapter{VU\+\_\+\+OP\+\_\+2uzd-\/\+MS}
+\hypertarget{md_README}{}\label{md_README}\index{VU\_OP\_2uzd-\/MS@{VU\_OP\_2uzd-\/MS}}
+\label{md_README_autotoc_md0}%
+\Hypertarget{md_README_autotoc_md0}%
+ \hypertarget{md_README_autotoc_md1}{}\doxysection{\texorpdfstring{v.\+pradinė}{v.\+pradinė}}\label{md_README_autotoc_md1}
+\hypertarget{md_README_autotoc_md2}{}\doxysubsection{\texorpdfstring{v.\+pradine.\+cpp}{v.\+pradine.\+cpp}}\label{md_README_autotoc_md2}
+Studentų ir nd kiekis "{}hard-\/coded"{}\textbackslash{} Naudojami c masyvai\textbackslash{} Pasirenkama tarp 3 būdų įvesti duomenis\+:
+\begin{DoxyItemize}
+\item Įvesti duomenis ranka
+\item Generuoti pažymius
+\item Generuoti pažymius ir vardus
+\end{DoxyItemize}\hypertarget{md_README_autotoc_md3}{}\doxysection{\texorpdfstring{v0.\+1}{v0.\+1}}\label{md_README_autotoc_md3}
+Studentų ir nd kiekis dinamiškas\textbackslash{} Masyvų duomenų spauzdinimas\textbackslash{} Pasirinkimas tarp vidurkio ir medianos skaičiavimo \hypertarget{md_README_autotoc_md4}{}\doxysubsection{\texorpdfstring{cmasyvas.\+cpp}{cmasyvas.\+cpp}}\label{md_README_autotoc_md4}
+Naudojami tik c masyvai \hypertarget{md_README_autotoc_md5}{}\doxysubsection{\texorpdfstring{vector.\+cpp}{vector.\+cpp}}\label{md_README_autotoc_md5}
+Naudojami $<$vector$>$ objektai\hypertarget{md_README_autotoc_md6}{}\doxysection{\texorpdfstring{v0.\+2}{v0.\+2}}\label{md_README_autotoc_md6}
+Galimybė duomenis įvesti per failą\textbackslash{} Išspauzdinamų studnetų kiekio pasirinkimas\textbackslash{} Rikiavimas pagal skirtingus parametrus\hypertarget{md_README_autotoc_md7}{}\doxysection{\texorpdfstring{v0.\+3}{v0.\+3}}\label{md_README_autotoc_md7}
+Programa paskirstyta į kelis .cpp failus\textbackslash{} Sukurtas programą "{}apjungentis"{}, struktūras apibrežentis header failas\textbackslash{} Naudojami try-\/catch blokai vartotojo įvesčiai (sukurta bendra funkcija tai įgyvendinti)\hypertarget{md_README_autotoc_md8}{}\doxysection{\texorpdfstring{v0.\+4}{v0.\+4}}\label{md_README_autotoc_md8}
+Duomenų (failų) generavimas\textbackslash{} Sugeneruotų studentų išvedimas į du skirtingus konteinerius (geri/blogi)\textbackslash{} Bendras programos veikimo laikas, kai generuojami 5 failai su nurodytasi dydžiais (15Nd)\+: 118.\+9s (5 testų vidurkis)\hypertarget{md_README_autotoc_md9}{}\doxysection{\texorpdfstring{v1.\+0}{v1.\+0}}\label{md_README_autotoc_md9}
+trijų tipų konteineriai\textbackslash{} pritaikytos trys strategijos\textbackslash{} Atlikta spartumo diagnostika\textbackslash{} "{}..."{} Laiko tarpas didesnis negu 10min
+
+
+
+Processor Intel Core i7-\/11800H 2.\+30 GHz\textbackslash{} Installed RAM 16,0 GB (15,8 GB usable)\textbackslash{} System type 64-\/bit Ubuntu 22.\+04.\+3 LTS on Windows 10 x86\+\_\+64\textbackslash{} Storage 512GB SSD
+
+Instrukcija kaip paleisti koda UNIX sistemoje\+:
+\begin{DoxyEnumerate}
+\item Atidarę sistemos komandinę eilutę šiame aplanke įveskite {\ttfamily nano \doxylink{pazymiai_8h_source}{pazymiai.\+h}}, modifikuokite failą taip, kad pirmos trys programos eilutės atrodytų kaip vienas iš pateiktų pavyzdžių\+:\textbackslash{} Vector versijai\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#ifndef\ Container}
+\DoxyCodeLine{\#define\ Container\ std::vector}
+\DoxyCodeLine{\#endif}
+
+\end{DoxyCode}
+ List versijai\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#ifndef\ Container}
+\DoxyCodeLine{\#define\ Container\ std::list}
+\DoxyCodeLine{\#endif}
+
+\end{DoxyCode}
+ Deque versijai\+: 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\#ifndef\ Container}
+\DoxyCodeLine{\#define\ Container\ std::deque}
+\DoxyCodeLine{\#endif}
+
+\end{DoxyCode}
+ Uždarykite teksto retdaktorių su "{}\+Ctrl"{} ir "{}\+C"{} mygtukais vienu metu, išsaugokite failą (spauskite "{}\+Y"{} ir ENTER)\textbackslash{}
+\item Sistemos komandinėje eilutėje įrašykite {\ttfamily make}
+\item Kad paleistumėte programą į komadinę eilutę įveskite\+: {\ttfamily ./pazymiai} ir sekite instrukcijas programoje.
+\end{DoxyEnumerate}\hypertarget{md_README_autotoc_md10}{}\doxysection{\texorpdfstring{v1.\+1}{v1.\+1}}\label{md_README_autotoc_md10}
+Vietoje struktūros naudojama klasė.\textbackslash{} 
+
+norint sukompiliuoti paleidžiamus failus su skirtingoms optimizavimo vėliavoms\+:\textbackslash{} {\ttfamily make O1}, {\ttfamily make O2}, {\ttfamily make O3}\hypertarget{md_README_autotoc_md11}{}\doxysection{\texorpdfstring{v1.\+2}{v1.\+2}}\label{md_README_autotoc_md11}
+Implementuotos "{}rule of five"{} funkcijos\textbackslash{} Realizuotas kodas, kuris patikrina naujų operatorių, konstruktorių veikimą\textbackslash{} Įvestis\+:\textbackslash{} Duomenų įvestis rankiniu ir automatiniu būdu įvyksta, kai duomenų skaitymui yra naudojamas {\ttfamily istream} objektas, o tada žiūrima pagal vartotojo pasirinkta programos veikimą (globalų kintamąjį {\ttfamily input\+Option}).\textbackslash{} Duomenų įvestis iš failo įvyksta, kai duomenų skaitymui naudojamas {\ttfamily istringstream} objektas.
+
+Išvesties\+:\textbackslash{} Duomenų išvedimas per konsolę įvyksta, kai duomenų išvedimui yra naudojamas {\ttfamily ostream} objektas. Duomenų išvedimas į failą įvyksta, kai duomenų išvedimui yra naudojamas {\ttfamily ofstream} objektas.\hypertarget{md_README_autotoc_md12}{}\doxysection{\texorpdfstring{v1.\+5}{v1.\+5}}\label{md_README_autotoc_md12}
+Sukurta abstrakti \doxylink{classZmogus}{Zmogus} klasė\textbackslash{} Perdaryti konstruktoriai\textbackslash{}
+
+\hypertarget{md_README_autotoc_md13}{}\doxysection{\texorpdfstring{v2.\+0}{v2.\+0}}\label{md_README_autotoc_md13}
+Naudojamas Google test framework\textquotesingle{}as\textbackslash{} Parašyti porą testų\textbackslash{}\hypertarget{md_README_autotoc_md14}{}\doxysubsection{\texorpdfstring{instrukcija kaip paleisti programą UNIX sistemoje}{instrukcija kaip paleisti programą UNIX sistemoje}}\label{md_README_autotoc_md14}
+
+\begin{DoxyEnumerate}
+\item Sistemos komandinėje eilutėje įrašykite {\ttfamily make}
+\item Kad paleistumėte programą į komadinę eilutę įveskite\+: {\ttfamily ./pazymiai} ir sekite instrukcijas programoje. 
+\end{DoxyEnumerate}

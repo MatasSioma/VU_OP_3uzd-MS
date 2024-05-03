@@ -1,0 +1,56 @@
+\doxysection{Timer Klasė}
+\hypertarget{classTimer}{}\label{classTimer}\index{Timer@{Timer}}
+\doxysubsubsection*{Vieši Metodai}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{classTimer_a9020542d73357a4eef512eefaf57524b}{reset}} ()
+\item 
+double \mbox{\hyperlink{classTimer_a6a89a613c2af9b0d1e5f7e4ba9e46c54}{elapsed}} () const
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Konstruktoriaus ir Destruktoriaus Dokumentacija}
+\Hypertarget{classTimer_a5f16e8da27d2a5a5242dead46de05d97}\index{Timer@{Timer}!Timer@{Timer}}
+\index{Timer@{Timer}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{Timer()}{Timer()}}
+{\footnotesize\ttfamily \label{classTimer_a5f16e8da27d2a5a5242dead46de05d97} 
+Timer\+::\+Timer (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00006\ :\ start\{std::chrono::high\_resolution\_clock::now()\}\ \{\}}
+
+\end{DoxyCode}
+
+
+\doxysubsection{Metodų Dokumentacija}
+\Hypertarget{classTimer_a6a89a613c2af9b0d1e5f7e4ba9e46c54}\index{Timer@{Timer}!elapsed@{elapsed}}
+\index{elapsed@{elapsed}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{elapsed()}{elapsed()}}
+{\footnotesize\ttfamily \label{classTimer_a6a89a613c2af9b0d1e5f7e4ba9e46c54} 
+double Timer\+::elapsed (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00010\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{\textcolor{keywordflow}{return}\ std::chrono::duration<double>(std::chrono::high\_resolution\_clock::now()\ -\/\ start).count();}
+\DoxyCodeLine{00011\ \ \ \ \ \}}
+
+\end{DoxyCode}
+\Hypertarget{classTimer_a9020542d73357a4eef512eefaf57524b}\index{Timer@{Timer}!reset@{reset}}
+\index{reset@{reset}!Timer@{Timer}}
+\doxysubsubsection{\texorpdfstring{reset()}{reset()}}
+{\footnotesize\ttfamily \label{classTimer_a9020542d73357a4eef512eefaf57524b} 
+void Timer\+::reset (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00007\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00008\ \ \ \ \ \ \ start\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{00009\ \ \ \ \ \}}
+
+\end{DoxyCode}
+
+
+Dokumentacija šiai klasei sugeneruota iš šio failo\+:\begin{DoxyCompactItemize}
+\item 
+timer.\+h\end{DoxyCompactItemize}
