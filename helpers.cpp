@@ -65,12 +65,18 @@ void atspauzdintiMasyvoInfo(vector<Studentas> &studentai) {
     cout << "Vardas        Pavardė       " << left << setw(studentai.at(0).ndSk()*3 + 10 ) << "NdPazymiai";
     cout << "Egzaminas" << endl;
 
+    int i = 0;
     for(auto &stud : studentai) {
         cout << left << setw(14)<< stud.getVardas() << left << setw(14) << stud.getPavarde();
-        cout << "[ "; 
+        cout << "[ ";
         for(int x = 0; x < stud.ndSk(); x++) cout << left << setw(2) << stud.getNd(x) << " ";
         cout << "]";
 
         cout << "       " << stud.getEgz() << endl;
+        i++;
+        if (i == 15) {
+            cout << "Dar liko " << studentai.size() - 15 << " eilučių" << endl;
+            break;
+        }
     }
 }

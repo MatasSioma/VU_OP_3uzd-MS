@@ -91,3 +91,5 @@ Duomenų išvedimas į failą įvyksta, kai duomenų išvedimui yra naudojamas `
 ## v1.5
 Sukurta abstrakti Zmogus klasė\
 Perdaryti konstruktoriai\
+
+![Abstrakčios klasės error'as](AbstraktusZmogus.jpg)

@@ -17,22 +17,22 @@ int ndSk, studSk, inputOption;
 int main() {
     srand(time(nullptr));
 
-    Studentas Studentas1("Matas", "Semenas");
-    Studentas Studentas2("Jonas", "Jonaitis");
-    cout << Studentas1 << endl;
-    cout << Studentas2 << endl;
-    Studentas Studentas3(Studentas1);
-    Studentas Studentas4(move(Studentas2));
-    Studentas Studentas5;
-    Studentas5 = Studentas1;
-    Studentas Studentas6;
-    Studentas6 = move(Studentas4);
-    cout << Studentas1 << endl;
-    cout << Studentas2 << endl;
-    cout << Studentas3 << endl;
-    cout << Studentas4 << endl;
-    cout << Studentas5 << endl;
-    cout << Studentas6 << endl;
+    // Studentas Studentas1("Matas", "Semenas");
+    // Studentas Studentas2("Jonas", "Jonaitis");
+    // cout << Studentas1 << endl;
+    // cout << Studentas2 << endl;
+    // Studentas Studentas3(Studentas1);
+    // Studentas Studentas4(move(Studentas2));
+    // Studentas Studentas5;
+    // Studentas5 = Studentas1;
+    // Studentas Studentas6;
+    // Studentas6 = move(Studentas4);
+    // cout << Studentas1 << endl;
+    // cout << Studentas2 << endl;
+    // cout << Studentas3 << endl;
+    // cout << Studentas4 << endl;
+    // cout << Studentas5 << endl;
+    // cout << Studentas6 << endl;
 
     if(!taipArNe("Ar norėsite generuoti failus? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
         int eilSk[5] {1'000, 10'000, 100'000, 1'000'000, 10'000'000};
@@ -129,13 +129,20 @@ int main() {
 
     /*
 
-    IŠESTIS
+    IŠVESTIS
 
     */
 
     pasirinktiEiga("Išvestyje studentus rikiuoti pagal: 1 - Vardą, 2 - Pavardę, 3 - Vidurkį, 4 - Medianą: ", &rikiavimas, 4);
 
     pasirinktiEiga("1 - Spauzdinti į konsolę 2 - Įrašyti į failą?: ", &option, 2);
+
+    while (true) {
+        auto delimiterIndex = inFileName.find("/");
+        if(delimiterIndex == std::string::npos) break;
+        inFileName = inFileName.substr(delimiterIndex + 1);
+    }
+
 
     if (option == 1) {
         cout << "Kiek studentų atspauzdinti? (ENTER - visus): ";
@@ -171,7 +178,6 @@ int main() {
 
         for (auto &stud : studentai) cout << stud << endl;
 
-        atspauzdintiMasyvoInfo(studentai);
     } else {
         pasirinktiEiga("1 - Sukurti atskirus konteineriu kietekam ir vargšiems, 2 - Viską išvesti viename faile: ", &option, 2);
         if (option == 1) {
@@ -188,7 +194,7 @@ int main() {
             // studentai.erase(remove_if(studentai.begin(), studentai.end(), isVargsas), studentai.end());
             sortAndAddToFile(studentai, vargsiukai, rikiavimas);
         } else {
-            rikiuotiPagalParametra(studentai, option);
+            rikiuotiPagalParametra(studentai, rikiavimas);
             ofstream konteineris;
             if(inFileName != "") konteineris.open("output/" + inFileName + "-Apdorota.txt");
             else konteineris.open("output/rankiniaiDuomenys-Apdorota.txt");
@@ -200,4 +206,5 @@ int main() {
             konteineris.close();
         }
     }
+    atspauzdintiMasyvoInfo(studentai);
 }
