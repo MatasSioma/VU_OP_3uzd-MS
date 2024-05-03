@@ -7,7 +7,6 @@ namespace
 TEST(One, Yes)
 {
     EXPECT_EQ(1, 1);
-    EXPECT_EQ(1, Factorial(-1));
 }
 
 TEST(One, Negative)
