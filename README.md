@@ -1,4 +1,4 @@
-# VU_OP_1uzd-MS
+# VU_OP_2uzd-MS
 
 ## v.pradinė
 ### v.pradine.cpp
@@ -93,3 +93,13 @@ Sukurta abstrakti Zmogus klasė\
 Perdaryti konstruktoriai\
 
 ![Abstrakčios klasės error'as](AbstraktusZmogus.jpg)
+
+## v2.0
+Naudojamas Google test framework'as\
+Parašyti porą testų\
+
+
+### instrukcija kaip paleisti programą UNIX sistemoje
+
+1. Sistemos komandinėje eilutėje įrašykite `make`
+2. Kad paleistumėte programą į komadinę eilutę įveskite: `./pazymiai` ir sekite instrukcijas programoje.
