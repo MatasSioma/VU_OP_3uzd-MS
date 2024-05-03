@@ -9,12 +9,18 @@
 #include <sstream>
 
 #include "pazymiai.h"
+#include <gtest/gtest.h>
 
 using namespace std;
 
 int ndSk, studSk, inputOption;
 
-int main() {
+int main(int argc, char **argv) {
+
+    ::testing::InitGoogleTest(&argc, argv);
+    std::cout << "RUNNING TESTS ..." << std::endl;
+    int ret{RUN_ALL_TESTS()};
+
     srand(time(nullptr));
 
     // Studentas Studentas1("Matas", "Semenas");
