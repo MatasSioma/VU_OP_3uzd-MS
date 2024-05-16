@@ -96,10 +96,11 @@ Perdaryti konstruktoriai\
 
 ## v2.0
 Naudojamas Google test framework'as\
-Parašyti porą testų\
+Parašyti porą "testinių" testų\
 
 
-### instrukcija kaip paleisti programą UNIX sistemoje
+### instrukcija kaip paleisti programą UNIX(MacOS, Linux,...) sistemoje
 
-1. Sistemos komandinėje eilutėje įrašykite `make`
-2. Kad paleistumėte programą į komadinę eilutę įveskite: `./pazymiai` ir sekite instrukcijas programoje.
+1. Sistemos komandinėje eilutėje įrašykite `make`, ENTER
+2. Kad paleistumėte programą, į komadinę eilutę įveskite: `./pazymiai` ir sekite instrukcijas programoje.
+Kad paleistumėte programos testą, į komadinę eilutę įveskite: `./test_pazymiai`.

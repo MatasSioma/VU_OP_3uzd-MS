@@ -9,17 +9,12 @@
 #include <sstream>
 
 #include "pazymiai.h"
-#include <gtest/gtest.h>
 
 using namespace std;
 
 int ndSk, studSk, inputOption;
 
-int main(int argc, char **argv) {
-
-    ::testing::InitGoogleTest(&argc, argv);
-    std::cout << "RUNNING TESTS ..." << std::endl;
-    int ret{RUN_ALL_TESTS()};
+int main() {
 
     srand(time(nullptr));
 
