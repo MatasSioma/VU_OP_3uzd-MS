@@ -269,11 +269,11 @@ void sortAndAddToFile(vector<Studentas> &kietekai, vector<Studentas> &vargsiukai
 
     for(int i = 0; i < 2; i++) {
         konteineriai[i] << left << setw(24) << "Vardas" << left << setw(24) << "Pavardė";
-        konteineriai[i] << left << setw(10) << "Vid." << left << setw(10) << "Med.";
+        konteineriai[i] << left << setw(10) << "Vid." << left << setw(10) << "Med." << endl;
     }
 
-    for (auto &stud : kietekai) konteineriai[0] << stud;
+    for (auto &stud : kietekai) konteineriai[0] << stud << endl;
     konteineriai[0].close();
-    for (auto &stud : vargsiukai) konteineriai[1] << stud;
+    for (auto &stud : vargsiukai) konteineriai[1] << stud << endl;
     konteineriai[1].close();
 }
