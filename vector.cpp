@@ -24,6 +24,12 @@ Vector<T>::Vector(size_t initial_size)
 }
 
 template<typename T>
+Vector<T>::Vector(std::initializer_list<T> init)
+    : size_(init.size()), capacity_(nextCapacity(init.size())), data_(new T[nextCapacity(init.size())]) {
+    std::copy(init.begin(), init.end(), data_);
+}
+
+template<typename T>
 Vector<T>::Vector(const Vector& other)
     : size_(other.size_), capacity_(other.capacity_), data_(new T[other.capacity_]) {
     std::copy(other.data_, other.data_ + other.size_, data_);
@@ -105,6 +111,17 @@ template<typename T>
 size_t Vector<T>::capacity() const noexcept {
     return capacity_;
 }
+
+//Iteratoriu funkcijos
+
+template<typename T>
+T* Vector<T>::begin() noexcept {return data_;}
+template<typename T>
+const T* Vector<T>::begin() const noexcept {return data_;}
+template<typename T>
+T* Vector<T>::end() noexcept {return data_ + size_;}
+template<typename T>
+const T* Vector<T>::end() const noexcept {return data_ + size_;}
 
 template class Vector<int>;
 template class Vector<double>;
