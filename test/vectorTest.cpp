@@ -3,6 +3,6 @@
 #include <iostream>
 
 TEST(VectorClass, defaultConstructor) {
-    std::cout << nextCapacity(3) << std::endl;
-    EXPECT_EQ(1, 1);
+    Vector<int> a;
+    EXPECT_TRUE(a.empty());
 }

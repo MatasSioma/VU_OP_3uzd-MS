@@ -1,0 +1,95 @@
+\doxysection{pazymiai.\+h}
+\hypertarget{pazymiai_8h_source}{}\label{pazymiai_8h_source}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ PAZYMIAI\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ PAZYMIAI\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ \#include\ <list>}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ \#include\ <deque>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}timer.h"{}}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{extern}\ \textcolor{keywordtype}{int}\ ndSk,\ studSk,\ inputOption;}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classZmogus}{Zmogus}}\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{string}\ vardas,\ pavarde;}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{public}:\ \ }
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classZmogus}{Zmogus}}()\ :\ vardas(\textcolor{stringliteral}{"{}BeVardis"{}}),\ pavarde(\textcolor{stringliteral}{"{}BePavardis"{}})\ \{\}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classZmogus}{Zmogus}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&vard,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&pavard)\ :\ vardas(vard),\ pavarde(pavard)\ \{\}}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classZmogus}{\string~Zmogus}}()\ \{vardas.clear();\ pavarde.clear();\}}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{string}\ getVardas()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ vardas;\ \}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{string}\ getPavarde()\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ pavarde;\ \}\ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setVardas(\textcolor{keywordtype}{string}\ vard)\ \{\ this-\/>vardas\ =\ vard;\ \}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setPavarde(\textcolor{keywordtype}{string}\ pav)\ \{\ this-\/>pavarde\ =\ pav;\ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ whoAmI()\ =\ 0;}
+\DoxyCodeLine{00027\ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classStudentas}{Studentas}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classZmogus}{Zmogus}}\ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ egz;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ vidurkis;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ mediana;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ vector<int>\ nd;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStudentas}{Studentas}}();}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStudentas}{Studentas}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&vardas,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&pavarde);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStudentas}{Studentas}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&vardas,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{string}\ \&pavarde,\ \textcolor{keywordtype}{int}\ egz,\ \textcolor{keywordtype}{double}\ vidurkis,\ \textcolor{keywordtype}{double}\ mediana,\ vector<int>\ nd)\ :\ \mbox{\hyperlink{classZmogus}{Zmogus}}(vardas,\ pavarde),}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ egz(egz),\ vidurkis(vidurkis),\ mediana(mediana),\ nd(nd)\ \{\}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStudentas}{Studentas}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classStudentas}{Studentas}}\ \&tmpStud);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStudentas}{Studentas}}(\mbox{\hyperlink{classStudentas}{Studentas}}\ \&\&tmpStud)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setVardas(\textcolor{keywordtype}{string}\ vardas)\ \{this-\/>vardas\ =\ vardas;\}}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setPavarde(\textcolor{keywordtype}{string}\ pavarde)\ \{this-\/>pavarde\ =\ pavarde;\}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{string}\ getVardas()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ vardas;\}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{string}\ getPavarde()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ pavarde;\}}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ ndAppend(\textcolor{keywordtype}{int}\ balas)\ \{nd.push\_back(balas);\}\ \textcolor{comment}{//prideda\ viena\ namu\ darba.}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ ndResize(\textcolor{keywordtype}{int}\ size)\ \{nd.resize(size);\}}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ ndSk()\ \{\textcolor{keywordflow}{return}\ nd.size();\}}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{int}\ getNd(\textcolor{keywordtype}{int}\ index)\ \{\textcolor{keywordflow}{return}\ nd.at(index);\}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ setNd(\textcolor{keywordtype}{int}\ index,\ \textcolor{keywordtype}{int}\ value);}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ lastNdtoEgz();}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ setEgz(\textcolor{keywordtype}{int}\ value)\ \{egz\ =\ value;\}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ getEgz()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ egz;\}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ getVidurkis()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ vidurkis;\}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{double}\ getMediana()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mediana;\}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ skaiciuotiVid();}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ skaiciuotiMed();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStudentas}{\string~Studentas}}()\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ nd.clear();}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{void}\ clearEverything()\ \{\ this-\/>vardas.clear();\ this-\/>pavarde.clear();\ this-\/>nd.clear();\ this-\/>egz\ =\ 0;\ this-\/>mediana\ =\ 0.0;\ this-\/>vidurkis\ =\ 0.0;\ \}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStudentas}{Studentas}}\&\ operator=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classStudentas}{Studentas}}\ \&tmpStud);}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classStudentas}{Studentas}}\&\ operator=(\mbox{\hyperlink{classStudentas}{Studentas}}\ \&\&tmpStud);}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ istringstream\&\ operator>>(istringstream\&\ filename,\ \mbox{\hyperlink{classStudentas}{Studentas}}\ \&tmpStud);}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ istream\&\ operator>>(istream\&\ manual,\ \mbox{\hyperlink{classStudentas}{Studentas}}\ \&tmpStud);}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ ostream\&\ operator<<(ostream\&\ console,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classStudentas}{Studentas}}\ \&tmpStud);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keyword}{friend}\ ofstream\&\ operator<<(ofstream\&\ filename,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classStudentas}{Studentas}}\ \&tmpStud);}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ whoAmI()\ \{cout\ <<\ \textcolor{stringliteral}{"{}Studentas\ klasė"{}}\ <<\ endl;\}}
+\DoxyCodeLine{00079\ \};}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keywordtype}{void}\ pasirinktiEiga(\textcolor{keywordtype}{string}\ msg,\ \textcolor{keywordtype}{int}*\ option,\ \textcolor{keywordtype}{int}\ max);}
+\DoxyCodeLine{00082\ \textcolor{keywordtype}{bool}\ taipArNe(\textcolor{keywordtype}{string}\ uzklausa);}
+\DoxyCodeLine{00083\ \textcolor{keywordtype}{int}\ countNd(\textcolor{keywordtype}{string}\ \&line);}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \textcolor{keywordtype}{void}\ rikiuotiPagalParametra(vector<Studentas>\ \&studentai,\ \textcolor{keywordtype}{int}\ option);}
+\DoxyCodeLine{00086\ \textcolor{keywordtype}{void}\ equalOutNdSk(vector<Studentas>\ \&studentai,\ \textcolor{keywordtype}{int}\ ndSk);}
+\DoxyCodeLine{00087\ \textcolor{keywordtype}{void}\ sortAndAddToFile(vector<Studentas>\ \&kietekai,\ vector<Studentas>\ \&vargsiukai,\ \textcolor{keywordtype}{int}\ option);}
+\DoxyCodeLine{00088\ \textcolor{keywordtype}{void}\ atspauzdintiMasyvoInfo(vector<Studentas>\ \&studentai);}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00090\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

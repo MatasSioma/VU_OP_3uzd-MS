@@ -1,15 +1,18 @@
 #include <iostream>
 #include <cmath>
 #include <algorithm>
+#include <stdexcept>
 
 #include "vector.h"
+// #include "pazymiai.h"
+
 
 size_t nextCapacity(const size_t &size) {
-    size_t capacity = 2;
-    int power = ceil(log((double)size) / log(2.0));
-    for (int i = 0; i < power; i++) capacity *= 2;
-    return capacity;
+    double power = ceil(log((double)size) / log(2.0));
+    return pow(2.0, power);
 }
+
+//Konstruktoriai
 
 template<typename T>
 Vector<T>::Vector() : data_(nullptr), size_(0), capacity_(0) {};
@@ -33,3 +36,76 @@ Vector<T>::Vector(Vector&& other) noexcept
     other.size_ = 0;
     other.capacity_ = 0;
 }
+
+template<typename T>
+Vector<T>::~Vector() {
+    delete[] data_;
+}
+
+
+// Setteriai/getteriai
+
+template<typename T>
+T& Vector<T>::operator[](size_t index) {
+    return data_[index];
+}
+
+template<typename T>
+const T& Vector<T>::operator[](size_t index) const {
+    return data_[index];
+}
+
+template<typename T>
+T& Vector<T>::at(size_t index) {
+    if (index >= size_) {
+        throw std::out_of_range("Index out of range");
+    }
+    return data_[index];
+}
+
+template<typename T>
+const T& Vector<T>::at(size_t index) const {
+    if (index >= size_) {
+        throw std::out_of_range("Index out of range");
+    }
+    return data_[index];
+}
+
+template<typename T>
+T& Vector<T>::front() {
+    return data_[0];
+}
+
+template<typename T>
+const T& Vector<T>::front() const {
+    return data_[0];
+}
+
+template<typename T>
+T& Vector<T>::back() {
+    return data_[size_ - 1];
+}
+
+template<typename T>
+const T& Vector<T>::back() const {
+    return data_[size_ - 1];
+}
+
+template<typename T>
+size_t Vector<T>::size() const noexcept {
+    return size_;
+}
+
+template<typename T>
+bool Vector<T>::empty() const noexcept {
+    return size_ == 0;
+}
+
+template<typename T>
+size_t Vector<T>::capacity() const noexcept {
+    return capacity_;
+}
+
+template class Vector<int>;
+template class Vector<double>;
+// template class Vector<Studentas>;
