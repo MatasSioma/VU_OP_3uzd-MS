@@ -13,7 +13,7 @@ LIBS = -L$(GTEST_DIR)/lib -lgtest -lgtest_main -pthread
 # LIBS = -L$(GTEST_DIR)/lib -lgtest -pthread
 
 # Source files
-TEST_SOURCES = test/tests.cpp
+TEST_SOURCES = test/pazymiaiTest.cpp
 
 # Object files
 OBJECTS = $(SOURCES:.cpp=.o)
@@ -24,22 +24,17 @@ all: main test
 
 # Main executable
 main: $(OBJECTS)
-	$(CXX) $(CXXFLAGS) $(OBJECTS) -o pazymiai
+	$(CXX) -O3 $(CXXFLAGS) $(OBJECTS) -o pazymiai
 
 # Test executable
 test: $(TEST_OBJECTS) helpers.o StudentaiClass.o
-	$(CXX) $(CXXFLAGS) $(TEST_OBJECTS) helpers.o StudentaiClass.o $(LIBS) -o test_pazymiai
+	$(CXX) -O3 $(CXXFLAGS) $(TEST_OBJECTS) helpers.o StudentaiClass.o $(LIBS) -o test_pazymiai
 
 clean:
 	rm -f *.o test/*.o pazymiai test_pazymiai
 
-O1:
-	g++ -O1 $(SOURCES) -o pazymiai
-O2:
-	g++ -O2 $(SOURCES) -o pazymiai
-O3:
-	g++ -O3 $(SOURCES) -o pazymiai
-
+vectortest: test/vectorTest.o vector.o
+	$(CXX) $(CXXFLAGS) test/vectorTest.o vector.o $(LIBS) -o vectortest
 
 run:
 	make clean

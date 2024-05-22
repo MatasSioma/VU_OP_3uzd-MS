@@ -53,4 +53,6 @@ class Vector {
         bool operator!=(const Vector& other) const;
 };
 
+int nextCapacity(const size_t &size);
+
 #endif
