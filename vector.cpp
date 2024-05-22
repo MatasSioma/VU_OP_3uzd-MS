@@ -123,6 +123,67 @@ T* Vector<T>::end() noexcept {return data_ + size_;}
 template<typename T>
 const T* Vector<T>::end() const noexcept {return data_ + size_;}
 
+// Kitos funkcijos 
+template<typename T>
+Vector<T>& Vector<T>::operator=(const Vector<T>& other) {
+    if (this != &other) {
+        if (other.size_ > capacity_) {
+            T* new_data = new T[nextCapacity(other.size_)];
+            std::copy(other.data_, other.data_ + other.size_, new_data);
+            delete[] data_;
+            data_ = new_data;
+            capacity_ = nextCapacity(other.size_);
+        } else {
+            std::copy(other.data_, other.data_ + other.size_, data_);
+        }
+        size_ = other.size_;
+    }
+    return *this;
+}
+
+// Move assignment operator
+template<typename T>
+Vector<T>& Vector<T>::operator=(Vector<T>&& other) noexcept {
+    if (this != &other) {
+        delete[] data_;
+        data_ = other.data_;
+        size_ = other.size_;
+        capacity_ = other.capacity_;
+
+        other.data_ = nullptr;
+        other.size_ = 0;
+        other.capacity_ = 0;
+    }
+    return *this;
+}
+
+template<typename T>
+void Vector<T>::reserve(size_t new_cap) {
+    if (new_cap > capacity_) {
+        T* new_data = new T[new_cap];
+        std::move(data_, data_ + size_, new_data);
+        delete[] data_;
+        data_ = new_data;
+        capacity_ = new_cap;
+    }
+}
+
+template<typename T>
+void Vector<T>::resize(size_t count, const T& value) {
+    if (count > size_) {
+        if (count > capacity_) {
+            reserve(count);
+        }
+        std::fill(data_ + size_, data_ + count, value);
+    }
+    size_ = count;
+}
+
+template<typename T>
+void Vector<T>::resize(size_t count) {
+    resize(count, T());
+}
+
 template class Vector<int>;
 template class Vector<double>;
 // template class Vector<Studentas>;
