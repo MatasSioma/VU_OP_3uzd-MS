@@ -271,6 +271,19 @@ void Vector<T>::emplace_back(T&& value) {
     data_[size_++] = std::move(value);
 }
 
+template<typename T>
+bool Vector<T>::operator==(const Vector<T>& other) const {
+    if (size_ != other.size_) {
+        return false;
+    }
+    return std::equal(data_, data_ + size_, other.data_);
+}
+
+template<typename T>
+bool Vector<T>::operator!=(const Vector<T>& other) const {
+    return !(*this == other);
+}
+
 template class Vector<int>;
 template class Vector<double>;
 // template class Vector<Studentas>;
