@@ -9,7 +9,6 @@
 #include <sstream>
 
 #include "pazymiai.h"
-#include "vector.h"
 
 using namespace std;
 

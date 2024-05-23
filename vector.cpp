@@ -4,7 +4,7 @@
 #include <stdexcept>
 
 #include "vector.h"
-// #include "pazymiai.h"
+#include "pazymiai.h"
 
 
 size_t nextCapacity(const size_t &size) {
@@ -287,5 +287,6 @@ bool Vector<T>::operator!=(const Vector<T>& other) const {
 template class Vector<int>;
 template class Vector<double>;
 template class Vector<std::string>;
+template class Vector<Studentas>;
 
 // template class Vector<Studentas>;

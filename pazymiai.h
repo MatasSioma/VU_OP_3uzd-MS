@@ -1,5 +1,6 @@
 #ifndef Container
-#define Container std::vector
+#include "vector.h"
+#define Container Vector
 #endif
 
 #ifndef PAZYMIAI_H
@@ -46,7 +47,7 @@ class Studentas : public Zmogus {
 
         void ndAppend(int balas) {nd.push_back(balas);} //prideda viena namu darba.
         void ndResize(int size) {nd.resize(size);}
-        inline int ndSk() {return nd.size();}
+        inline int ndSk() const {return nd.size();}
         inline int getNd(int index) {return nd.at(index);}
         void setNd(int index, int value);
 
@@ -73,6 +74,9 @@ class Studentas : public Zmogus {
         friend istream& operator>>(istream& manual, Studentas &tmpStud);
         friend ostream& operator<<(ostream& console, const Studentas &tmpStud);
         friend ofstream& operator<<(ofstream& filename, const Studentas &tmpStud);
+
+        bool operator==(const Studentas& other) const;
+        bool operator!=(const Studentas& other) const;
 
         virtual void whoAmI() {cout << "Studentas klasė" << endl;}
 };

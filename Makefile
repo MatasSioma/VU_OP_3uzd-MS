@@ -1,5 +1,5 @@
 # Define variables
-SOURCES = main.cpp helpers.cpp StudentaiClass.cpp
+SOURCES = main.cpp helpers.cpp StudentaiClass.cpp vector.cpp
 
 # Compiler and flags
 CXX = g++
@@ -27,8 +27,8 @@ main: $(OBJECTS)
 	$(CXX) -O3 $(CXXFLAGS) $(OBJECTS) -o pazymiai
 
 # Test executable
-test: $(TEST_OBJECTS) helpers.o StudentaiClass.o
-	$(CXX) -O3 $(CXXFLAGS) $(TEST_OBJECTS) helpers.o StudentaiClass.o $(LIBS) -o test_pazymiai
+test: $(TEST_OBJECTS) helpers.o StudentaiClass.o vector.o
+	$(CXX) -O3 $(CXXFLAGS) $(TEST_OBJECTS) helpers.o StudentaiClass.o vector.o $(LIBS) -o test_pazymiai
 
 clean:
 	rm -f *.o test/*.o pazymiai test_pazymiai vectortest

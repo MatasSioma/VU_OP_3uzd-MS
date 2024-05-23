@@ -231,6 +231,18 @@ void Studentas::skaiciuotiMed() {
     mediana = vidurys;
 }
 
+bool Studentas::operator==(const Studentas& other) const {
+    if (nd.size() != other.ndSk()) return false;
+    for(int i = 0; i < nd.size(); i++) {
+        if(nd[i] != other.nd.at(i)) return false;
+    }
+    return vardas == other.getVardas() && pavarde == other.getPavarde() && egz == other.getEgz();
+}
+
+bool Studentas::operator!=(const Studentas& other) const {
+    return !(*this == other);
+}
+
 void rikiuotiPagalParametra(Container<Studentas> &studentai, int option) {
     switch (option) {
     case 1:
