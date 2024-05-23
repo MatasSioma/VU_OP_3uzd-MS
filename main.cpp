@@ -8,6 +8,10 @@
 #include <cctype>
 #include <sstream>
 
+// // Windows lietuviskos raides 
+// #include <windows.h>
+// // x86_64-w64-mingw32-g++ -c -o main.o main.cpp
+
 #include "pazymiai.h"
 
 using namespace std;
@@ -15,10 +19,14 @@ using namespace std;
 int ndSk, studSk, inputOption;
 
 int main() {
+    // // Windows lietuviskos raides 
+    // SetConsoleOutputCP(CP_UTF8);
+    // setvbuf(stdout, nullptr, _IOFBF, 1000);
+    // // x86_64-w64-mingw32-g++ -c -o main.o main.cpp
 
     srand(time(nullptr));
     unsigned int reallocation = 0;
-
+    double vectorSparta = 0;
 
     if(!taipArNe("Ar norėsite generuoti failus? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
         int eilSk[5] {1'000, 10'000, 100'000, 1'000'000, 10'000'000};
@@ -100,12 +108,16 @@ int main() {
         getline(buffer, line);
         ndSk = countNd(line);
 
+        Timer nuskaityti;
         while (getline(buffer, line)) {
             istringstream lineStream(line);
             lineStream >> stud;
             if (studentai.capacity() == studentai.size()) reallocation++;
             studentai.push_back(move(stud));
         }
+        studentai.shrink_to_fit();
+        vectorSparta += nuskaityti.elapsed();
+
         buffer.clear();
 
         // cout << "Duomenu skaitymas uztruko: "<< skaitymas.elapsed() << "s" << endl;
@@ -168,6 +180,7 @@ int main() {
 
     } else {
         pasirinktiEiga("1 - Sukurti atskirus konteineriu kietekam ir vargšiems, 2 - Viską išvesti viename faile: ", &option, 2);
+        Timer isvesti;
         if (option == 1) {
             Container<Studentas> vargsiukai;
             auto isVargsas = [](Studentas &a){return a.getVidurkis() >= 5;};
@@ -193,7 +206,9 @@ int main() {
             for (auto &stud : studentai) konteineris << stud << endl;
             konteineris.close();
         }
+        vectorSparta += isvesti.elapsed();
     }
     cout << "Konteineris buvo padidintas: " << reallocation << " kartų" << endl;
     atspauzdintiMasyvoInfo(studentai);
+    cout << "Visos operacijos su vektoriais užtruko: " << vectorSparta << "s" << endl;
 }

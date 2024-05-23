@@ -98,9 +98,39 @@ Perdaryti konstruktoriai\
 Naudojamas Google test framework'as\
 Parašyti porą "testinių" testų\
 
+## v3.0
+Mano Vector implementacija\
+Atnaujinta doxygen dokumentacija\
+
+
+10000 dydžio std::vector užpildymas: 0.000159s\
+10000 dydžio mano vektoriaus užpildymas: 0.000077s\
+100000 dydžio std::vector užpildymas: 0.001841s\
+100000 dydžio mano vektoriaus užpildymas: 0.001074s\
+1000000 dydžio std::vector užpildymas: 0.020536s\
+1000000 dydžio mano vektoriaus užpildymas: 0.011238s\
+10000000 dydžio std::vector užpildymas: 0.168835s\
+10000000 dydžio mano vektoriaus užpildymas: 0.081431s\
+100000000 dydžio std::vector užpildymas: 1.213538s\
+100000000 dydžio mano vektoriaus užpildymas: 0.544625s\
+
+perskirstymai užpildant 100000000 elementų std::vector ir mano vektoriaus - (vienodai)\
+
+std::vector ir mano vector implementacija:
+![v3.0 statistika](statistikav3.0.png)
+
+Processor             AMD Ryzen 7 7735U\
+Installed RAM         16,0 GB (15,8 GB usable)\
+System type	64-bit    Ubuntu 22.04.3 LTS on Windows 10 x86_64\
+Storage               512GB SSD
 
 ### instrukcija kaip paleisti programą UNIX(MacOS, Linux,...) sistemoje
 
 1. Sistemos komandinėje eilutėje įrašykite `make`, ENTER
 2. Kad paleistumėte programą, į komadinę eilutę įveskite: `./pazymiai` ir sekite instrukcijas programoje.
 Kad paleistumėte programos testą, į komadinę eilutę įveskite: `./test_pazymiai`.
+
+### instrukcija kaip paleisti programą Windows sistemoje
+
+1. Paleiskite `setup.exe` failą ir sekite instrukcijas ten.
+2. Programą galime paleisti per start meniu arba darbalaukyje pavadinimu `Pazymiai`.exe ir sekite instrukcijas programoje

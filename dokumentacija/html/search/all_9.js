@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['ms_0',['VU_OP_2uzd-MS',['../md_README.html',1,'']]]
+  ['linux_20sistemoje_0',['instrukcija kaip paleisti programą UNIX(MacOS, Linux,...) sistemoje',['../md_README.html#autotoc_md14',1,'']]]
 ];

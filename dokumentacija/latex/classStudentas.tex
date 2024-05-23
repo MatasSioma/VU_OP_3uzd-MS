@@ -17,19 +17,11 @@ Paveldimumo diagrama Studentas\+:\begin{figure}[H]
 \item 
 \mbox{\hyperlink{classStudentas_aed919f0dda2c66f6c96aad5d73285f76}{Studentas}} (\mbox{\hyperlink{classStudentas}{Studentas}} \&\&tmp\+Stud) noexcept
 \item 
-void \mbox{\hyperlink{classStudentas_a5a490370afdf4aab66b0ce0427e08632}{set\+Vardas}} (string vardas)
-\item 
-void \mbox{\hyperlink{classStudentas_adf50b6cabe54ebd01d298c9690ef5212}{set\+Pavarde}} (string pavarde)
-\item 
-string \mbox{\hyperlink{classStudentas_a7658f22795330130632ac24769a2fd43}{get\+Vardas}} () const
-\item 
-string \mbox{\hyperlink{classStudentas_a5dd7dab43d87cee10ce8b65851adb046}{get\+Pavarde}} () const
-\item 
 void \mbox{\hyperlink{classStudentas_aa3c853c6ef51c9a5a5379ba16fccb1a4}{nd\+Append}} (int balas)
 \item 
 void \mbox{\hyperlink{classStudentas_a7040bc64911510a44ac0a1f24278f39a}{nd\+Resize}} (int size)
 \item 
-int \mbox{\hyperlink{classStudentas_aa71b82301808165e400ea01a21652fb4}{nd\+Sk}} ()
+int \mbox{\hyperlink{classStudentas_ac0599c582c7ba91b5cb73a0c6e0903e3}{nd\+Sk}} () const
 \item 
 int \mbox{\hyperlink{classStudentas_aef65d0dd338d30defff3871046eca8b6}{get\+Nd}} (int index)
 \item 
@@ -54,6 +46,10 @@ void \mbox{\hyperlink{classStudentas_a16e5e53c08ae2174258cdec48ab73070}{clear\+E
 \mbox{\hyperlink{classStudentas}{Studentas}} \& \mbox{\hyperlink{classStudentas_aa42ca3cb203ad766ac46dfbfefc33d8a}{operator=}} (const \mbox{\hyperlink{classStudentas}{Studentas}} \&tmp\+Stud)
 \item 
 \mbox{\hyperlink{classStudentas}{Studentas}} \& \mbox{\hyperlink{classStudentas_a277315ce2d481fed582755cf766520db}{operator=}} (\mbox{\hyperlink{classStudentas}{Studentas}} \&\&tmp\+Stud)
+\item 
+bool \mbox{\hyperlink{classStudentas_aa5d9f15dc7728f3a9189e2178c7d5307}{operator==}} (const \mbox{\hyperlink{classStudentas}{Studentas}} \&other) const
+\item 
+bool \mbox{\hyperlink{classStudentas_a32408cb261d5a27f458869a472a18f5c}{operator!=}} (const \mbox{\hyperlink{classStudentas}{Studentas}} \&other) const
 \item 
 virtual void \mbox{\hyperlink{classStudentas_a75d0e48e24946d56697d1b321ae13c0e}{who\+AmI}} ()
 \end{DoxyCompactItemize}
@@ -102,7 +98,7 @@ Studentas\+::\+Studentas (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00012\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classZmogus}{Zmogus}}(),}
 \DoxyCodeLine{00013\ \ \ \ \ egz(0),}
-\DoxyCodeLine{00014\ \ \ \ \ nd(\{0\}),}
+\DoxyCodeLine{00014\ \ \ \ \ nd(\{\}),}
 \DoxyCodeLine{00015\ \ \ \ \ vidurkis(0.0),}
 \DoxyCodeLine{00016\ \ \ \ \ mediana(0.0)\ \{\}}
 
@@ -117,7 +113,7 @@ Studentas\+::\+Studentas (\begin{DoxyParamCaption}\item[{const string \&}]{varda
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classZmogus}{Zmogus}}(vardas,\ pavarde)\ \{}
 \DoxyCodeLine{00019\ \ \ \ \ egz\ =\ 0;}
-\DoxyCodeLine{00020\ \ \ \ \ nd\ =\ \{0\};}
+\DoxyCodeLine{00020\ \ \ \ \ nd\ =\ \{\};}
 \DoxyCodeLine{00021\ \ \ \ \ vidurkis\ =\ 0.0;}
 \DoxyCodeLine{00022\ \ \ \ \ mediana\ =\ 0.0;}
 \DoxyCodeLine{00023\ \}}
@@ -131,8 +127,8 @@ Studentas\+::\+Studentas (\begin{DoxyParamCaption}\item[{const string \&}]{varda
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classZmogus}{Zmogus}}(vardas,\ pavarde),}
-\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ egz(egz),\ vidurkis(vidurkis),\ mediana(mediana),\ nd(nd)\ \{\}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ :\ \mbox{\hyperlink{classZmogus}{Zmogus}}(vardas,\ pavarde),}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ egz(egz),\ vidurkis(vidurkis),\ mediana(mediana),\ nd(nd)\ \{\}}
 
 \end{DoxyCode}
 \Hypertarget{classStudentas_aeb959a51e2b3a8e03e0eb0a3b4a6fef1}\index{Studentas@{Studentas}!Studentas@{Studentas}}
@@ -231,28 +227,6 @@ int Studentas\+::get\+Nd (\begin{DoxyParamCaption}\item[{int}]{index}{}\end{Doxy
 \DoxyCodeLine{00051\ \{\textcolor{keywordflow}{return}\ nd.at(index);\}}
 
 \end{DoxyCode}
-\Hypertarget{classStudentas_a5dd7dab43d87cee10ce8b65851adb046}\index{Studentas@{Studentas}!getPavarde@{getPavarde}}
-\index{getPavarde@{getPavarde}!Studentas@{Studentas}}
-\doxysubsubsection{\texorpdfstring{getPavarde()}{getPavarde()}}
-{\footnotesize\ttfamily \label{classStudentas_a5dd7dab43d87cee10ce8b65851adb046} 
-string Studentas\+::get\+Pavarde (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00046\ \{\textcolor{keywordflow}{return}\ pavarde;\}}
-
-\end{DoxyCode}
-\Hypertarget{classStudentas_a7658f22795330130632ac24769a2fd43}\index{Studentas@{Studentas}!getVardas@{getVardas}}
-\index{getVardas@{getVardas}!Studentas@{Studentas}}
-\doxysubsubsection{\texorpdfstring{getVardas()}{getVardas()}}
-{\footnotesize\ttfamily \label{classStudentas_a7658f22795330130632ac24769a2fd43} 
-string Studentas\+::get\+Vardas (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00045\ \{\textcolor{keywordflow}{return}\ vardas;\}}
-
-\end{DoxyCode}
 \Hypertarget{classStudentas_ac0a7e980225142cb5445f6b0432191b3}\index{Studentas@{Studentas}!getVidurkis@{getVidurkis}}
 \index{getVidurkis@{getVidurkis}!Studentas@{Studentas}}
 \doxysubsubsection{\texorpdfstring{getVidurkis()}{getVidurkis()}}
@@ -272,11 +246,11 @@ void Studentas\+::last\+Ndto\+Egz (\begin{DoxyParamCaption}{}{}\end{DoxyParamCap
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
-\DoxyCodeLine{00256\ \ \ \ \ \textcolor{keywordtype}{int}\ lastIndex\ =\ (int)this-\/>nd.size()\ -\/\ 1;}
-\DoxyCodeLine{00257\ \ \ \ \ egz\ =\ nd.at(lastIndex);}
-\DoxyCodeLine{00258\ \ \ \ \ nd.resize(lastIndex);}
-\DoxyCodeLine{00259\ \}}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordtype}{int}\ lastIndex\ =\ (int)this-\/>nd.size()\ -\/\ 1;}
+\DoxyCodeLine{00269\ \ \ \ \ egz\ =\ nd.at(lastIndex);}
+\DoxyCodeLine{00270\ \ \ \ \ nd.resize(lastIndex);}
+\DoxyCodeLine{00271\ \}}
 
 \end{DoxyCode}
 \Hypertarget{classStudentas_aa3c853c6ef51c9a5a5379ba16fccb1a4}\index{Studentas@{Studentas}!ndAppend@{ndAppend}}
@@ -301,15 +275,28 @@ void Studentas\+::nd\+Resize (\begin{DoxyParamCaption}\item[{int}]{size}{}\end{D
 \DoxyCodeLine{00049\ \{nd.resize(size);\}}
 
 \end{DoxyCode}
-\Hypertarget{classStudentas_aa71b82301808165e400ea01a21652fb4}\index{Studentas@{Studentas}!ndSk@{ndSk}}
+\Hypertarget{classStudentas_ac0599c582c7ba91b5cb73a0c6e0903e3}\index{Studentas@{Studentas}!ndSk@{ndSk}}
 \index{ndSk@{ndSk}!Studentas@{Studentas}}
 \doxysubsubsection{\texorpdfstring{ndSk()}{ndSk()}}
-{\footnotesize\ttfamily \label{classStudentas_aa71b82301808165e400ea01a21652fb4} 
-int Studentas\+::nd\+Sk (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classStudentas_ac0599c582c7ba91b5cb73a0c6e0903e3} 
+int Studentas\+::nd\+Sk (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 \begin{DoxyCode}{0}
 \DoxyCodeLine{00050\ \{\textcolor{keywordflow}{return}\ nd.size();\}}
+
+\end{DoxyCode}
+\Hypertarget{classStudentas_a32408cb261d5a27f458869a472a18f5c}\index{Studentas@{Studentas}!operator"!=@{operator"!=}}
+\index{operator"!=@{operator"!=}!Studentas@{Studentas}}
+\doxysubsubsection{\texorpdfstring{operator"!=()}{operator!=()}}
+{\footnotesize\ttfamily \label{classStudentas_a32408cb261d5a27f458869a472a18f5c} 
+bool Studentas\+::operator!= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classStudentas}{Studentas}} \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keywordflow}{return}\ !(*\textcolor{keyword}{this}\ ==\ other);}
+\DoxyCodeLine{00244\ \}}
 
 \end{DoxyCode}
 \Hypertarget{classStudentas_aa42ca3cb203ad766ac46dfbfefc33d8a}\index{Studentas@{Studentas}!operator=@{operator=}}
@@ -357,6 +344,23 @@ int Studentas\+::nd\+Sk (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hsp
 \DoxyCodeLine{00068\ \}}
 
 \end{DoxyCode}
+\Hypertarget{classStudentas_aa5d9f15dc7728f3a9189e2178c7d5307}\index{Studentas@{Studentas}!operator==@{operator==}}
+\index{operator==@{operator==}!Studentas@{Studentas}}
+\doxysubsubsection{\texorpdfstring{operator==()}{operator==()}}
+{\footnotesize\ttfamily \label{classStudentas_aa5d9f15dc7728f3a9189e2178c7d5307} 
+bool Studentas\+::operator== (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classStudentas}{Studentas}} \&}]{other}{}\end{DoxyParamCaption}) const}
+
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordflow}{if}\ (nd.size()\ !=\ other.ndSk())\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ nd.size();\ i++)\ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(nd[i]\ !=\ other.nd.at(i))\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00238\ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordflow}{return}\ vardas\ ==\ other.getVardas()\ \&\&\ pavarde\ ==\ other.getPavarde()\ \&\&\ egz\ ==\ other.getEgz();}
+\DoxyCodeLine{00240\ \}}
+
+\end{DoxyCode}
 \Hypertarget{classStudentas_aeef255257284fee85ab5acd528f29a00}\index{Studentas@{Studentas}!setEgz@{setEgz}}
 \index{setEgz@{setEgz}!Studentas@{Studentas}}
 \doxysubsubsection{\texorpdfstring{setEgz()}{setEgz()}}
@@ -381,28 +385,6 @@ void Studentas\+::set\+Nd (\begin{DoxyParamCaption}\item[{int}]{index}{, }\item[
 \DoxyCodeLine{00209\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(index\ >=\ 0)\ this-\/>nd.at(index)\ =\ value;}
 \DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordflow}{else}\ this-\/>nd.at((\textcolor{keywordtype}{int})this-\/>nd.size()\ +\ index)\ =\ value;}
 \DoxyCodeLine{00211\ \}}
-
-\end{DoxyCode}
-\Hypertarget{classStudentas_adf50b6cabe54ebd01d298c9690ef5212}\index{Studentas@{Studentas}!setPavarde@{setPavarde}}
-\index{setPavarde@{setPavarde}!Studentas@{Studentas}}
-\doxysubsubsection{\texorpdfstring{setPavarde()}{setPavarde()}}
-{\footnotesize\ttfamily \label{classStudentas_adf50b6cabe54ebd01d298c9690ef5212} 
-void Studentas\+::set\+Pavarde (\begin{DoxyParamCaption}\item[{string}]{pavarde}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00044\ \{this-\/>pavarde\ =\ pavarde;\}}
-
-\end{DoxyCode}
-\Hypertarget{classStudentas_a5a490370afdf4aab66b0ce0427e08632}\index{Studentas@{Studentas}!setVardas@{setVardas}}
-\index{setVardas@{setVardas}!Studentas@{Studentas}}
-\doxysubsubsection{\texorpdfstring{setVardas()}{setVardas()}}
-{\footnotesize\ttfamily \label{classStudentas_a5a490370afdf4aab66b0ce0427e08632} 
-void Studentas\+::set\+Vardas (\begin{DoxyParamCaption}\item[{string}]{vardas}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
-
-
-\begin{DoxyCode}{0}
-\DoxyCodeLine{00043\ \{this-\/>vardas\ =\ vardas;\}}
 
 \end{DoxyCode}
 \Hypertarget{classStudentas_a03cf285ecf850f09777bd03e0070cb08}\index{Studentas@{Studentas}!skaiciuotiMed@{skaiciuotiMed}}
@@ -456,7 +438,7 @@ Realizuoja \mbox{\hyperlink{classZmogus}{Zmogus}}.
 
 
 \begin{DoxyCode}{0}
-\DoxyCodeLine{00078\ \{cout\ <<\ \textcolor{stringliteral}{"{}Studentas\ klasė"{}}\ <<\ endl;\}}
+\DoxyCodeLine{00081\ \{cout\ <<\ \textcolor{stringliteral}{"{}Studentas\ klasė"{}}\ <<\ endl;\}}
 
 \end{DoxyCode}
 
