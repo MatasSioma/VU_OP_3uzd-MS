@@ -41,6 +41,7 @@ class Vector {
         void reserve(size_t new_cap);
         size_t capacity() const noexcept;
         void shrink_to_fit();
+        void assign(size_t n, const T& value);
 
         void clear() noexcept;
         void push_back(const T& value);
@@ -48,6 +49,8 @@ class Vector {
         void pop_back();
         void resize(size_t count);
         void resize(size_t count, const T& value);
+        void emplace(size_t index, T&& value);
+        void emplace_back(T&& value);
 
         bool operator==(const Vector& other) const;
         bool operator!=(const Vector& other) const;

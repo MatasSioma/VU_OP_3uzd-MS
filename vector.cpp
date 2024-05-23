@@ -184,6 +184,71 @@ void Vector<T>::resize(size_t count) {
     resize(count, T());
 }
 
+template<typename T>
+void Vector<T>::push_back(const T& value) {
+    if (size_ == capacity_) reserve(nextCapacity(size_ + 1));
+    data_[size_++] = value;
+}
+
+// Push back an element (move)
+template<typename T>
+void Vector<T>::push_back(T&& value) {
+    if (size_ == capacity_) reserve(nextCapacity(size_ + 1));
+    data_[size_++] = std::move(value);
+}
+
+// Clear the vector
+template<typename T>
+void Vector<T>::clear() noexcept {
+    size_ = 0;
+}
+
+// Remove the last element
+template<typename T>
+void Vector<T>::pop_back() {
+    if (size_ > 0) {
+        --size_;
+    }
+}
+
+template<typename T>
+void Vector<T>::shrink_to_fit() {
+    if (size_ < capacity_) {
+        T* new_data = new T[size_];
+        std::move(data_, data_ + size_, new_data);
+        delete[] data_;
+        data_ = new_data;
+        capacity_ = size_;
+    }
+}
+
+template<typename T>
+void Vector<T>::assign(size_t n, const T& value) {
+    if (n > capacity_) reserve(n);
+    for (size_t i = 0; i < n; i++) {
+        data_[i] = value;
+    }
+    size_ = n;
+}
+
+template<typename T>
+void Vector<T>::emplace(size_t index, T&& value) {
+    if (index > size_) throw std::out_of_range("Index out of range");
+    if (size_ == capacity_) reserve(nextCapacity(size_ + 1));
+
+    for (size_t i = size_; i > index; --i) {
+        data_[i] = std::move(data_[i - 1]);
+    }
+    data_[index] = std::move(value);
+    size_++;
+}
+
+template<typename T>
+void Vector<T>::emplace_back(T&& value) {
+    if (size_ == capacity_) reserve(nextCapacity(size_ + 1));
+    data_[size_++] = std::move(value);
+}
+
 template class Vector<int>;
 template class Vector<double>;
 // template class Vector<Studentas>;
