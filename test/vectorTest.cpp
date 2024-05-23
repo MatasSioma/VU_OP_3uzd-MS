@@ -1,5 +1,7 @@
 #include <gtest/gtest.h>
 #include "../vector.h"
+#include "../timer.h"
+
 #include <iostream>
 #include <stdexcept>
 
@@ -146,4 +148,33 @@ TEST(VectorClass, CapacityBehavior) {
 
     v.shrink_to_fit();
     EXPECT_EQ(v.capacity(), 300) << "Capacity after final shrink_to_fit() is not 300.";
+}
+
+TEST(VectorClass, SpeedTest) {
+// TEST(VectorClass, DISABLED_SpeedTest) {
+    printf("Teste iškart pateikiami 5 testų vidurkiai\n");
+    unsigned int sz[5] = {10'000, 100'000, 1'000'000, 10'000'000, 100'000'000}; 
+    double stlVec = 0, myVec = 0;
+    for(int n = 0; n < 5; n++) {
+        for (int i = 0; i < 5; i++) {
+            Timer stlVecT;
+            std::vector<int> v1;
+            for (int i = 1; i <= sz[n]; ++i)
+            v1.push_back(i);
+            EXPECT_EQ(v1.size(), sz[n]);
+            stlVec += stlVecT.elapsed();
+        }
+        
+        for (int i = 0; i < 5; i++) {
+            Timer myVecT;
+            Vector<int> v2;
+            for (int i = 1; i <= sz[n]; ++i)
+            v2.push_back(i);
+            EXPECT_EQ(v2.size(), sz[n]);
+            myVec += myVecT.elapsed();
+        }
+        
+        printf("%d dydžio std::vector užpildymas: %fs\n", sz[n], stlVec / 5);
+        printf("%d dydžio mano vektoriaus užpildymas: %fs\n", sz[n], myVec / 5);
+    }
 }
