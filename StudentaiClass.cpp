@@ -264,8 +264,8 @@ void sortAndAddToFile(vector<Studentas> &kietekai, vector<Studentas> &vargsiukai
 
     ofstream konteineriai[2];
     int eilSk = kietekai.size() + vargsiukai.size();
-    konteineriai[0].open("sugeneruoti/" + to_string(eilSk) + "geri.txt");
-    konteineriai[1].open("sugeneruoti/"+ to_string(eilSk) + "blogi.txt");
+    konteineriai[0].open("output/" + to_string(eilSk) + "geri.txt");
+    konteineriai[1].open("output/"+ to_string(eilSk) + "blogi.txt");
 
     for(int i = 0; i < 2; i++) {
         konteineriai[i] << left << setw(24) << "Vardas" << left << setw(24) << "Pavardė";

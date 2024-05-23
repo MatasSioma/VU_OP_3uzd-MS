@@ -31,7 +31,7 @@ test: $(TEST_OBJECTS) helpers.o StudentaiClass.o
 	$(CXX) -O3 $(CXXFLAGS) $(TEST_OBJECTS) helpers.o StudentaiClass.o $(LIBS) -o test_pazymiai
 
 clean:
-	rm -f *.o test/*.o pazymiai test_pazymiai
+	rm -f *.o test/*.o pazymiai test_pazymiai vectortest
 
 vectortest: test/vectorTest.o vector.o
 	$(CXX) $(CXXFLAGS) test/vectorTest.o vector.o $(LIBS) -o vectortest
