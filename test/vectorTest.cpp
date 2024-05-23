@@ -5,6 +5,8 @@
 #include <iostream>
 #include <stdexcept>
 
+int ndSk = 5, studSk = 30, inputOption = 3;
+
 TEST(nextCap, correctBehaviuor) {
     EXPECT_EQ(nextCapacity(4), 4);
     EXPECT_EQ(nextCapacity(4+1), 8);

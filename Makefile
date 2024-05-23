@@ -33,8 +33,8 @@ test: $(TEST_OBJECTS) helpers.o StudentaiClass.o vector.o
 clean:
 	rm -f *.o test/*.o pazymiai test_pazymiai vectortest
 
-vectortest: test/vectorTest.o vector.o
-	$(CXX) $(CXXFLAGS) test/vectorTest.o vector.o $(LIBS) -o vectortest
+vectortest: test/vectorTest.o vector.o StudentaiClass.o helpers.o
+	$(CXX) $(CXXFLAGS) test/vectorTest.o vector.o StudentaiClass.o helpers.o $(LIBS) -o vectortest
 
 run:
 	make clean

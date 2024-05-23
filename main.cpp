@@ -17,6 +17,8 @@ int ndSk, studSk, inputOption;
 int main() {
 
     srand(time(nullptr));
+    unsigned int reallocation = 0;
+
 
     if(!taipArNe("Ar norėsite generuoti failus? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
         int eilSk[5] {1'000, 10'000, 100'000, 1'000'000, 10'000'000};
@@ -101,6 +103,7 @@ int main() {
         while (getline(buffer, line)) {
             istringstream lineStream(line);
             lineStream >> stud;
+            if (studentai.capacity() == studentai.size()) reallocation++;
             studentai.push_back(move(stud));
         }
         buffer.clear();
@@ -108,6 +111,7 @@ int main() {
         // cout << "Duomenu skaitymas uztruko: "<< skaitymas.elapsed() << "s" << endl;
     }
 
+    studentai.shrink_to_fit();
     cin.clear();
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
@@ -190,5 +194,6 @@ int main() {
             konteineris.close();
         }
     }
+    cout << "Konteineris buvo padidintas: " << reallocation << " kartų" << endl;
     atspauzdintiMasyvoInfo(studentai);
 }
