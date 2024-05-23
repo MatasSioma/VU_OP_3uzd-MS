@@ -286,4 +286,6 @@ bool Vector<T>::operator!=(const Vector<T>& other) const {
 
 template class Vector<int>;
 template class Vector<double>;
+template class Vector<std::string>;
+
 // template class Vector<Studentas>;
