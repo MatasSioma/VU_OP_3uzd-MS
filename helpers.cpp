@@ -5,7 +5,7 @@
 #include <cmath>
 #include <fstream>
 
-# include "pazymiai.h"
+#include "pazymiai.h"
 
 using namespace std;
 
@@ -53,14 +53,14 @@ int countNd(string &line) {
     return count;
 }
 
-void equalOutNdSk(vector<Studentas> &studentai, int ndSk) {
+void equalOutNdSk(Container<Studentas> &studentai, int ndSk) {
     for(auto &stud : studentai) {
         stud.ndResize(ndSk);
         for(int i = -1; i >= stud.ndSk() - ndSk; i--) stud.setNd(i, 0);
     }
 }
 
-void atspauzdintiMasyvoInfo(vector<Studentas> &studentai) {
+void atspauzdintiMasyvoInfo(Container<Studentas> &studentai) {
     cout << "\n\nMasyvo dumenys:\n";
     cout << "Vardas        Pavardė       " << left << setw(studentai.at(0).ndSk()*3 + 10 ) << "NdPazymiai";
     cout << "Egzaminas" << endl;

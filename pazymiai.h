@@ -1,3 +1,7 @@
+#ifndef Container
+#define Container std::vector
+#endif
+
 #ifndef PAZYMIAI_H
 #define PAZYMIAI_H
 
@@ -40,11 +44,6 @@ class Studentas : public Zmogus {
         Studentas(const Studentas &tmpStud);
         Studentas(Studentas &&tmpStud) noexcept;
 
-        inline void setVardas(string vardas) {this->vardas = vardas;}
-        inline void setPavarde(string pavarde) {this->pavarde = pavarde;}
-        inline string getVardas() const {return vardas;}
-        inline string getPavarde() const {return pavarde;}
-
         void ndAppend(int balas) {nd.push_back(balas);} //prideda viena namu darba.
         void ndResize(int size) {nd.resize(size);}
         inline int ndSk() {return nd.size();}
@@ -82,9 +81,9 @@ void pasirinktiEiga(string msg, int* option, int max);
 bool taipArNe(string uzklausa);
 int countNd(string &line);
 
-void rikiuotiPagalParametra(vector<Studentas> &studentai, int option);
-void equalOutNdSk(vector<Studentas> &studentai, int ndSk);
-void sortAndAddToFile(vector<Studentas> &kietekai, vector<Studentas> &vargsiukai, int option);
-void atspauzdintiMasyvoInfo(vector<Studentas> &studentai);
+void rikiuotiPagalParametra(Container<Studentas> &studentai, int option);
+void equalOutNdSk(Container<Studentas> &studentai, int ndSk);
+void sortAndAddToFile(Container<Studentas> &kietekai, Container<Studentas> &vargsiukai, int option);
+void atspauzdintiMasyvoInfo(Container<Studentas> &studentai);
 
 #endif

@@ -3,7 +3,7 @@
 
 int ndSk = 5, studSk = 30, inputOption = 3;
 
-TEST(StudentasKlase, ConstructorWithNames) {
+TEST(RuleOfFiveStudentas, ConstructorWithNames) {
     Studentas stud;
     stud.setVardas("Matas");
     stud.setPavarde("Semenas");
@@ -12,13 +12,13 @@ TEST(StudentasKlase, ConstructorWithNames) {
 }
 
 //Konstruktoriaus testas
-TEST(StudentasKlase, DefaultConstructor) {
+TEST(RuleOfFiveStudentas, DefaultConstructor) {
     Studentas stud;
     EXPECT_EQ(stud.getVardas(), "BeVardis");
     EXPECT_EQ(stud.getPavarde(), "BePavardis");
 }
 //Move konstruktoriaus testas
-TEST(StudentasKlase, MoveConstructor) {
+TEST(RuleOfFiveStudentas, MoveConstructor) {
     Studentas stud;
     stud.setVardas("Matas");
     stud.setPavarde("Semenas");
@@ -30,7 +30,7 @@ TEST(StudentasKlase, MoveConstructor) {
     EXPECT_TRUE(stud.getPavarde().empty());
 }
 //Copy konstruktoriaus testas
-TEST(StudentasKlase, CopyConstructor) {
+TEST(RuleOfFiveStudentas, CopyConstructor) {
     Studentas stud;
     stud.setVardas("Matas");
     stud.setPavarde("Semenas");
@@ -40,7 +40,7 @@ TEST(StudentasKlase, CopyConstructor) {
     EXPECT_EQ(stud.getVardas(), stud2.getVardas());
 }
 //Assign operatoriaus testas
-TEST(StudentasKlase, Assignment) {
+TEST(RuleOfFiveStudentas, Assignment) {
     Studentas stud;
     stud.setVardas("Matas");
     stud.setPavarde("Semenas");
@@ -51,7 +51,7 @@ TEST(StudentasKlase, Assignment) {
     EXPECT_EQ(stud.getVardas(), stud2.getVardas());
 }
 //Perkelimo priskyrimo operatoriaus testas
-TEST(StudentasKlase, MoveAssignment) {
+TEST(RuleOfFiveStudentas, MoveAssignment) {
     Studentas stud;
     stud.setVardas("Matas");
     stud.setPavarde("Semenas");

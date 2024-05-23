@@ -9,6 +9,7 @@
 #include <sstream>
 
 #include "pazymiai.h"
+#include "vector.h"
 
 using namespace std;
 
@@ -53,7 +54,7 @@ int main() {
     ĮVESTIS
 
     */
-    vector<Studentas> studentai;
+    Container<Studentas> studentai;
     Studentas stud;
     int option, rikiavimas;
     string inFileName;
@@ -165,7 +166,7 @@ int main() {
     } else {
         pasirinktiEiga("1 - Sukurti atskirus konteineriu kietekam ir vargšiems, 2 - Viską išvesti viename faile: ", &option, 2);
         if (option == 1) {
-            vector<Studentas> vargsiukai;
+            Container<Studentas> vargsiukai;
             auto isVargsas = [](Studentas &a){return a.getVidurkis() >= 5;};
             auto it = partition(studentai.begin(), studentai.end(), isVargsas);
             int index = distance(studentai.begin(), it);

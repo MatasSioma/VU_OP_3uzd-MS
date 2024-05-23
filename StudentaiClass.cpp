@@ -11,13 +11,13 @@ using namespace std;
 //default
 Studentas::Studentas() : Zmogus(),
     egz(0),
-    nd({0}),
+    nd({}),
     vidurkis(0.0),
     mediana(0.0) {}
 
 Studentas::Studentas(const string &vardas, const string &pavarde) : Zmogus(vardas, pavarde) {
     egz = 0;
-    nd = {0};
+    nd = {};
     vidurkis = 0.0;
     mediana = 0.0;
 }
@@ -231,7 +231,7 @@ void Studentas::skaiciuotiMed() {
     mediana = vidurys;
 }
 
-void rikiuotiPagalParametra(vector<Studentas> &studentai, int option) {
+void rikiuotiPagalParametra(Container<Studentas> &studentai, int option) {
     switch (option) {
     case 1:
         sort(studentai.begin(), studentai.end(), [](Studentas &a, Studentas&b)->bool{return a.getVardas() > b.getVardas();});
@@ -258,7 +258,7 @@ void Studentas::lastNdtoEgz() {
     nd.resize(lastIndex);
 }
 
-void sortAndAddToFile(vector<Studentas> &kietekai, vector<Studentas> &vargsiukai, int option) {
+void sortAndAddToFile(Container<Studentas> &kietekai, Container<Studentas> &vargsiukai, int option) {
     rikiuotiPagalParametra(kietekai, option);
     rikiuotiPagalParametra(vargsiukai, option);
 
@@ -268,12 +268,12 @@ void sortAndAddToFile(vector<Studentas> &kietekai, vector<Studentas> &vargsiukai
     konteineriai[1].open("output/"+ to_string(eilSk) + "blogi.txt");
 
     for(int i = 0; i < 2; i++) {
-        konteineriai[i] << left << setw(24) << "Vardas" << left << setw(24) << "Pavardė";
-        konteineriai[i] << left << setw(10) << "Vid." << left << setw(10) << "Med.";
+        konteineriai[i] << left << setw(25) << "Vardas" << left << setw(25) << "Pavardė";
+        konteineriai[i] << left << setw(10) << "Vid." << left << setw(10) << "Med." << endl;
     }
 
-    for (auto &stud : kietekai) konteineriai[0] << stud;
+    for (auto &stud : kietekai) konteineriai[0] << stud << endl;
     konteineriai[0].close();
-    for (auto &stud : vargsiukai) konteineriai[1] << stud;
+    for (auto &stud : vargsiukai) konteineriai[1] << stud << endl;
     konteineriai[1].close();
 }
