@@ -49,6 +49,8 @@ class Vector {
         void pop_back();
         void resize(size_t count);
         void resize(size_t count, const T& value);
+        void insert(size_t index, const T& value);
+        void insert_range(size_t index, size_t n, const T& value);
         void emplace(size_t index, T&& value);
         void emplace_back(T&& value);
 

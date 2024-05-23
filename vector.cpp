@@ -232,6 +232,28 @@ void Vector<T>::assign(size_t n, const T& value) {
 }
 
 template<typename T>
+void Vector<T>::insert(size_t index, const T& value) {
+    if (size_ == capacity_) reserve(nextCapacity(size_ + 1));
+    for (size_t i = size_; i > index; i--) {
+        data_[i] = data_[i - 1];
+    }
+    data_[index] = value;
+    size_++;
+}
+
+template<typename T>
+void Vector<T>::insert_range(size_t index, size_t n, const T& value) {
+    if (size_ + n > capacity_) reserve(nextCapacity(size_ + n));
+    for (size_t i = size_ + n - 1; i > index + n - 1; i--) {
+        data_[i] = data_[i - n];
+    }
+    for (size_t i = index; i < index + n; i++) {
+        data_[i] = value;
+    }
+    size_ += n;
+}
+
+template<typename T>
 void Vector<T>::emplace(size_t index, T&& value) {
     if (index > size_) throw std::out_of_range("Index out of range");
     if (size_ == capacity_) reserve(nextCapacity(size_ + 1));
