@@ -211,4 +211,6 @@ int main() {
     // cout << "Konteineris buvo padidintas: " << reallocation << " kartų" << endl;
     atspauzdintiMasyvoInfo(studentai);
     cout << "Visos operacijos su vektoriais užtruko: " << vectorSparta << "s" << endl;
+    cout << "Programa baigta. Pauspauskite betkokį mygtuką kad išeiti...";
+    cin.get();
 }

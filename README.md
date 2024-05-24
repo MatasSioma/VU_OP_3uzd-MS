@@ -134,3 +134,7 @@ Kad paleistumėte programos testą, į komadinę eilutę įveskite: `./test_pazy
 
 1. Paleiskite `setup.exe` failą ir sekite instrukcijas ten.
 2. Programą galime paleisti per start meniu arba darbalaukyje pavadinimu `Pazymiai`.exe ir sekite instrukcijas programoje
+
+Programos failus ir rezultatus rasite instaliacijos aplanke (C:\Program Files\VU\Vardenis-Pavardenis\output)\
+arba paspaudus dešinį pelės klavišą ant programos ir paspaudus "Atidaryti programos lokaciją" ("Open file location")
+
