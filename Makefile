@@ -37,7 +37,7 @@ vectortest: test/vectorTest.o vector.o StudentaiClass.o helpers.o
 	$(CXX) $(CXXFLAGS) test/vectorTest.o vector.o StudentaiClass.o helpers.o $(LIBS) -o vectortest
 
 windows: $(OBJECTS)
-	x86_64-w64-mingw32-g++ -static $(OBJECTS) -o Pazymiai.exe
+	x86_64-w64-mingw32-g++ -Wall -static $(OBJECTS) -o Pazymiai.exe
 
 run:
 	make clean

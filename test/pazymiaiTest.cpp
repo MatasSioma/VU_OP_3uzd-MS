@@ -168,3 +168,47 @@ TEST(VectorClass, InitializerList) {
     EXPECT_EQ(8, students[2].getEgz());
     EXPECT_EQ(7.5, students[2].getVidurkis());
 }
+
+TEST(VectorClass, SpeedTest) {
+// TEST(VectorClass, DISABLED_SpeedTest) {
+    printf("Teste iškart pateikiami 5 testų vidurkiai\n");
+    unsigned int sz[5] = {10'000, 100'000, 1'000'000, 10'000'000, 100'000'000}; 
+    double stlVec = 0, myVec = 0;
+
+    for(int n = 0; n < 5; n++) {
+        int realloc = 0;
+        for (int i = 0; i < 5; i++) {
+            realloc = 0;
+            Timer stlVecT;
+            std::vector<Studentas> v1;
+            for (int i = 1; i <= sz[n]; ++i) {
+                if(v1.capacity() == v1.size()) {
+                    realloc++;
+                }
+                v1.push_back(Studentas());
+            }
+            EXPECT_EQ(v1.size(), sz[n]);
+            stlVec += stlVecT.elapsed();
+        }
+        
+        printf("%d dydžio std::vector perskirstymų sk.: %d\n", sz[n], realloc);
+        realloc = 0;
+        for (int i = 0; i < 5; i++) {
+            realloc = 0;
+            Timer myVecT;
+            Vector<Studentas> v2;
+            for (int i = 1; i <= sz[n]; ++i) {
+                if(v2.capacity() == v2.size()) {
+                    realloc++;
+                }
+                v2.push_back(Studentas());
+            }
+            EXPECT_EQ(v2.size(), sz[n]);
+            myVec += myVecT.elapsed();
+        }
+        printf("%d dydžio mano vectoriaus perskirstymų sk.: %d\n", sz[n], realloc);
+
+        printf("%d dydžio std::vector užpildymas: %fs\n", sz[n], stlVec / 5);
+        printf("%d dydžio mano vektoriaus užpildymas: %fs\n", sz[n], myVec / 5);
+    }
+}
