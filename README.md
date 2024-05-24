@@ -114,7 +114,7 @@ Atnaujinta doxygen dokumentacija\
 100000000 dydžio std::vector užpildymas: 1.213538s\
 100000000 dydžio mano vektoriaus užpildymas: 0.544625s\
 
-perskirstymai užpildant 100000000 elementų std::vector ir mano vektoriaus - (vienodai)\
+perskirstymai užpildant 100000000 elementų std::vector ir mano vektoriaus - 28 (vienodai)\
 
 std::vector ir mano vector implementacija:
 ![v3.0 statistika](statistikav3.0.png)

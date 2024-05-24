@@ -25,7 +25,7 @@ int main() {
     // // x86_64-w64-mingw32-g++ -c -o main.o main.cpp
 
     srand(time(nullptr));
-    unsigned int reallocation = 0;
+    // unsigned int reallocation = 0;
     double vectorSparta = 0;
 
     if(!taipArNe("Ar norėsite generuoti failus? (ENTER - Taip, 'Ne'/'N' - Ne): ")) {
@@ -112,7 +112,7 @@ int main() {
         while (getline(buffer, line)) {
             istringstream lineStream(line);
             lineStream >> stud;
-            if (studentai.capacity() == studentai.size()) reallocation++;
+            // if (studentai.capacity() == studentai.size()) reallocation++;
             studentai.push_back(move(stud));
         }
         studentai.shrink_to_fit();
@@ -208,7 +208,7 @@ int main() {
         }
         vectorSparta += isvesti.elapsed();
     }
-    cout << "Konteineris buvo padidintas: " << reallocation << " kartų" << endl;
+    // cout << "Konteineris buvo padidintas: " << reallocation << " kartų" << endl;
     atspauzdintiMasyvoInfo(studentai);
     cout << "Visos operacijos su vektoriais užtruko: " << vectorSparta << "s" << endl;
 }
